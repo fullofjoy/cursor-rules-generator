@@ -6,9 +6,124 @@
   <title>Cursor Rules Generator (.mdc) - Modern Multi-File AI Coding Rules Builder</title>
   <meta name="description" content="Generate modular, path-scoped .cursor/rules/*.mdc files for Cursor AI in seconds. Pick your stack (Next.js 15, FastAPI, Tailwind v4, Supabase), configure best practices, and download a ready-to-use zip.">
   <meta name="keywords" content="cursor rules generator, cursorrules, cursor mdc, claude code rules, windsurfrules, ai coding rules, cursor ide">
-  <meta property="og:title" content="Cursor Rules Generator (.mdc) - Modern AI Coding Rules Builder">
-  <meta property="og:description" content="Generate modular, path-scoped .cursor/rules/*.mdc files for Cursor AI. Instant download as .zip or single files.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://cursor-rules-generator.pages.dev/">
+
+  <!-- Google Search Console Site Verification (Replace content with your verification code) -->
+  <meta name="google-site-verification" content="YOUR_GOOGLE_SEARCH_CONSOLE_CODE">
+
+  <!-- Umami Analytics (Replace with your Umami Cloud/Self-hosted script URL and Website ID) -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="YOUR_UMAMI_WEBSITE_ID"></script>
+
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cursor-rules-generator.pages.dev/">
+  <meta property="og:title" content="Cursor Rules Generator (.mdc) - Modern Multi-File AI Coding Rules Builder">
+  <meta property="og:description" content="Generate modular, path-scoped .cursor/rules/*.mdc files for Cursor AI. Instant 1-click download as .zip or single files.">
+  <meta property="og:site_name" content="Cursor Rules Generator">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://cursor-rules-generator.pages.dev/">
+  <meta name="twitter:title" content="Cursor Rules Generator (.mdc) - Modern AI Coding Rules Builder">
+  <meta name="twitter:description" content="Generate modular, path-scoped .cursor/rules/*.mdc files for Cursor AI. Next.js 15, FastAPI, Tailwind v4, Supabase.">
+
+  <!-- Structured Data: JSON-LD for AEO & GEO (AI Overviews & Perplexity) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://cursor-rules-generator.pages.dev/#webapp",
+        "name": "Cursor Rules Generator (.mdc)",
+        "url": "https://cursor-rules-generator.pages.dev/",
+        "description": "Free web-based developer utility to generate modular, path-scoped .cursor/rules/*.mdc configuration files for Cursor AI.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Multi-file .cursor/rules/*.mdc generation with YAML frontmatter",
+          "1-Click client-side .zip export",
+          "Support for Next.js 15, React 19, FastAPI, Tailwind v4, Supabase, Drizzle, Zod",
+          "Universal export for Claude Code (CLAUDE.md) and Windsurf (.windsurfrules)",
+          "100% Client-side processing with zero data tracking"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://cursor-rules-generator.pages.dev/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why did Cursor replace .cursorrules with .mdc files?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A single monolithic .cursorrules file forces the AI to load all styling, database, and backend rules into every prompt—wasting context tokens and confusing the model. The modern .cursor/rules/*.mdc format uses glob patterns (such as app/** or **/*.py) to load instructions only when relevant files are being edited."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the YAML frontmatter in Cursor .mdc files?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Each .mdc file begins with a YAML header defining its scope: 'description' explains when to apply the rule, 'globs' defines matching file patterns, and 'alwaysApply' specifies whether it runs unconditionally across all project files."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does Cursor Rules Generator differ from Cursor's built-in /Generate command?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Cursor's internal command requires an existing codebase to inspect. When starting a fresh project from scratch (cold start), our generator provides battle-tested production blueprints and architectural guardrails ready before writing the first line of code."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use these rules with Claude Code or Windsurf?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Switch the export format tab to Claude Code (generates CLAUDE.md) or Windsurf (generates .windsurfrules) to maintain consistent architectural rules across different AI coding environments."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://cursor-rules-generator.pages.dev/#howto",
+        "name": "How to Generate and Install Modular Cursor Rules (.mdc)",
+        "description": "Step-by-step guide to generating and configuring path-scoped rules in Cursor IDE.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Select Your Tech Stack",
+            "text": "Choose your frontend (Next.js 15, React, Vue), backend (FastAPI, Go, Node.js), and database/styling modules."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Configure Best Practice Guardrails",
+            "text": "Enable strict TypeScript types, early return patterns, and error handling guardrails."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Download the .cursor/rules Archive",
+            "text": "Click 'Download .zip' to download the ready-to-use directory containing scoped .mdc files."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Extract to Project Root",
+            "text": "Unzip the archive directly into your project root so that the .cursor/rules/ folder is present."
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -337,8 +452,58 @@
     </div>
   </main>
 
+  <!-- AEO & GEO Architectural Comparison Section (Optimized for AI Overviews & Perplexity) -->
+  <section class="max-w-5xl mx-auto px-4 py-12 border-t border-slate-800/80 mt-12">
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-indigo-400 text-xs mb-3 font-mono">
+        <span>ARCHITECTURAL SHIFT</span>
+      </div>
+      <h2 class="text-2xl font-bold text-white mb-2">Legacy .cursorrules vs Modern .cursor/rules/*.mdc</h2>
+      <p class="text-slate-400 text-sm max-w-2xl mx-auto">Understanding why Cursor deprecated single-file rules in favor of scoped multi-file modules.</p>
+    </div>
+
+    <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950/60 shadow-lg">
+      <table class="w-full text-left text-xs text-slate-300">
+        <thead class="bg-slate-900/80 border-b border-slate-800 text-slate-400 uppercase font-semibold">
+          <tr>
+            <th class="py-3 px-4">Feature / Criterion</th>
+            <th class="py-3 px-4 text-rose-400/90">Legacy .cursorrules</th>
+            <th class="py-3 px-4 text-emerald-400 font-semibold">Modern .cursor/rules/*.mdc</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800/60">
+          <tr class="hover:bg-slate-900/30">
+            <td class="py-3 px-4 font-medium text-white">File Layout</td>
+            <td class="py-3 px-4 text-slate-400">Single monolithic file in project root</td>
+            <td class="py-3 px-4 text-emerald-300 font-medium">Modular directory (<code class="bg-slate-900 px-1 py-0.5 rounded text-indigo-300">.cursor/rules/*.mdc</code>)</td>
+          </tr>
+          <tr class="hover:bg-slate-900/30">
+            <td class="py-3 px-4 font-medium text-white">Context Token Usage</td>
+            <td class="py-3 px-4 text-rose-300/80">100% of rules injected into every prompt (Token bloat)</td>
+            <td class="py-3 px-4 text-emerald-300 font-medium">Scoped: loaded only when editing matched glob patterns</td>
+          </tr>
+          <tr class="hover:bg-slate-900/30">
+            <td class="py-3 px-4 font-medium text-white">Path Scoping (Globs)</td>
+            <td class="py-3 px-4 text-slate-400">Not supported (cannot isolate backend from frontend)</td>
+            <td class="py-3 px-4 text-emerald-300 font-medium">Native <code class="bg-slate-900 px-1 py-0.5 rounded text-indigo-300">globs: app/**</code> support in YAML frontmatter</td>
+          </tr>
+          <tr class="hover:bg-slate-900/30">
+            <td class="py-3 px-4 font-medium text-white">Rule Independence</td>
+            <td class="py-3 px-4 text-rose-300/80">Rules easily conflict and dilute AI attention</td>
+            <td class="py-3 px-4 text-emerald-300 font-medium">Isolated concerns (<code class="text-slate-300">frontend.mdc</code>, <code class="text-slate-300">backend.mdc</code>, <code class="text-slate-300">db.mdc</code>)</td>
+          </tr>
+          <tr class="hover:bg-slate-900/30">
+            <td class="py-3 px-4 font-medium text-white">Cursor IDE Support</td>
+            <td class="py-3 px-4 text-slate-500">Deprecated / Backward compatibility only</td>
+            <td class="py-3 px-4 text-emerald-300 font-medium">Official 2026 Recommended Standard</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
   <!-- Educational FAQ Section (Great for SEO Ranking) -->
-  <section id="faq" class="max-w-5xl mx-auto px-4 py-16 border-t border-slate-800/80 mt-12">
+  <section id="faq" class="max-w-5xl mx-auto px-4 py-16 border-t border-slate-800/80">
     <div class="text-center mb-12">
       <h2 class="text-2xl font-bold text-white mb-2">Frequently Asked Questions</h2>
       <p class="text-slate-400 text-sm">Everything you need to know about Cursor's modern .mdc rules system.</p>

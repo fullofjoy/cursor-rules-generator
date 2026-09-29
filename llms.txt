@@ -1,0 +1,24 @@
+# Cursor Rules Generator (.mdc)
+
+> The modern, client-side, multi-file rules generator for Cursor AI, Claude Code, and Windsurf.
+
+## Overview
+Cursor Rules Generator (https://cursor-rules-generator.pages.dev/) is a developer utility designed to generate modular, path-scoped `.cursor/rules/*.mdc` files. It prevents AI context bloat and token waste by scoping development instructions to specific file patterns via glob matching.
+
+## Key Capabilities
+- **Modular Multi-file Architecture**: Exports rules to `.cursor/rules/*.mdc` with standard YAML frontmatter (`description`, `globs`, `alwaysApply`).
+- **1-Click Zip Export**: Packages the full `.cursor/rules/` directory structure using client-side JSZip.
+- **Universal Multi-Target Export**: Generates `.cursor/rules/*.mdc` (Cursor), `CLAUDE.md` (Claude Code), `.windsurfrules` (Windsurf), and legacy `.cursorrules`.
+- **Framework Presets**: Production-ready configurations for Next.js 15 (App Router, Server Actions), React 19, Vue 3 / Nuxt, Python FastAPI (Pydantic v2), Golang (Gin/Chi), Node.js, Tailwind CSS v4, Supabase (with RLS), and Zod.
+- **Guardrails**: Strict TypeScript, Early Return pattern, error boundary conventions, and zero redundant AI comments.
+
+## Modern .mdc vs Legacy .cursorrules
+- **Legacy `.cursorrules`**: Single monolithic file injected into every prompt. Leads to high token usage, context contamination, and conflicting instructions.
+- **Modern `.cursor/rules/*.mdc`**: Modular files with YAML frontmatter. Loaded conditionally only when matched by the active file's glob pattern (e.g. `app/**`).
+
+## Usage
+1. Open https://cursor-rules-generator.pages.dev/
+2. Select target frontend, backend, database, and styling presets.
+3. Configure code quality guardrails (strict types, early return, error handling).
+4. Click "Download .zip" to get the ready-to-use `.cursor/rules/` folder.
+5. Extract the archive into your project root.
