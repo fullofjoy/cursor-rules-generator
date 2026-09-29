@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursor Rules (.mdc) vs .cursorrules: The Complete 2026 Migration Guide</title>
+  <meta name="description" content="Learn why Cursor deprecated legacy .cursorrules files and transitioned to modular .cursor/rules/*.mdc. Complete guide with YAML frontmatter specs, glob matching, and migration steps.">
+  <meta name="keywords" content="cursor rules mdc vs cursorrules, cursor rules migration, cursor ide mdc format, how to use cursor rules, cursor prompt tokens">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://cursor-rules-generator.pages.dev/blog/cursor-rules-mdc-vs-cursorrules.html">
+
+  <!-- Umami Analytics -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="62cb9207-2003-4f8d-9079-768e39a35e72"></script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://cursor-rules-generator.pages.dev/blog/cursor-rules-mdc-vs-cursorrules.html">
+  <meta property="og:title" content="Cursor Rules (.mdc) vs .cursorrules: The Complete 2026 Migration Guide">
+  <meta property="og:description" content="Why monolithic .cursorrules files are obsolete and how to migrate to modular, path-scoped .cursor/rules/*.mdc.">
+
+  <!-- Structured Data: TechArticle & Breadcrumbs -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": "Cursor Rules (.mdc) vs .cursorrules: The Complete 2026 Migration Guide",
+        "description": "Comprehensive architectural guide comparing legacy .cursorrules with modern scoped .cursor/rules/*.mdc files in Cursor IDE.",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Organization",
+          "name": "Cursor Rules Generator"
+        },
+        "datePublished": "2026-09-29",
+        "dateModified": "2026-09-29",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Cursor Rules Generator"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://cursor-rules-generator.pages.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://cursor-rules-generator.pages.dev/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Cursor Rules .mdc vs .cursorrules",
+            "item": "https://cursor-rules-generator.pages.dev/blog/cursor-rules-mdc-vs-cursorrules.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Header -->
+  <header class="border-b border-slate-800/80 bg-[#0b0f19]/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center space-x-2">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-bold text-white shadow-md shadow-indigo-500/20">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+        </div>
+        <span class="font-bold text-base text-white tracking-tight">Cursor Rules <span class="text-indigo-400 font-mono text-xs px-1.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-500/30">.mdc</span></span>
+      </a>
+      <div class="flex items-center space-x-4 text-xs">
+        <a href="/blog/" class="text-slate-400 hover:text-slate-200 transition">← Back to Blog</a>
+        <a href="/" class="px-3 py-1.5 rounded-md font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition">Launch Generator</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Article Container -->
+  <article class="max-w-3xl mx-auto px-4 py-12 flex-1 w-full">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-xs text-slate-500 mb-6 font-mono">
+      <a href="/" class="hover:text-slate-300">Home</a>
+      <span>/</span>
+      <a href="/blog/" class="hover:text-slate-300">Blog</a>
+      <span>/</span>
+      <span class="text-indigo-400">Migration Guide</span>
+    </nav>
+
+    <!-- Title & Meta -->
+    <header class="mb-10 pb-8 border-b border-slate-800">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+        Cursor Rules (.mdc) vs .cursorrules: The Complete 2026 Migration Guide
+      </h1>
+      <div class="flex items-center space-x-4 text-xs text-slate-400">
+        <span>By Cursor Rules Engineering Team</span>
+        <span>•</span>
+        <span>Updated September 2026</span>
+        <span>•</span>
+        <span class="px-2 py-0.5 rounded bg-indigo-950/80 text-indigo-300 border border-indigo-500/30 font-mono">6 min read</span>
+      </div>
+    </header>
+
+    <!-- In-Article Banner CTA -->
+    <div class="my-6 p-4 rounded-xl bg-indigo-950/40 border border-indigo-500/30 flex items-center justify-between text-xs">
+      <div>
+        <span class="font-bold text-indigo-200">Need pre-built .mdc rules for Next.js, FastAPI, or Tailwind?</span>
+        <div class="text-slate-400 text-[11px] mt-0.5">Use our free visual generator to download a ready-to-use .cursor/rules.zip archive.</div>
+      </div>
+      <a href="/" class="px-3 py-1.5 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-semibold whitespace-nowrap ml-4 transition">Generate .zip →</a>
+    </div>
+
+    <!-- Content Body -->
+    <div class="space-y-6 text-slate-300 text-sm leading-relaxed">
+      <p>
+        If you have been using Cursor AI for more than a few months, you likely remember placing a single <code>.cursorrules</code> file in the root directory of your project. While revolutionary in late 2023, the monolithic <code>.cursorrules</code> file has now been completely superseded by Cursor's modular <code>.cursor/rules/*.mdc</code> format.
+      </p>
+
+      <h2 class="text-xl font-bold text-white pt-4">The Fatal Flaw of the Monolithic .cursorrules File</h2>
+      <p>
+        In the old model, the entire content of <code>.cursorrules</code> was injected into the AI's prompt context on <strong>every single interaction</strong>. For small demo projects, this worked fine. However, as projects grew into full-stack applications, this approach introduced three critical bottlenecks:
+      </p>
+      <ul class="list-disc pl-5 space-y-2 text-slate-400">
+        <li><strong>Context Token Bloat:</strong> Hundreds of lines detailing database migrations, backend API endpoints, and styling guidelines were loaded even when the developer was simply editing a CSS file or button component.</li>
+        <li><strong>Instruction Dilution & Hallucination:</strong> Modern LLMs have attention limits. Overloading the context window with unrelated guidelines causes the AI to ignore crucial constraints.</li>
+        <li><strong>Conflicting Rules:</strong> A rule dictating strict Python type annotations conflicts with JSX component guidelines when bundled into a single document.</li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-white pt-4">How Modern .cursor/rules/*.mdc Works</h2>
+      <p>
+        Cursor 2026 uses modular <code>.mdc</code> files (Markdown with Frontmatter) stored inside a <code>.cursor/rules/</code> directory. Each file governs a specific concern and defines its own execution criteria using YAML frontmatter:
+      </p>
+
+      <pre class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-indigo-300 overflow-x-auto"><code>---
+description: Next.js 15 App Router and React Server Component guidelines
+globs: app/**/*.{ts,tsx},components/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Next.js 15 Standards
+- Treat all components as Server Components by default.
+- Only add 'use client' when interactive state (useState, useEffect) is required.</code></pre>
+
+      <h3 class="text-base font-semibold text-white pt-2">The Three Frontmatter Directives Explained:</h3>
+      <div class="grid grid-cols-1 gap-3 text-xs">
+        <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+          <code class="text-indigo-400 font-bold">description</code> (String, Recommended): Tells Cursor's autonomous Agent when and why to invoke this rule set.
+        </div>
+        <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+          <code class="text-indigo-400 font-bold">globs</code> (String / Array): Glob pattern matching the target files. When you edit a matching file (e.g. <code>app/**</code>), Cursor automatically attaches the rule.
+        </div>
+        <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+          <code class="text-indigo-400 font-bold">alwaysApply</code> (Boolean): If set to <code>true</code>, this rule loads across all interactions regardless of the active file. Ideal for universal type safety and code hygiene.
+        </div>
+      </div>
+
+      <h2 class="text-xl font-bold text-white pt-4">Recommended Project Folder Structure</h2>
+      <p>
+        In modern production repositories, organize your rules into 3 to 4 focused files:
+      </p>
+
+      <pre class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-slate-300"><code>my-project/
+├── .cursor/
+│   └── rules/
+│       ├── general.mdc     # alwaysApply: true (Strict TypeScript, early return)
+│       ├── frontend.mdc    # globs: "app/**,src/**" (Framework & state rules)
+│       ├── styling.mdc     # globs: "**/*.{css,tsx}" (Tailwind utility rules)
+│       └── backend.mdc     # globs: "api/**,server/**" (API security & schemas)
+├── package.json
+└── src/</code></pre>
+
+      <h2 class="text-xl font-bold text-white pt-4">Step-by-Step Migration from .cursorrules</h2>
+      <ol class="list-decimal pl-5 space-y-2 text-slate-400">
+        <li>Create the folder <code>.cursor/rules/</code> in your project root.</li>
+        <li>Open your existing <code>.cursorrules</code> file and split it into distinct categories (Core, Frontend, Backend).</li>
+        <li>Paste each category into its corresponding <code>.mdc</code> file and prepend the YAML frontmatter.</li>
+        <li>Delete or archive the legacy <code>.cursorrules</code> file to prevent duplicate instruction loading.</li>
+      </ol>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-12 p-6 rounded-2xl bg-slate-900 border border-indigo-500/30 text-center">
+      <h3 class="text-lg font-bold text-white mb-2">Automate Your Migration in 10 Seconds</h3>
+      <p class="text-slate-400 text-xs mb-4">Don't write YAML headers manually. Use our free generator to download a pre-packaged <code>.cursor/rules.zip</code> archive tailored to your exact stack.</p>
+      <a href="/" class="inline-flex items-center px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/30 transition">
+        Launch Cursor Rules Generator →
+      </a>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 bg-[#090d16] py-8 text-center text-xs text-slate-500">
+    <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>Cursor Rules Generator &copy; 2026.</span>
+      <div class="flex items-center space-x-6 text-slate-400">
+        <a href="/" class="hover:text-slate-200 transition">Generator</a>
+        <a href="/blog/" class="hover:text-slate-200 transition">Blog</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

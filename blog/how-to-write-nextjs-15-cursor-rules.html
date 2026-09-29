@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Write Bulletproof Cursor Rules for Next.js 15 (App Router & Server Actions)</title>
+  <meta name="description" content="Production-tested Cursor .mdc rules for Next.js 15. Prevent AI from mixing Pages Router, overusing 'use client', or skipping Server Actions input validation.">
+  <meta name="keywords" content="nextjs 15 cursor rules, nextjs app router cursor mdc, server actions cursor rules, react server components cursor prompt, nextjs best cursorrules">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://cursor-rules-generator.pages.dev/blog/how-to-write-nextjs-15-cursor-rules.html">
+
+  <!-- Umami Analytics -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="62cb9207-2003-4f8d-9079-768e39a35e72"></script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://cursor-rules-generator.pages.dev/blog/how-to-write-nextjs-15-cursor-rules.html">
+  <meta property="og:title" content="How to Write Bulletproof Cursor Rules for Next.js 15">
+  <meta property="og:description" content="Stop AI from creating legacy Next.js patterns. Production-ready .cursor/rules/nextjs.mdc guidelines.">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": "How to Write Bulletproof Cursor Rules for Next.js 15 (App Router & Server Actions)",
+        "description": "Production guidelines for configuring Cursor AI to generate clean, modern Next.js 15 code using App Router and Server Components.",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Organization",
+          "name": "Cursor Rules Generator"
+        },
+        "datePublished": "2026-09-29",
+        "dateModified": "2026-09-29",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Cursor Rules Generator"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://cursor-rules-generator.pages.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://cursor-rules-generator.pages.dev/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Next.js 15 Cursor Rules",
+            "item": "https://cursor-rules-generator.pages.dev/blog/how-to-write-nextjs-15-cursor-rules.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Header -->
+  <header class="border-b border-slate-800/80 bg-[#0b0f19]/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center space-x-2">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-bold text-white shadow-md shadow-indigo-500/20">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+        </div>
+        <span class="font-bold text-base text-white tracking-tight">Cursor Rules <span class="text-indigo-400 font-mono text-xs px-1.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-500/30">.mdc</span></span>
+      </a>
+      <div class="flex items-center space-x-4 text-xs">
+        <a href="/blog/" class="text-slate-400 hover:text-slate-200 transition">← Back to Blog</a>
+        <a href="/" class="px-3 py-1.5 rounded-md font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition">Launch Generator</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Article -->
+  <article class="max-w-3xl mx-auto px-4 py-12 flex-1 w-full">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-xs text-slate-500 mb-6 font-mono">
+      <a href="/" class="hover:text-slate-300">Home</a>
+      <span>/</span>
+      <a href="/blog/" class="hover:text-slate-300">Blog</a>
+      <span>/</span>
+      <span class="text-indigo-400">Next.js 15 Guide</span>
+    </nav>
+
+    <!-- Header -->
+    <header class="mb-10 pb-8 border-b border-slate-800">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+        How to Write Bulletproof Cursor Rules for Next.js 15 (App Router & Server Actions)
+      </h1>
+      <div class="flex items-center space-x-4 text-xs text-slate-400">
+        <span>By Cursor Rules Engineering Team</span>
+        <span>•</span>
+        <span>Updated September 2026</span>
+        <span>•</span>
+        <span class="px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 font-mono">8 min read</span>
+      </div>
+    </header>
+
+    <!-- In-Article Banner CTA -->
+    <div class="my-6 p-4 rounded-xl bg-indigo-950/40 border border-indigo-500/30 flex items-center justify-between text-xs">
+      <div>
+        <span class="font-bold text-indigo-200">Generate Next.js 15 + Tailwind + Supabase rules instantly:</span>
+        <div class="text-slate-400 text-[11px] mt-0.5">Customized .mdc files ready to download as a pre-packaged zip.</div>
+      </div>
+      <a href="/" class="px-3 py-1.5 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-semibold whitespace-nowrap ml-4 transition">Open Tool →</a>
+    </div>
+
+    <!-- Body -->
+    <div class="space-y-6 text-slate-300 text-sm leading-relaxed">
+      <p>
+        Next.js 15 is one of the most popular full-stack frameworks, but Large Language Models (LLMs) notoriously struggle with it. Because older training datasets are saturated with Pages Router code (<code>getServerSideProps</code>, <code>pages/api/</code>), Cursor will frequently default to legacy patterns or scatter <code>'use client'</code> at the top of every file.
+      </p>
+
+      <h2 class="text-xl font-bold text-white pt-4">Top 4 Hallucinations AI Makes in Next.js 15</h2>
+      <ul class="list-disc pl-5 space-y-2 text-slate-400">
+        <li><strong>Overusing 'use client':</strong> Making entire page components client-side simply to add a single interactive button, destroying server-side rendering performance.</li>
+        <li><strong>Unvalidated Server Actions:</strong> Treating Server Actions like trusted internal functions rather than exposed public HTTP POST endpoints.</li>
+        <li><strong>Legacy Routing Conventions:</strong> Mixing <code>next/router</code> (Pages Router) instead of <code>next/navigation</code> (App Router).</li>
+        <li><strong>Missing Metadata API:</strong> Using deprecated <code>&lt;Head&gt;</code> tags instead of Next.js 15's native <code>generateMetadata</code> export.</li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-white pt-4">The Complete .cursor/rules/nextjs.mdc Rule File</h2>
+      <p>
+        Save the following configuration inside your repository at <code>.cursor/rules/nextjs.mdc</code>:
+      </p>
+
+      <pre class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-indigo-300 overflow-x-auto"><code>---
+description: Next.js 15 App Router, React Server Component, and Server Action standards
+globs: app/**/*.{ts,tsx},components/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Next.js 15 & React 19 Architectural Rules
+
+## 1. Server Components vs Client Components
+- Treat all components in \`app/\` and \`components/\` as React Server Components (RSC) by default.
+- Never add \`'use client'\` to root page or layout components.
+- Push client boundaries to the leaves of your component tree. Extract buttons, modal popups, and form inputs into isolated client sub-components.
+
+## 2. Server Actions Security & Validation
+- Mark all server mutations with \`'use server'\`.
+- Always validate every input argument inside Server Actions using Zod schemas. Never trust raw client arguments.
+- Return typed, serializable responses: \`{ success: boolean, data?: T, error?: string }\`.
+
+## 3. Navigation & Routing
+- Always import from \`next/navigation\` (\`useRouter\`, \`usePathname\`, \`redirect\`).
+- Never import from legacy \`next/router\`.
+- Use \`next/link\` with typed \`href\` routes.
+
+## 4. Performance & Media
+- Always use \`next/image\` with explicit \`alt\`, \`width\`, and \`height\` (or \`fill\`).
+- Leverage \`next/font/google\` for web font loading to prevent layout shifts.</code></pre>
+
+      <h2 class="text-xl font-bold text-white pt-4">Why the `globs` Header is Critical</h2>
+      <p>
+        Notice the frontmatter pattern: <code>globs: app/**/*.{ts,tsx},components/**/*.{ts,tsx}</code>. This ensures that these Next.js instructions are loaded <strong>only</strong> when you are modifying your React and routing files. When editing your database schema, Dockerfile, or testing scripts, Cursor skips loading this rule, keeping context tokens lean and focused.
+      </p>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-12 p-6 rounded-2xl bg-slate-900 border border-indigo-500/30 text-center">
+      <h3 class="text-lg font-bold text-white mb-2">Build Your Full Next.js 15 Rules Package</h3>
+      <p class="text-slate-400 text-xs mb-4">Combine Next.js 15 rules with Tailwind CSS v4, Supabase, and Strict TypeScript in a single download.</p>
+      <a href="/" class="inline-flex items-center px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/30 transition">
+        Generate .cursor/rules.zip Now →
+      </a>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 bg-[#090d16] py-8 text-center text-xs text-slate-500">
+    <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>Cursor Rules Generator &copy; 2026.</span>
+      <div class="flex items-center space-x-6 text-slate-400">
+        <a href="/" class="hover:text-slate-200 transition">Generator</a>
+        <a href="/blog/" class="hover:text-slate-200 transition">Blog</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

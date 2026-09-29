@@ -12,6 +12,10 @@ Cursor Rules Generator (https://cursor-rules-generator.pages.dev/) is a develope
 - **Framework Presets**: Production-ready configurations for Next.js 15 (App Router, Server Actions), React 19, Vue 3 / Nuxt, Python FastAPI (Pydantic v2), Golang (Gin/Chi), Node.js, Tailwind CSS v4, Supabase (with RLS), and Zod.
 - **Guardrails**: Strict TypeScript, Early Return pattern, error boundary conventions, and zero redundant AI comments.
 
+## Engineering Guides & Tutorials
+- [Cursor Rules (.mdc) vs .cursorrules Migration Guide](https://cursor-rules-generator.pages.dev/blog/cursor-rules-mdc-vs-cursorrules.html): Explains the technical rationale behind replacing monolithic .cursorrules with path-scoped .mdc files.
+- [How to Write Next.js 15 Cursor Rules](https://cursor-rules-generator.pages.dev/blog/how-to-write-nextjs-15-cursor-rules.html): Production rules for App Router, React Server Components boundaries, and Server Actions validation.
+
 ## Modern .mdc vs Legacy .cursorrules
 - **Legacy `.cursorrules`**: Single monolithic file injected into every prompt. Leads to high token usage, context contamination, and conflicting instructions.
 - **Modern `.cursor/rules/*.mdc`**: Modular files with YAML frontmatter. Loaded conditionally only when matched by the active file's glob pattern (e.g. `app/**`).
