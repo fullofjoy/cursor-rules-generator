@@ -17,4 +17,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://cursor-rules-generator.pages.dev/sitemap.xml
+Sitemap: https://cursor.pacebowl.com/sitemap.xml

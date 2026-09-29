@@ -3,7 +3,7 @@
 > The modern, client-side, multi-file rules generator for Cursor AI, Claude Code, and Windsurf.
 
 ## Overview
-Cursor Rules Generator (https://cursor-rules-generator.pages.dev/) is a developer utility designed to generate modular, path-scoped `.cursor/rules/*.mdc` files. It prevents AI context bloat and token waste by scoping development instructions to specific file patterns via glob matching.
+Cursor Rules Generator (https://cursor.pacebowl.com/) is a developer utility designed to generate modular, path-scoped `.cursor/rules/*.mdc` files. It prevents AI context bloat and token waste by scoping development instructions to specific file patterns via glob matching.
 
 ## Key Capabilities
 - **Modular Multi-file Architecture**: Exports rules to `.cursor/rules/*.mdc` with standard YAML frontmatter (`description`, `globs`, `alwaysApply`).
@@ -13,15 +13,15 @@ Cursor Rules Generator (https://cursor-rules-generator.pages.dev/) is a develope
 - **Guardrails**: Strict TypeScript, Early Return pattern, error boundary conventions, and zero redundant AI comments.
 
 ## Engineering Guides & Tutorials
-- [Cursor Rules (.mdc) vs .cursorrules Migration Guide](https://cursor-rules-generator.pages.dev/blog/cursor-rules-mdc-vs-cursorrules.html): Explains the technical rationale behind replacing monolithic .cursorrules with path-scoped .mdc files.
-- [How to Write Next.js 15 Cursor Rules](https://cursor-rules-generator.pages.dev/blog/how-to-write-nextjs-15-cursor-rules.html): Production rules for App Router, React Server Components boundaries, and Server Actions validation.
+- [Cursor Rules (.mdc) vs .cursorrules Migration Guide](https://cursor.pacebowl.com/blog/cursor-rules-mdc-vs-cursorrules.html): Explains the technical rationale behind replacing monolithic .cursorrules with path-scoped .mdc files.
+- [How to Write Next.js 15 Cursor Rules](https://cursor.pacebowl.com/blog/how-to-write-nextjs-15-cursor-rules.html): Production rules for App Router, React Server Components boundaries, and Server Actions validation.
 
 ## Modern .mdc vs Legacy .cursorrules
 - **Legacy `.cursorrules`**: Single monolithic file injected into every prompt. Leads to high token usage, context contamination, and conflicting instructions.
 - **Modern `.cursor/rules/*.mdc`**: Modular files with YAML frontmatter. Loaded conditionally only when matched by the active file's glob pattern (e.g. `app/**`).
 
 ## Usage
-1. Open https://cursor-rules-generator.pages.dev/
+1. Open https://cursor.pacebowl.com/
 2. Select target frontend, backend, database, and styling presets.
 3. Configure code quality guardrails (strict types, early return, error handling).
 4. Click "Download .zip" to get the ready-to-use `.cursor/rules/` folder.
