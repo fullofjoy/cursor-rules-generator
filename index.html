@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursor Rules Generator (.mdc) - Modern Multi-File AI Coding Rules Builder</title>
+  <meta name="description" content="Generate modular, path-scoped .cursor/rules/*.mdc files for Cursor AI in seconds. Pick your stack (Next.js 15, FastAPI, Tailwind v4, Supabase), configure best practices, and download a ready-to-use zip.">
+  <meta name="keywords" content="cursor rules generator, cursorrules, cursor mdc, claude code rules, windsurfrules, ai coding rules, cursor ide">
+  <meta property="og:title" content="Cursor Rules Generator (.mdc) - Modern AI Coding Rules Builder">
+  <meta property="og:description" content="Generate modular, path-scoped .cursor/rules/*.mdc files for Cursor AI. Instant download as .zip or single files.">
+  <meta property="og:type" content="website">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- JSZip for 1-click folder download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            surface: {
+              DEFAULT: '#0f172a',
+              card: '#1e293b',
+              border: '#334155',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    .glow-effect {
+      box-shadow: 0 0 40px -10px rgba(99, 102, 241, 0.15);
+    }
+  </style>
+</head>
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Header & Nav -->
+  <header class="border-b border-slate-800/80 bg-[#0b0f19]/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+          </svg>
+        </div>
+        <div>
+          <span class="font-bold text-lg text-white tracking-tight">Cursor Rules <span class="text-indigo-400 font-mono text-sm px-1.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-500/30">.mdc</span></span>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span class="hidden md:inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-950/80 text-emerald-400 border border-emerald-500/30">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
+          Cursor 2026 Ready (.mdc Spec)
+        </span>
+        <a href="#faq" class="text-xs text-slate-400 hover:text-slate-200 transition">How it Works</a>
+        <button id="quick-zip-btn" onclick="downloadAllZip()" class="inline-flex items-center px-3.5 py-1.5 rounded-md text-xs font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition shadow-sm shadow-indigo-600/30">
+          <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          Download .zip
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="pt-10 pb-6 px-4 text-center max-w-4xl mx-auto">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/50 border border-indigo-500/20 text-indigo-300 text-xs mb-4">
+      <span>✨ Official Multi-file Architecture</span>
+      <span class="text-slate-600">•</span>
+      <span>Zero Context Bloat</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4">
+      The Modern <span class="bg-gradient-to-r from-indigo-400 via-violet-300 to-sky-400 bg-clip-text text-transparent">Cursor Rules (.mdc)</span> Generator
+    </h1>
+    <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+      Old-school monolithic <code class="text-slate-300 bg-slate-800 px-1 py-0.5 rounded text-xs">.cursorrules</code> waste tokens and hallucinate. Configure scoped, path-matched <code class="text-indigo-300 bg-indigo-950/80 px-1 py-0.5 rounded text-xs">.cursor/rules/*.mdc</code> rule sets in seconds.
+    </p>
+  </section>
+
+  <!-- Main App Workspace -->
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+      <!-- Left Column: Configurator (5 cols) -->
+      <div class="lg:col-span-5 space-y-6">
+
+        <!-- 1. Frontend Framework -->
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-5 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center">
+              <span class="w-2 h-2 rounded-full bg-indigo-500 mr-2"></span>
+              1. Frontend Framework
+            </h2>
+            <span class="text-[11px] text-slate-500">Pick one or none</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+              <input type="radio" name="frontend" value="nextjs15" checked onchange="updateRules()" class="text-indigo-600 focus:ring-0">
+              <div>
+                <div class="font-medium text-slate-200">Next.js 15</div>
+                <div class="text-[10px] text-slate-500">App Router, Server Actions</div>
+              </div>
+            </label>
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+              <input type="radio" name="frontend" value="react19" onchange="updateRules()" class="text-indigo-600 focus:ring-0">
+              <div>
+                <div class="font-medium text-slate-200">React 19 / Vite</div>
+                <div class="text-[10px] text-slate-500">SPA, Custom Hooks</div>
+              </div>
+            </label>
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+              <input type="radio" name="frontend" value="vue3" onchange="updateRules()" class="text-indigo-600 focus:ring-0">
+              <div>
+                <div class="font-medium text-slate-200">Vue 3 / Nuxt</div>
+                <div class="text-[10px] text-slate-500">Composition API, Pinia</div>
+              </div>
+            </label>
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+              <input type="radio" name="frontend" value="none" onchange="updateRules()" class="text-indigo-600 focus:ring-0">
+              <div>
+                <div class="font-medium text-slate-400">No Frontend</div>
+                <div class="text-[10px] text-slate-500">Pure Backend/CLI</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- 2. Backend & API -->
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-5 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center">
+              <span class="w-2 h-2 rounded-full bg-violet-500 mr-2"></span>
+              2. Backend & Architecture
+            </h2>
+            <span class="text-[11px] text-slate-500">Pick one</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+              <input type="radio" name="backend" value="fastapi" checked onchange="updateRules()" class="text-indigo-600 focus:ring-0">
+              <div>
+                <div class="font-medium text-slate-200">Python FastAPI</div>
+                <div class="text-[10px] text-slate-500">Pydantic v2, Async</div>
+              </div>
+            </label>
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+              <input type="radio" name="backend" value="nodejs" onchange="updateRules()" class="text-indigo-600 focus:ring-0">
+              <div>
+                <div class="font-medium text-slate-200">Node / Hono / Express</div>
+                <div class="text-[10px] text-slate-500">TypeScript, REST API</div>
+              </div>
+            </label>
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+              <input type="radio" name="backend" value="golang" onchange="updateRules()" class="text-indigo-600 focus:ring-0">
+              <div>
+                <div class="font-medium text-slate-200">Golang (Gin/Chi)</div>
+                <div class="text-[10px] text-slate-500">Idiomatic, Structs</div>
+              </div>
+            </label>
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+              <input type="radio" name="backend" value="serverless" onchange="updateRules()" class="text-indigo-600 focus:ring-0">
+              <div>
+                <div class="font-medium text-slate-200">BaaS / Serverless</div>
+                <div class="text-[10px] text-slate-500">Supabase Edge, Cloudflare</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- 3. Styling & Database Extras -->
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-5 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span>
+              3. UI, ORM & Database Modules
+            </h2>
+            <span class="text-[11px] text-slate-500">Multi-select</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+              <input type="checkbox" id="mod-tailwind" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
+              <div>
+                <div class="font-medium text-slate-200">Tailwind CSS v4</div>
+                <div class="text-[10px] text-slate-500">Utility-first, Shadcn cn()</div>
+              </div>
+            </label>
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+              <input type="checkbox" id="mod-supabase" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
+              <div>
+                <div class="font-medium text-slate-200">Supabase + RLS</div>
+                <div class="text-[10px] text-slate-500">Security-first Database</div>
+              </div>
+            </label>
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+              <input type="checkbox" id="mod-drizzle" onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
+              <div>
+                <div class="font-medium text-slate-200">Drizzle / Prisma</div>
+                <div class="text-[10px] text-slate-500">Type-safe SQL schemas</div>
+              </div>
+            </label>
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+              <input type="checkbox" id="mod-zod" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
+              <div>
+                <div class="font-medium text-slate-200">Zod Validation</div>
+                <div class="text-[10px] text-slate-500">Runtime contract parsing</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- 4. Engineering Standards & Toggles -->
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-5 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center">
+              <span class="w-2 h-2 rounded-full bg-amber-500 mr-2"></span>
+              4. Code Quality & Guardrails
+            </h2>
+            <span class="text-[11px] text-slate-500">Global Best Practices</span>
+          </div>
+          <div class="space-y-2 text-xs">
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-950/20">
+              <div class="pr-2">
+                <div class="font-medium text-slate-200">Strict TypeScript (No <code class="text-indigo-400 font-mono">any</code>)</div>
+                <div class="text-[11px] text-slate-500">Require explicit return types and avoid non-null assertions (!)</div>
+              </div>
+              <input type="checkbox" id="guard-strict-ts" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
+            </label>
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-950/20">
+              <div class="pr-2">
+                <div class="font-medium text-slate-200">Early Return & Anti-Nesting</div>
+                <div class="text-[11px] text-slate-500">Max 2 levels of nesting; use guard clauses to handle errors early</div>
+              </div>
+              <input type="checkbox" id="guard-early-return" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
+            </label>
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-950/20">
+              <div class="pr-2">
+                <div class="font-medium text-slate-200">Zero Silent Failures (Error Boundaries)</div>
+                <div class="text-[11px] text-slate-500">Never swallow catch blocks with empty returns; log and rethrow</div>
+              </div>
+              <input type="checkbox" id="guard-errors" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
+            </label>
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-950/20">
+              <div class="pr-2">
+                <div class="font-medium text-slate-200">Zero Unnecessary Comments</div>
+                <div class="text-[11px] text-slate-500">Forbid AI from adding redundant restatements of obvious code</div>
+              </div>
+              <input type="checkbox" id="guard-clean-comments" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Multi-File Explorer & Code Preview (7 cols) -->
+      <div class="lg:col-span-7 space-y-4 sticky top-20">
+
+        <!-- Target Format Selector & Global Actions -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex flex-wrap items-center justify-between gap-3 shadow-md">
+          <!-- Editor Tabs -->
+          <div class="flex items-center space-x-1 bg-slate-950 p-1 rounded-lg border border-slate-800/80 text-xs">
+            <button onclick="setExportFormat('cursor-mdc')" id="tab-cursor-mdc" class="px-3 py-1.5 rounded-md font-medium text-white bg-indigo-600 shadow-sm transition">
+              Cursor (.mdc)
+            </button>
+            <button onclick="setExportFormat('claude')" id="tab-claude" class="px-3 py-1.5 rounded-md font-medium text-slate-400 hover:text-slate-200 transition">
+              Claude Code
+            </button>
+            <button onclick="setExportFormat('windsurf')" id="tab-windsurf" class="px-3 py-1.5 rounded-md font-medium text-slate-400 hover:text-slate-200 transition">
+              Windsurf
+            </button>
+            <button onclick="setExportFormat('legacy')" id="tab-legacy" class="px-3 py-1.5 rounded-md font-medium text-slate-400 hover:text-slate-200 transition">
+              .cursorrules (Legacy)
+            </button>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex items-center space-x-2">
+            <button onclick="copyCurrentContent()" id="copy-btn" class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+              <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              Copy File
+            </button>
+            <button onclick="downloadAllZip()" class="inline-flex items-center px-3.5 py-1.5 rounded-md text-xs font-semibold bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white shadow-md shadow-indigo-600/20 transition">
+              <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Download .zip
+            </button>
+          </div>
+        </div>
+
+        <!-- Multi-File Tabs (Only for Cursor .mdc mode) -->
+        <div id="file-tabs-container" class="bg-slate-950/80 border border-slate-800/80 rounded-t-xl px-4 py-2 flex items-center space-x-2 overflow-x-auto">
+          <!-- Dynamic file tabs injected here -->
+        </div>
+
+        <!-- Code Preview Box -->
+        <div class="relative bg-[#0d121f] border border-slate-800 rounded-b-xl overflow-hidden shadow-2xl glow-effect">
+          <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800/60 bg-slate-900/60 text-xs text-slate-400">
+            <span id="preview-filename" class="font-mono text-indigo-300">.cursor/rules/frontend.mdc</span>
+            <span id="file-token-estimate" class="text-[11px] text-slate-500">~240 tokens</span>
+          </div>
+          <pre class="p-4 text-xs font-mono text-slate-200 overflow-x-auto max-h-[560px] leading-relaxed"><code id="code-output">Loading rules...</code></pre>
+        </div>
+
+        <!-- Multi-file architecture callout -->
+        <div class="p-3.5 rounded-lg bg-indigo-950/30 border border-indigo-500/20 flex items-start space-x-3 text-xs text-slate-300">
+          <div class="text-indigo-400 mt-0.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div>
+            <span class="font-semibold text-indigo-200">How to use this .zip:</span>
+            Unzip and drop the generated <code class="text-indigo-300 bg-indigo-950 px-1 py-0.5 rounded font-mono">.cursor/rules/</code> folder straight into your project root. Cursor will automatically match relevant rules to files using glob patterns without polluting unrelated contexts.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Educational FAQ Section (Great for SEO Ranking) -->
+  <section id="faq" class="max-w-5xl mx-auto px-4 py-16 border-t border-slate-800/80 mt-12">
+    <div class="text-center mb-12">
+      <h2 class="text-2xl font-bold text-white mb-2">Frequently Asked Questions</h2>
+      <p class="text-slate-400 text-sm">Everything you need to know about Cursor's modern .mdc rules system.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+      <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-5">
+        <h3 class="font-semibold text-slate-200 mb-2">Why did Cursor replace .cursorrules with .mdc files?</h3>
+        <p class="text-slate-400 leading-relaxed text-xs">
+          A single <code class="text-slate-300">.cursorrules</code> file forces the AI to load entire styling, database, and backend rules into every prompt—wasting context tokens and confusing the model. The new <code class="text-slate-300">.cursor/rules/*.mdc</code> format uses glob patterns (like <code class="text-slate-300">app/**</code>) to load instructions only when relevant files are being edited.
+        </p>
+      </div>
+
+      <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-5">
+        <h3 class="font-semibold text-slate-200 mb-2">What is the YAML frontmatter in .mdc files?</h3>
+        <p class="text-slate-400 leading-relaxed text-xs">
+          Each <code class="text-slate-300">.mdc</code> file begins with a header defining its scope: <code class="text-slate-300">description</code> explains when to apply the rule, <code class="text-slate-300">globs</code> defines matching file patterns, and <code class="text-slate-300">alwaysApply</code> specifies if it should run unconditionally across all files.
+        </p>
+      </div>
+
+      <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-5">
+        <h3 class="font-semibold text-slate-200 mb-2">How does this differ from Cursor's built-in /Generate command?</h3>
+        <p class="text-slate-400 leading-relaxed text-xs">
+          Cursor's internal command requires an existing, mature codebase to analyze. When you are starting a fresh project from scratch (cold start), our generator provides battle-tested production blueprints and pre-configured architectural guardrails ready before you write your first line of code.
+        </p>
+      </div>
+
+      <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-5">
+        <h3 class="font-semibold text-slate-200 mb-2">Can I use these rules with Claude Code or Windsurf?</h3>
+        <p class="text-slate-400 leading-relaxed text-xs">
+          Yes! Simply switch the export tab in the top right to **Claude Code** (generates <code class="text-slate-300">CLAUDE.md</code>) or **Windsurf** (generates <code class="text-slate-300">.windsurfrules</code>). The rules logic stays aligned across all your AI development workflows.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 bg-[#090d16] py-8 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <span>Cursor Rules Generator &copy; 2026. Free, client-side open source utility.</span>
+      </div>
+      <div class="flex items-center space-x-6 text-slate-400">
+        <a href="#faq" class="hover:text-slate-200 transition">FAQ</a>
+        <a href="https://cursor.com" target="_blank" rel="noopener" class="hover:text-slate-200 transition">Cursor IDE</a>
+        <a href="https://docs.anthropic.com" target="_blank" rel="noopener" class="hover:text-slate-200 transition">Claude Code</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script>
+    // State management
+    let currentFormat = 'cursor-mdc'; // 'cursor-mdc' | 'claude' | 'windsurf' | 'legacy'
+    let currentSelectedFile = 'general.mdc';
+    let generatedFiles = {}; // { 'frontend.mdc': content, ... }
+
+    // Core rule definition dictionaries
+    const RULE_BLOCKS = {
+      // Best practices
+      strictTs: `## TypeScript Guidelines
+- Always use strict TypeScript types; explicitly declare return types on all functions and API endpoints.
+- Never use \`any\`. Use \`unknown\` with custom type guards or Zod schemas for dynamically typed data.
+- Avoid non-null assertions (\`!\`). Handle potential \`null\` or \`undefined\` explicitly using optional chaining (\`?.\`) or nullish coalescing (\`??\`).
+- Prefer \`interface\` for public API definitions and \`type\` for unions and complex aliases.`,
+
+      earlyReturn: `## Code Flow & Complexity
+- Enforce the Early Return pattern: handle validation, authorization, and edge cases at the very beginning of the function.
+- Limit nesting to a maximum of 2 levels deep. Never write deeply nested if/else pyramids.
+- Keep functions small, focused, and pure where possible. Each function must have a single responsibility.`,
+
+      errorHandling: `## Error Handling & Reliability
+- Never swallow exceptions with empty \`catch {}\` blocks.
+- Wrap external I/O (network requests, database operations, file reads) in custom AppError structures.
+- Return meaningful HTTP status codes and structured JSON error responses: \`{ "error": { "code": string, "message": string } }\`.`,
+
+      cleanComments: `## Code Hygiene & Comments
+- Do NOT write obvious comments that merely restate what the code does (e.g., avoid \`// increment counter\`).
+- Only document non-obvious business logic, mathematical formulas, or critical workarounds.
+- Remove all \`console.log\` statements and debugging flags before completing tasks.`,
+
+      // Tech stacks
+      nextjs: `## Next.js 15 (App Router) Standards
+- Treat all components as React Server Components (RSC) by default. Only add \`'use client'\` at the leaf level where interactive state (\`useState\`, \`useEffect\`, event handlers) is strictly needed.
+- Use Server Actions for data mutations. Validate all input arguments inside Server Actions with Zod before processing.
+- Leverage \`next/image\` for all images and \`next/font\` for typography. Always specify \`alt\` tags.
+- Place route handlers in \`app/api/**/route.ts\` and return typed \`NextResponse.json()\`.`,
+
+      react: `## React 19 Standards
+- Use modern functional components with hooks; class components are forbidden.
+- Avoid unnecessary \`useEffect\` chains for calculating derived state. Compute derived state during render.
+- Wrap expensive computational components with \`React.memo\` only when backed by measurement.
+- Custom hooks must follow the \`use*\` prefix convention and encapsulate reusable business logic cleanly.`,
+
+      vue: `## Vue 3 / Nuxt Standards
+- Always use the Composition API with \`<script setup lang="ts">\`.
+- Use Pinia for centralized state management; avoid mutating global reactive state directly outside actions.
+- Use \`computed()\` for derived properties and avoid deep watchers unless strictly necessary.`,
+
+      fastapi: `## Python FastAPI Standards
+- Define all request bodies and query parameters using Pydantic v2 \`BaseModel\` with strict validation.
+- Implement Dependency Injection (\`Depends\`) for database sessions, authentication, and external clients.
+- Use \`async def\` for non-blocking I/O endpoints; use standard \`def\` for CPU-intensive blocking workloads.
+- Raise \`HTTPException\` with explicit status codes (\`status.HTTP_404_NOT_FOUND\`, etc.) rather than returning raw error dictionaries.`,
+
+      nodejs: `## Node.js & REST API Standards
+- Write modular ES Modules (\`import\` / \`export\`). Never use CommonJS \`require()\`.
+- Structure endpoints using controller-service-repository layered architecture.
+- Enforce environment variable validation on boot (e.g., using \`zod/env\` or \`dotenv-safe\`).`,
+
+      golang: `## Golang Standards
+- Follow idiomatic Go conventions: handle errors immediately where they occur (\`if err != nil { return nil, fmt.Errorf(...) }\`).
+- Use structs with explicit json tags; avoid reflection and \`interface{}\` unless strictly required.
+- Pass \`context.Context\` as the first parameter to functions performing I/O.`,
+
+      serverless: `## Serverless / Edge Function Standards
+- Keep package dependencies minimal to reduce cold-start latency.
+- Never rely on persistent in-memory global state between function invocations.
+- Ensure all asynchronous promises resolve cleanly before returning the HTTP response.`,
+
+      tailwind: `## Tailwind CSS v4 & Styling Standards
+- Use atomic utility classes directly. Avoid custom CSS files or \`@apply\` abstractions unless creating universal typography defaults.
+- Always use the \`cn()\` utility (clsx + tailwind-merge) when conditionally toggling classes or accepting \`className\` props.
+- Mobile-first responsive design: declare base styles first, followed by \`sm:\`, \`md:\`, and \`lg:\` overrides.
+- Use semantic color tokens (e.g., \`bg-background\`, \`text-foreground\`) to support dark mode out of the box.`,
+
+      supabase: `## Supabase & Database Security Standards
+- Always enable Row Level Security (RLS) on all public tables without exception.
+- Use the typed Supabase client generated from database schema types (\`Database['public']['Tables']\`).
+- Never expose the \`service_role\` secret key in client-side code; use it solely within authenticated server contexts.`,
+
+      drizzle: `## Database & ORM Standards
+- Declare database tables with explicit types, foreign keys, and indexes for foreign key lookups.
+- Avoid N+1 query patterns; use relations joins or batch queries where applicable.
+- Write migrations deterministically; never modify migration history that has already been deployed.`,
+
+      zod: `## Zod Contract Validation
+- Define Zod schemas for all external inputs (API payloads, query strings, webhook bodies).
+- Infer TypeScript types directly from schemas using \`z.infer<typeof Schema>\` to guarantee a single source of truth.
+- Provide descriptive custom error messages for validation failures.`
+    };
+
+    function updateRules() {
+      // Gather inputs
+      const frontend = document.querySelector('input[name="frontend"]:checked')?.value || 'nextjs15';
+      const backend = document.querySelector('input[name="backend"]:checked')?.value || 'fastapi';
+      const hasTailwind = document.getElementById('mod-tailwind').checked;
+      const hasSupabase = document.getElementById('mod-supabase').checked;
+      const hasDrizzle = document.getElementById('mod-drizzle').checked;
+      const hasZod = document.getElementById('mod-zod').checked;
+
+      const strictTs = document.getElementById('guard-strict-ts').checked;
+      const earlyReturn = document.getElementById('guard-early-return').checked;
+      const errors = document.getElementById('guard-errors').checked;
+      const cleanComments = document.getElementById('guard-clean-comments').checked;
+
+      generatedFiles = {};
+
+      if (currentFormat === 'cursor-mdc') {
+        // 1. General practices rule
+        let generalBody = "# Core Engineering Guardrails\n\n";
+        if (strictTs) generalBody += RULE_BLOCKS.strictTs + "\n\n";
+        if (earlyReturn) generalBody += RULE_BLOCKS.earlyReturn + "\n\n";
+        if (errors) generalBody += RULE_BLOCKS.errorHandling + "\n\n";
+        if (cleanComments) generalBody += RULE_BLOCKS.cleanComments + "\n\n";
+
+        generatedFiles['general.mdc'] = `---
+description: Universal engineering standards, type safety, and code hygiene
+globs: **/*
+alwaysApply: true
+---
+${generalBody.trim()}`;
+
+        // 2. Frontend rule
+        if (frontend !== 'none') {
+          let feName = frontend === 'nextjs15' ? 'nextjs' : (frontend === 'react19' ? 'react' : 'vue');
+          let feGlobs = frontend === 'nextjs15' ? 'app/**/*.{ts,tsx},components/**/*.{ts,tsx}' : 'src/**/*.{vue,jsx,tsx}';
+          let feContent = RULE_BLOCKS[feName] || '';
+          if (hasTailwind) feContent += "\n\n" + RULE_BLOCKS.tailwind;
+
+          generatedFiles['frontend.mdc'] = `---
+description: Frontend architectural rules, component lifecycle, and state conventions
+globs: ${feGlobs}
+alwaysApply: false
+---
+${feContent.trim()}`;
+        }
+
+        // 3. Backend rule
+        let beGlobs = backend === 'fastapi' ? '**/*.py' : (backend === 'golang' ? '**/*.go' : 'server/**/*.{ts,js},api/**/*.{ts,js}');
+        let beContent = RULE_BLOCKS[backend] || '';
+        if (hasZod) beContent += "\n\n" + RULE_BLOCKS.zod;
+
+        generatedFiles['backend.mdc'] = `---
+description: Backend API patterns, endpoint security, and validation standards
+globs: ${beGlobs}
+alwaysApply: false
+---
+${beContent.trim()}`;
+
+        // 4. Database / ORM rule
+        if (hasSupabase || hasDrizzle) {
+          let dbContent = "";
+          if (hasSupabase) dbContent += RULE_BLOCKS.supabase + "\n\n";
+          if (hasDrizzle) dbContent += RULE_BLOCKS.drizzle;
+
+          generatedFiles['database.mdc'] = `---
+description: Database schema definitions, RLS security policies, and ORM query guidelines
+globs: **/db/**,**/schema/**,**/supabase/**
+alwaysApply: false
+---
+${dbContent.trim()}`;
+        }
+
+      } else if (currentFormat === 'claude') {
+        // Claude Code uses single CLAUDE.md
+        let combined = `# Project Guidelines (CLAUDE.md)\n\n`;
+        combined += `> These guidelines are loaded by Claude Code to understand architecture and conventions.\n\n`;
+        if (strictTs) combined += RULE_BLOCKS.strictTs + "\n\n";
+        if (earlyReturn) combined += RULE_BLOCKS.earlyReturn + "\n\n";
+        if (errors) combined += RULE_BLOCKS.errorHandling + "\n\n";
+        if (frontend !== 'none' && RULE_BLOCKS[frontend]) combined += RULE_BLOCKS[frontend] + "\n\n";
+        if (hasTailwind) combined += RULE_BLOCKS.tailwind + "\n\n";
+        if (RULE_BLOCKS[backend]) combined += RULE_BLOCKS[backend] + "\n\n";
+        if (hasSupabase) combined += RULE_BLOCKS.supabase + "\n\n";
+        if (hasZod) combined += RULE_BLOCKS.zod + "\n\n";
+
+        generatedFiles['CLAUDE.md'] = combined.trim();
+
+      } else if (currentFormat === 'windsurf') {
+        // Windsurf .windsurfrules
+        let combined = `# Windsurf AI Rules (.windsurfrules)\n\n`;
+        if (strictTs) combined += RULE_BLOCKS.strictTs + "\n\n";
+        if (earlyReturn) combined += RULE_BLOCKS.earlyReturn + "\n\n";
+        if (frontend !== 'none' && RULE_BLOCKS[frontend]) combined += RULE_BLOCKS[frontend] + "\n\n";
+        if (RULE_BLOCKS[backend]) combined += RULE_BLOCKS[backend] + "\n\n";
+
+        generatedFiles['.windsurfrules'] = combined.trim();
+
+      } else if (currentFormat === 'legacy') {
+        // Legacy .cursorrules
+        let combined = `# Legacy Cursor Rules (.cursorrules)\n\n`;
+        if (strictTs) combined += RULE_BLOCKS.strictTs + "\n\n";
+        if (earlyReturn) combined += RULE_BLOCKS.earlyReturn + "\n\n";
+        if (frontend !== 'none' && RULE_BLOCKS[frontend]) combined += RULE_BLOCKS[frontend] + "\n\n";
+        if (RULE_BLOCKS[backend]) combined += RULE_BLOCKS[backend] + "\n\n";
+
+        generatedFiles['.cursorrules'] = combined.trim();
+      }
+
+      renderUI();
+    }
+
+    function renderUI() {
+      const tabsContainer = document.getElementById('file-tabs-container');
+      const fileNames = Object.keys(generatedFiles);
+
+      // Validate selected file
+      if (!fileNames.includes(currentSelectedFile)) {
+        currentSelectedFile = fileNames[0] || '';
+      }
+
+      // Render tab bar
+      tabsContainer.innerHTML = '';
+      if (fileNames.length > 1) {
+        tabsContainer.classList.remove('hidden');
+        fileNames.forEach(fn => {
+          const isActive = fn === currentSelectedFile;
+          const btn = document.createElement('button');
+          btn.className = `px-3 py-1 text-xs rounded-md font-mono flex items-center space-x-1.5 transition ${
+            isActive ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+          }`;
+          btn.innerHTML = `<span>📄</span><span>${fn}</span>`;
+          btn.onclick = () => {
+            currentSelectedFile = fn;
+            renderUI();
+          };
+          tabsContainer.appendChild(btn);
+        });
+      } else {
+        tabsContainer.classList.add('hidden');
+      }
+
+      // Render content
+      const content = generatedFiles[currentSelectedFile] || 'No file selected';
+      document.getElementById('code-output').textContent = content;
+
+      // Update filename indicator
+      const pathPrefix = currentFormat === 'cursor-mdc' ? '.cursor/rules/' : '';
+      document.getElementById('preview-filename').textContent = pathPrefix + currentSelectedFile;
+
+      // Estimate tokens (~4 chars per token)
+      const tokenCount = Math.round(content.length / 4);
+      document.getElementById('file-token-estimate').textContent = `~${tokenCount} tokens`;
+    }
+
+    function setExportFormat(fmt) {
+      currentFormat = fmt;
+      
+      // Update UI active buttons
+      ['cursor-mdc', 'claude', 'windsurf', 'legacy'].forEach(id => {
+        const btn = document.getElementById('tab-' + id);
+        if (id === fmt) {
+          btn.className = "px-3 py-1.5 rounded-md font-medium text-white bg-indigo-600 shadow-sm transition";
+        } else {
+          btn.className = "px-3 py-1.5 rounded-md font-medium text-slate-400 hover:text-slate-200 transition";
+        }
+      });
+
+      updateRules();
+    }
+
+    function copyCurrentContent() {
+      const content = generatedFiles[currentSelectedFile];
+      if (!content) return;
+
+      navigator.clipboard.writeText(content).then(() => {
+        const btn = document.getElementById('copy-btn');
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = `<span class="text-emerald-400 font-semibold">✓ Copied!</span>`;
+        setTimeout(() => {
+          btn.innerHTML = originalHtml;
+        }, 1800);
+      });
+    }
+
+    function downloadAllZip() {
+      const zip = new JSZip();
+
+      if (currentFormat === 'cursor-mdc') {
+        const folder = zip.folder('.cursor').folder('rules');
+        for (const [filename, content] of Object.entries(generatedFiles)) {
+          folder.file(filename, content);
+        }
+        zip.generateAsync({ type: 'blob' }).then(blob => {
+          triggerDownload(blob, 'cursor-rules.zip');
+        });
+      } else {
+        // Single file format
+        for (const [filename, content] of Object.entries(generatedFiles)) {
+          zip.file(filename, content);
+        }
+        zip.generateAsync({ type: 'blob' }).then(blob => {
+          triggerDownload(blob, `${currentFormat}-rules.zip`);
+        });
+      }
+    }
+
+    function triggerDownload(blob, filename) {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(a.href);
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      updateRules();
+    });
+  </script>
+</body>
+</html>
