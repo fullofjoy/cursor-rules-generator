@@ -170,27 +170,66 @@
   <header class="border-b border-slate-800/80 bg-[#0b0f19]/80 backdrop-blur sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-          </svg>
-        </div>
-        <div>
-          <span class="font-bold text-lg text-white tracking-tight">Cursor Rules <span class="text-indigo-400 font-mono text-sm px-1.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-500/30">.mdc</span></span>
+        <a href="https://pacebowl.com" class="text-xs font-mono text-slate-400 hover:text-white transition flex items-center gap-1.5 py-1 px-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 shadow-sm" title="Back to PaceBowl Mothership">
+          <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+          <span>PaceBowl</span>
+        </a>
+        <span class="text-slate-600 font-mono">/</span>
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-bold text-white shadow-md shadow-indigo-500/20">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+          </div>
+          <div>
+            <span class="font-bold text-base text-white tracking-tight">Cursor Rules <span class="text-indigo-400 font-mono text-xs px-1.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-500/30">.mdc</span></span>
+          </div>
         </div>
       </div>
-      <div class="flex items-center space-x-4">
-        <span class="hidden md:inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-950/80 text-emerald-400 border border-emerald-500/30">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
-          Cursor 2026 Ready (.mdc Spec)
-        </span>
-        <a href="#faq" class="text-xs text-slate-400 hover:text-slate-200 transition">How it Works</a>
+
+      <div class="flex items-center space-x-3 sm:space-x-4">
+        <!-- PaceBowl Suite Matrix Switcher -->
+        <div class="relative group">
+          <button class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-indigo-500/40 text-xs text-slate-300 transition shadow-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+            <span class="font-medium hidden sm:inline">PaceBowl Suite</span>
+            <span class="font-medium sm:hidden">Suite</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-white transition transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="hidden group-hover:block absolute right-0 mt-1 w-64 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl p-2 z-50">
+            <div class="text-[10px] font-mono uppercase tracking-wider text-slate-500 px-2 py-1">PaceBowl Ecosystem</div>
+            <a href="https://pacebowl.com" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-800/80 text-xs text-slate-200 transition">
+              <span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-sky-500 via-indigo-600 to-purple-600 flex items-center justify-center text-[10px] font-bold text-white shadow-sm">PB</span>
+              <div>
+                <div class="font-bold text-white">PaceBowl Mothership</div>
+                <div class="text-[10px] text-slate-400">Central Hub & Runbooks</div>
+              </div>
+            </a>
+            <div class="border-t border-slate-800/80 my-1"></div>
+            <a href="https://cursor.pacebowl.com" class="flex items-center gap-2.5 p-2 rounded-lg bg-indigo-950/60 border border-indigo-500/40 text-xs text-indigo-200">
+              <span class="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center text-[10px] font-bold text-white">CR</span>
+              <div>
+                <div class="font-bold text-white">Cursor Rules Studio</div>
+                <div class="text-[10px] text-indigo-300">Active • .mdc Generator</div>
+              </div>
+            </a>
+            <a href="https://comfy.pacebowl.com" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-800/80 text-xs text-slate-200 transition mt-1">
+              <span class="w-7 h-7 rounded-lg bg-sky-600 flex items-center justify-center text-[10px] font-bold text-white">CF</span>
+              <div>
+                <div class="font-bold text-white">ComfyUI Prompt Studio</div>
+                <div class="text-[10px] text-slate-400">Flux.1 & 1MP Latent Calc</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a href="#faq" class="text-xs text-slate-400 hover:text-slate-200 transition hidden md:inline">How it Works</a>
         <a href="/blog/" class="text-xs text-indigo-400 hover:text-indigo-300 font-medium transition">Guides & Blog</a>
-        <button id="quick-zip-btn" onclick="downloadAllZip()" class="inline-flex items-center px-3.5 py-1.5 rounded-md text-xs font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition shadow-sm shadow-indigo-600/30">
-          <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="quick-zip-btn" onclick="downloadAllZip()" class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition shadow-sm shadow-indigo-600/30">
+          <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
           </svg>
-          Download .zip
+          .zip
         </button>
       </div>
     </div>
@@ -538,6 +577,22 @@
           Yes! Simply switch the export tab in the top right to **Claude Code** (generates <code class="text-slate-300">CLAUDE.md</code>) or **Windsurf** (generates <code class="text-slate-300">.windsurfrules</code>). The rules logic stays aligned across all your AI development workflows.
         </p>
       </div>
+    </div>
+
+    <!-- PaceBowl Matrix Companion Banner -->
+    <div class="mt-8 p-4 rounded-xl bg-gradient-to-r from-slate-900 via-sky-950/20 to-slate-900 border border-sky-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg shadow-sky-500/5">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 font-bold text-sm shrink-0">
+          ⚡
+        </div>
+        <div>
+          <div class="text-xs font-bold text-white">Also in the PaceBowl Suite: ComfyUI Prompt & Latent Studio</div>
+          <div class="text-[11px] text-slate-400 mt-0.5">Calculate trained 1-Megapixel Empty Latent dimensions and generate T5 natural language prompts with 0 GPU memory overhead.</div>
+        </div>
+      </div>
+      <a href="https://comfy.pacebowl.com" class="shrink-0 px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold text-xs transition shadow-sm shadow-sky-500/20">
+        Open Comfy Studio →
+      </a>
     </div>
   </section>
 
