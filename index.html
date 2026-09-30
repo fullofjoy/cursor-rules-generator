@@ -278,6 +278,10 @@
           </div>
         </div>
 
+                <a href="https://buymeacoffee.com/pacebowl" target="_blank" rel="noopener noreferrer" data-umami-event="click-sponsor-coffee" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/40 dark:hover:bg-amber-900/50 border border-amber-300/80 dark:border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-medium transition shadow-sm" title="Support the project">
+          <span>☕</span>
+          <span class="hidden sm:inline" data-i18n="nav_coffee">Sponsor</span>
+        </a>
         <a href="#faq" class="text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition hidden md:inline" data-i18n="nav_faq">How it Works</a>
         <a href="/blog/" data-umami-event="header-nav-blog" class="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 font-medium transition" data-i18n="nav_blog">Guides & Blog</a>
         <button id="quick-zip-btn" data-umami-event="header-download-zip" onclick="downloadAllZip()" class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition shadow-sm shadow-indigo-600/30">
@@ -311,6 +315,34 @@
 
       <!-- Left Column: Configurator (5 cols) -->
       <div class="lg:col-span-5 space-y-6">
+
+                <!-- 0. Magic Auto-Detect from package.json -->
+        <div class="bg-gradient-to-r from-indigo-50/80 via-purple-50/50 to-white dark:from-indigo-950/40 dark:via-purple-950/20 dark:to-slate-900 border border-indigo-200 dark:border-indigo-500/40 rounded-xl p-4 shadow-sm relative overflow-hidden group">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center space-x-2">
+              <span class="w-6 h-6 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-xs shadow-sm">🪄</span>
+              <h2 class="text-xs font-bold uppercase tracking-wider text-indigo-900 dark:text-indigo-200" data-i18n="magic_title">
+                Auto-Detect from package.json
+              </h2>
+            </div>
+            <button onclick="loadSamplePackageJson()" class="text-[10px] font-mono font-medium text-indigo-600 dark:text-indigo-400 hover:underline" data-i18n="magic_sample">
+              Try Sample
+            </button>
+          </div>
+          <p class="text-[11px] text-slate-600 dark:text-slate-400 mb-2.5 leading-snug" data-i18n="magic_desc">
+            Paste dependencies JSON to auto-select matching framework rules in 0.1s:
+          </p>
+          <div class="space-y-2">
+            <textarea id="package-json-input" spellcheck="false" rows="2" placeholder='{"dependencies": {"next": "15.0.0", "tailwindcss": "^4.0.0"}}' class="w-full bg-white dark:bg-slate-950 border border-indigo-200 dark:border-slate-800 rounded-lg p-2 text-[11px] font-mono text-slate-800 dark:text-slate-200 resize-none focus:outline-none focus:border-indigo-500 transition"></textarea>
+            <div class="flex items-center justify-between gap-2">
+              <div id="magic-detect-feedback" class="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 truncate hidden"></div>
+              <button onclick="autoDetectFromPackageJson()" class="ml-auto px-3 py-1.5 rounded-md text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-sm transition flex items-center gap-1.5">
+                <span>⚡</span>
+                <span data-i18n="magic_btn">Auto-Match Rules</span>
+              </button>
+            </div>
+          </div>
+        </div>
 
         <!-- 1. Frontend Framework -->
         <div class="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm">
@@ -782,6 +814,7 @@
         <a href="https://comfy.pacebowl.com" class="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition" data-i18n="footer_comfy">⚡ ComfyUI Studio</a>
         <a href="/blog/" class="hover:text-slate-900 dark:hover:text-slate-200 transition" data-i18n="footer_blog">Blog & Guides</a>
         <a href="#faq" class="hover:text-slate-900 dark:hover:text-slate-200 transition" data-i18n="footer_faq">FAQ</a>
+                <a href="https://buymeacoffee.com/pacebowl" target="_blank" rel="noopener noreferrer" data-umami-event="footer-sponsor-coffee" class="text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1 font-medium">☕ <span data-i18n="footer_coffee">Buy me a coffee</span></a>
         <a href="https://cursor.com" target="_blank" rel="noopener" class="hover:text-slate-900 dark:hover:text-slate-200 transition">Cursor IDE</a>
       </div>
     </div>
@@ -1255,6 +1288,113 @@ ${dbContent.trim()}`;
       }
     }
 
+    
+    // --- Package.json Auto-Detection Engine ---
+    function setRadioValue(name, value) {
+      const radios = document.getElementsByName(name);
+      for (let r of radios) {
+        if (r.value === value) {
+          r.checked = true;
+          break;
+        }
+      }
+    }
+
+    function autoDetectFromPackageJson() {
+      const input = document.getElementById('package-json-input').value.trim();
+      const feedback = document.getElementById('magic-detect-feedback');
+      if (!input) {
+        feedback.textContent = currentLang === 'zh' ? '请先粘贴 package.json 文本' : 'Please paste package.json content';
+        feedback.className = 'text-[10px] font-mono text-rose-500 truncate block';
+        return;
+      }
+
+      let text = input.toLowerCase();
+      let detected = [];
+
+      // Frontend detection
+      if (text.includes('"next"') || text.includes('nextjs')) {
+        setRadioValue('frontend', 'nextjs15');
+        detected.push('Next.js 15');
+      } else if (text.includes('"vue"') || text.includes('"nuxt"') || text.includes('vue3')) {
+        setRadioValue('frontend', 'vue3');
+        detected.push('Vue 3 / Nuxt');
+      } else if (text.includes('"react"') || text.includes('"vite"')) {
+        setRadioValue('frontend', 'react19');
+        detected.push('React 19 / Vite');
+      }
+
+      // Backend detection
+      if (text.includes('fastapi') || text.includes('pydantic')) {
+        setRadioValue('backend', 'fastapi');
+        detected.push('FastAPI');
+      } else if (text.includes('"express"') || text.includes('"@nestjs"') || text.includes('"hono"') || text.includes('"koa"')) {
+        setRadioValue('backend', 'nodejs');
+        detected.push('Node.js / Hono');
+      } else if (text.includes('gin') || text.includes('golang')) {
+        setRadioValue('backend', 'golang');
+        detected.push('Golang');
+      } else if (text.includes('@supabase/functions') || text.includes('wrangler')) {
+        setRadioValue('backend', 'serverless');
+        detected.push('Serverless / Edge');
+      }
+
+      // Modules checkboxes
+      function toggleMod(id, hasCondition, label) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.checked = hasCondition;
+        if (hasCondition) detected.push(label);
+      }
+
+      toggleMod('mod-tailwind', text.includes('tailwind'), 'Tailwind CSS');
+      toggleMod('mod-shadcn', text.includes('radix') || text.includes('lucide-react') || text.includes('class-variance-authority') || text.includes('tailwind-merge') || text.includes('shadcn'), 'Shadcn UI');
+      toggleMod('mod-supabase', text.includes('@supabase') || text.includes('supabase'), 'Supabase');
+      toggleMod('mod-drizzle', text.includes('drizzle') || text.includes('prisma'), 'Drizzle/Prisma');
+      toggleMod('mod-zod', text.includes('zod'), 'Zod');
+      toggleMod('mod-ai-sdk', text.includes('ai') || text.includes('@ai-sdk') || text.includes('langchain'), 'Vercel AI SDK');
+
+      // Strict TS
+      const tsEl = document.getElementById('guard-strict-ts');
+      if (tsEl) {
+        if (text.includes('typescript') || text.includes('@types/')) {
+          tsEl.checked = true;
+          detected.push('TypeScript');
+        }
+      }
+
+      updateRules();
+
+      feedback.textContent = (currentLang === 'zh' ? '✨ 成功匹配: ' : '✨ Auto-Matched: ') + (detected.length ? detected.join(', ') : (currentLang === 'zh' ? '默认全栈规则' : 'Default Stack'));
+      feedback.className = 'text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-bold truncate block';
+
+      trackUmami('magic-import-package-json', { detectedCount: detected.length, detectedItems: detected.join(',') });
+    }
+
+    function loadSamplePackageJson() {
+      const sample = JSON.stringify({
+        "name": "my-saas-app",
+        "dependencies": {
+          "next": "15.0.0",
+          "react": "^19.0.0",
+          "tailwindcss": "^4.0.0",
+          "lucide-react": "^0.450.0",
+          "@supabase/supabase-js": "^2.45.0",
+          "zod": "^3.23.8",
+          "ai": "^4.0.0"
+        },
+        "devDependencies": {
+          "typescript": "^5.6.0"
+        }
+      }, null, 2);
+
+      const el = document.getElementById('package-json-input');
+      if (el) {
+        el.value = sample;
+        autoDetectFromPackageJson();
+      }
+    }
+
     function copyTerminalCommand() {
       trackUmami('copy-terminal-cmd', { format: currentFormat });
       let cmd = '';
@@ -1554,6 +1694,12 @@ ${dbContent.trim()}`;
         mobile_banner_title: '正在手机上浏览？',
         mobile_banner_sub: '一键复制链接或分享到微信，稍后在电脑配置',
         mobile_banner_btn: '复制链接',
+        nav_coffee: '赞助支持',
+        footer_coffee: '请开发者喝杯咖啡',
+        magic_title: '粘贴 package.json 自动识别配置',
+        magic_sample: '载入范例',
+        magic_desc: '粘贴依赖代码，0.1秒自动匹配并勾选专属技术栈规则：',
+        magic_btn: '一键自动匹配',
       }
     };
 
