@@ -353,33 +353,47 @@
             </h2>
             <span class="text-[11px] text-slate-500">Multi-select</span>
           </div>
-          <div class="grid grid-cols-2 gap-2 text-xs">
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
               <input type="checkbox" id="mod-tailwind" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
               <div>
-                <div class="font-medium text-slate-200">Tailwind CSS v4</div>
-                <div class="text-[10px] text-slate-500">Utility-first, Shadcn cn()</div>
+                <div class="font-medium text-slate-200">Tailwind v4</div>
+                <div class="text-[10px] text-slate-500">Atomic utility css</div>
               </div>
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+              <input type="checkbox" id="mod-shadcn" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
+              <div>
+                <div class="font-medium text-slate-200">Shadcn / Radix</div>
+                <div class="text-[10px] text-slate-500">cn(), Lucide icons</div>
+              </div>
+            </label>
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
               <input type="checkbox" id="mod-supabase" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
               <div>
                 <div class="font-medium text-slate-200">Supabase + RLS</div>
-                <div class="text-[10px] text-slate-500">Security-first Database</div>
+                <div class="text-[10px] text-slate-500">Row Level Security</div>
               </div>
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
               <input type="checkbox" id="mod-drizzle" onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
               <div>
                 <div class="font-medium text-slate-200">Drizzle / Prisma</div>
                 <div class="text-[10px] text-slate-500">Type-safe SQL schemas</div>
               </div>
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
               <input type="checkbox" id="mod-zod" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
               <div>
                 <div class="font-medium text-slate-200">Zod Validation</div>
-                <div class="text-[10px] text-slate-500">Runtime contract parsing</div>
+                <div class="text-[10px] text-slate-500">Runtime parsing</div>
+              </div>
+            </label>
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+              <input type="checkbox" id="mod-ai-sdk" onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
+              <div>
+                <div class="font-medium text-slate-200">Vercel AI SDK</div>
+                <div class="text-[10px] text-slate-500">Stream & tool calls</div>
               </div>
             </label>
           </div>
@@ -392,7 +406,7 @@
               <span class="w-2 h-2 rounded-full bg-amber-500 mr-2"></span>
               4. Code Quality & Guardrails
             </h2>
-            <span class="text-[11px] text-slate-500">Global Best Practices</span>
+            <span class="text-[11px] text-slate-500">Anti-Hallucination & Efficiency</span>
           </div>
           <div class="space-y-2 text-xs">
             <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-950/20">
@@ -401,6 +415,13 @@
                 <div class="text-[11px] text-slate-500">Require explicit return types and avoid non-null assertions (!)</div>
               </div>
               <input type="checkbox" id="guard-strict-ts" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
+            </label>
+            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-950/20">
+              <div class="pr-2">
+                <div class="font-medium text-slate-200">Anti-AI Hallucination (Strict Libraries)</div>
+                <div class="text-[11px] text-slate-500">Forbid inventing imaginary npm APIs; enforce inspecting package.json</div>
+              </div>
+              <input type="checkbox" id="guard-no-hallucinate" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
             </label>
             <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-950/20">
               <div class="pr-2">
@@ -418,7 +439,7 @@
             </label>
             <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-950/20">
               <div class="pr-2">
-                <div class="font-medium text-slate-200">Zero Unnecessary Comments</div>
+                <div class="font-medium text-slate-200">Zero Redundant Comments</div>
                 <div class="text-[11px] text-slate-500">Forbid AI from adding redundant restatements of obvious code</div>
               </div>
               <input type="checkbox" id="guard-clean-comments" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
@@ -451,6 +472,12 @@
 
           <!-- Actions -->
           <div class="flex items-center space-x-2">
+            <button onclick="copyTerminalCommand()" id="term-btn" class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-indigo-500/30 transition shadow-sm" title="Copy 1-line shell command to create all files in terminal">
+              <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Terminal 1-Line
+            </button>
             <button onclick="copyCurrentContent()" id="copy-btn" class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
               <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -471,13 +498,48 @@
           <!-- Dynamic file tabs injected here -->
         </div>
 
-        <!-- Code Preview Box -->
+        <!-- Code Preview Box (Live Editable) -->
         <div class="relative bg-[#0d121f] border border-slate-800 rounded-b-xl overflow-hidden shadow-2xl glow-effect">
           <div class="flex items-center justify-between px-4 py-2 border-b border-slate-800/60 bg-slate-900/60 text-xs text-slate-400">
             <span id="preview-filename" class="font-mono text-indigo-300">.cursor/rules/frontend.mdc</span>
-            <span id="file-token-estimate" class="text-[11px] text-slate-500">~240 tokens</span>
+            <div class="flex items-center space-x-3">
+              <span class="text-[10px] text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-500/20">Editable</span>
+              <span id="file-token-estimate" class="text-[11px] text-slate-500 font-mono">~240 tokens</span>
+            </div>
           </div>
-          <pre class="p-4 text-xs font-mono text-slate-200 overflow-x-auto max-h-[560px] leading-relaxed"><code id="code-output">Loading rules...</code></pre>
+          <textarea id="code-output" spellcheck="false" oninput="onCustomEdit(this.value)" class="w-full bg-[#0d121f] p-4 text-xs font-mono text-slate-200 resize-none min-h-[360px] max-h-[500px] focus:outline-none leading-relaxed border-none"></textarea>
+        </div>
+
+        <!-- Live Glob Matcher & Token Savings Simulator -->
+        <div class="bg-slate-900/90 border border-indigo-500/30 rounded-xl p-4 shadow-lg">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-white flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Live Cursor Glob Matcher & Context Simulator
+            </span>
+            <span id="simulator-savings" class="text-[11px] font-mono font-bold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
+              Saved ~75% Context
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-400 mb-2.5">Simulate which rules Cursor AI injects when editing a file in your project:</p>
+          <div class="flex items-center gap-2 mb-2.5">
+            <div class="relative flex-1">
+              <span class="absolute left-2.5 top-1.5 text-slate-500 font-mono text-xs">/</span>
+              <input type="text" id="test-file-path" value="app/checkout/page.tsx" oninput="simulateGlobMatching()" placeholder="e.g. app/api/route.ts" class="w-full bg-slate-950 border border-slate-700 rounded-lg pl-6 pr-3 py-1.5 text-xs font-mono text-sky-300 focus:outline-none focus:border-indigo-500">
+            </div>
+          </div>
+          <!-- Quick Test Presets -->
+          <div class="flex flex-wrap items-center gap-1.5 mb-3 text-[10px] font-mono text-slate-400">
+            <span class="text-slate-500">Try:</span>
+            <button onclick="setTestPath('app/checkout/page.tsx')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition">app/checkout/page.tsx</button>
+            <button onclick="setTestPath('server/api/users.py')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition">server/api/users.py</button>
+            <button onclick="setTestPath('src/db/schema.ts')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition">src/db/schema.ts</button>
+            <button onclick="setTestPath('components/ui/Button.tsx')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition">components/ui/Button.tsx</button>
+          </div>
+          <!-- Evaluation Output List -->
+          <div id="matching-results-list" class="space-y-1.5 text-xs font-mono">
+            <!-- Evaluated via JS -->
+          </div>
         </div>
 
         <!-- Multi-file architecture callout -->
@@ -692,6 +754,12 @@
 - Mobile-first responsive design: declare base styles first, followed by \`sm:\`, \`md:\`, and \`lg:\` overrides.
 - Use semantic color tokens (e.g., \`bg-background\`, \`text-foreground\`) to support dark mode out of the box.`,
 
+      shadcn: `## Shadcn UI & Radix Primitives
+- Use official Shadcn components located in \`@/components/ui\`. Never build custom primitives when Shadcn provides them.
+- Always use the \`cn()\` utility (clsx + tailwind-merge) when merging and overriding component classes.
+- Use Lucide React icons (\`lucide-react\`) consistently with standard sizing classes (\`size-4\`, \`size-5\`).
+- Ensure accessible dialogs, dropdowns, and popovers use Radix UI accessibility attributes (\`aria-*\`).`,
+
       supabase: `## Supabase & Database Security Standards
 - Always enable Row Level Security (RLS) on all public tables without exception.
 - Use the typed Supabase client generated from database schema types (\`Database['public']['Tables']\`).
@@ -705,7 +773,19 @@
       zod: `## Zod Contract Validation
 - Define Zod schemas for all external inputs (API payloads, query strings, webhook bodies).
 - Infer TypeScript types directly from schemas using \`z.infer<typeof Schema>\` to guarantee a single source of truth.
-- Provide descriptive custom error messages for validation failures.`
+- Provide descriptive custom error messages for validation failures.`,
+
+      aiSdk: `## Vercel AI SDK Standards
+- Use \`ai\` and \`@ai-sdk/openai\` (or appropriate provider). Prefer \`streamText\` and \`streamUI\` for streaming LLM responses.
+- Implement structured outputs using \`generateObject\` or \`streamObject\` powered by strict Zod schemas.
+- In Next.js App Router, implement edge route handlers (\`export const runtime = 'edge'\`) for real-time text streaming.
+- Use the \`useChat\` and \`useCompletion\` React hooks on the client for optimistic UI updates and abort controls.`,
+
+      antiHallucination: `## Anti-Hallucination & Package Discipline
+- Strictly verify package exports before importing: NEVER invent nonexistent function or library APIs.
+- Refer strictly to the dependencies listed in \`package.json\` (or \`requirements.txt\` / \`go.mod\`).
+- If an API or package method is uncertain, search or verify official TypeScript types rather than guessing parameters.
+- Do NOT fabricate placeholder environment variables without explicitly defining them in \`.env.example\`.`
     };
 
     function updateRules() {
@@ -713,11 +793,14 @@
       const frontend = document.querySelector('input[name="frontend"]:checked')?.value || 'nextjs15';
       const backend = document.querySelector('input[name="backend"]:checked')?.value || 'fastapi';
       const hasTailwind = document.getElementById('mod-tailwind').checked;
+      const hasShadcn = document.getElementById('mod-shadcn').checked;
       const hasSupabase = document.getElementById('mod-supabase').checked;
       const hasDrizzle = document.getElementById('mod-drizzle').checked;
       const hasZod = document.getElementById('mod-zod').checked;
+      const hasAiSdk = document.getElementById('mod-ai-sdk').checked;
 
       const strictTs = document.getElementById('guard-strict-ts').checked;
+      const antiHallucinate = document.getElementById('guard-no-hallucinate').checked;
       const earlyReturn = document.getElementById('guard-early-return').checked;
       const errors = document.getElementById('guard-errors').checked;
       const cleanComments = document.getElementById('guard-clean-comments').checked;
@@ -728,6 +811,7 @@
         // 1. General practices rule
         let generalBody = "# Core Engineering Guardrails\n\n";
         if (strictTs) generalBody += RULE_BLOCKS.strictTs + "\n\n";
+        if (antiHallucinate) generalBody += RULE_BLOCKS.antiHallucination + "\n\n";
         if (earlyReturn) generalBody += RULE_BLOCKS.earlyReturn + "\n\n";
         if (errors) generalBody += RULE_BLOCKS.errorHandling + "\n\n";
         if (cleanComments) generalBody += RULE_BLOCKS.cleanComments + "\n\n";
@@ -745,6 +829,7 @@ ${generalBody.trim()}`;
           let feGlobs = frontend === 'nextjs15' ? 'app/**/*.{ts,tsx},components/**/*.{ts,tsx}' : 'src/**/*.{vue,jsx,tsx}';
           let feContent = RULE_BLOCKS[feName] || '';
           if (hasTailwind) feContent += "\n\n" + RULE_BLOCKS.tailwind;
+          if (hasShadcn) feContent += "\n\n" + RULE_BLOCKS.shadcn;
 
           generatedFiles['frontend.mdc'] = `---
 description: Frontend architectural rules, component lifecycle, and state conventions
@@ -758,6 +843,7 @@ ${feContent.trim()}`;
         let beGlobs = backend === 'fastapi' ? '**/*.py' : (backend === 'golang' ? '**/*.go' : 'server/**/*.{ts,js},api/**/*.{ts,js}');
         let beContent = RULE_BLOCKS[backend] || '';
         if (hasZod) beContent += "\n\n" + RULE_BLOCKS.zod;
+        if (hasAiSdk) beContent += "\n\n" + RULE_BLOCKS.aiSdk;
 
         generatedFiles['backend.mdc'] = `---
 description: Backend API patterns, endpoint security, and validation standards
@@ -785,13 +871,16 @@ ${dbContent.trim()}`;
         let combined = `# Project Guidelines (CLAUDE.md)\n\n`;
         combined += `> These guidelines are loaded by Claude Code to understand architecture and conventions.\n\n`;
         if (strictTs) combined += RULE_BLOCKS.strictTs + "\n\n";
+        if (antiHallucinate) combined += RULE_BLOCKS.antiHallucination + "\n\n";
         if (earlyReturn) combined += RULE_BLOCKS.earlyReturn + "\n\n";
         if (errors) combined += RULE_BLOCKS.errorHandling + "\n\n";
         if (frontend !== 'none' && RULE_BLOCKS[frontend]) combined += RULE_BLOCKS[frontend] + "\n\n";
         if (hasTailwind) combined += RULE_BLOCKS.tailwind + "\n\n";
+        if (hasShadcn) combined += RULE_BLOCKS.shadcn + "\n\n";
         if (RULE_BLOCKS[backend]) combined += RULE_BLOCKS[backend] + "\n\n";
         if (hasSupabase) combined += RULE_BLOCKS.supabase + "\n\n";
         if (hasZod) combined += RULE_BLOCKS.zod + "\n\n";
+        if (hasAiSdk) combined += RULE_BLOCKS.aiSdk + "\n\n";
 
         generatedFiles['CLAUDE.md'] = combined.trim();
 
@@ -799,9 +888,13 @@ ${dbContent.trim()}`;
         // Windsurf .windsurfrules
         let combined = `# Windsurf AI Rules (.windsurfrules)\n\n`;
         if (strictTs) combined += RULE_BLOCKS.strictTs + "\n\n";
+        if (antiHallucinate) combined += RULE_BLOCKS.antiHallucination + "\n\n";
         if (earlyReturn) combined += RULE_BLOCKS.earlyReturn + "\n\n";
         if (frontend !== 'none' && RULE_BLOCKS[frontend]) combined += RULE_BLOCKS[frontend] + "\n\n";
+        if (hasTailwind) combined += RULE_BLOCKS.tailwind + "\n\n";
+        if (hasShadcn) combined += RULE_BLOCKS.shadcn + "\n\n";
         if (RULE_BLOCKS[backend]) combined += RULE_BLOCKS[backend] + "\n\n";
+        if (hasZod) combined += RULE_BLOCKS.zod + "\n\n";
 
         generatedFiles['.windsurfrules'] = combined.trim();
 
@@ -809,9 +902,13 @@ ${dbContent.trim()}`;
         // Legacy .cursorrules
         let combined = `# Legacy Cursor Rules (.cursorrules)\n\n`;
         if (strictTs) combined += RULE_BLOCKS.strictTs + "\n\n";
+        if (antiHallucinate) combined += RULE_BLOCKS.antiHallucination + "\n\n";
         if (earlyReturn) combined += RULE_BLOCKS.earlyReturn + "\n\n";
         if (frontend !== 'none' && RULE_BLOCKS[frontend]) combined += RULE_BLOCKS[frontend] + "\n\n";
+        if (hasTailwind) combined += RULE_BLOCKS.tailwind + "\n\n";
+        if (hasShadcn) combined += RULE_BLOCKS.shadcn + "\n\n";
         if (RULE_BLOCKS[backend]) combined += RULE_BLOCKS[backend] + "\n\n";
+        if (hasZod) combined += RULE_BLOCKS.zod + "\n\n";
 
         generatedFiles['.cursorrules'] = combined.trim();
       }
@@ -849,9 +946,9 @@ ${dbContent.trim()}`;
         tabsContainer.classList.add('hidden');
       }
 
-      // Render content
+      // Render content into editable textarea
       const content = generatedFiles[currentSelectedFile] || 'No file selected';
-      document.getElementById('code-output').textContent = content;
+      document.getElementById('code-output').value = content;
 
       // Update filename indicator
       const pathPrefix = currentFormat === 'cursor-mdc' ? '.cursor/rules/' : '';
@@ -860,6 +957,144 @@ ${dbContent.trim()}`;
       // Estimate tokens (~4 chars per token)
       const tokenCount = Math.round(content.length / 4);
       document.getElementById('file-token-estimate').textContent = `~${tokenCount} tokens`;
+
+      // Update glob simulation
+      simulateGlobMatching();
+    }
+
+    function onCustomEdit(val) {
+      if (currentSelectedFile && generatedFiles[currentSelectedFile] !== undefined) {
+        generatedFiles[currentSelectedFile] = val;
+        const tokenCount = Math.round(val.length / 4);
+        const tokenEl = document.getElementById('file-token-estimate');
+        if (tokenEl) tokenEl.textContent = `~${tokenCount} tokens`;
+        simulateGlobMatching();
+      }
+    }
+
+    function globToRegex(glob) {
+      let p = glob.trim();
+      p = p.replace(/\./g, '\\.');
+      p = p.replace(/\*\*\/\*/g, '.*');
+      p = p.replace(/\*\*/g, '.*');
+      p = p.replace(/\*/g, '[^/]*');
+      p = p.replace(/\{([^}]+)\}/g, (_, group) => `(${group.replace(/,/g, '|')})`);
+      return new RegExp(`^${p}$`);
+    }
+
+    function matchPathAgainstGlobs(path, globsStr) {
+      if (!globsStr) return false;
+      const patterns = globsStr.split(',').map(s => s.trim());
+      for (const pat of patterns) {
+        if (pat === '**/*' || pat === '*') return true;
+        try {
+          const re = globToRegex(pat);
+          if (re.test(path)) return true;
+        } catch (e) {
+          if (path.includes(pat.replace(/\*/g, ''))) return true;
+        }
+      }
+      return false;
+    }
+
+    function simulateGlobMatching() {
+      const pathInput = document.getElementById('test-file-path');
+      if (!pathInput) return;
+      let testPath = pathInput.value.trim().replace(/^[\/\\]+/, '');
+      if (!testPath) testPath = 'app/checkout/page.tsx';
+
+      const resultsList = document.getElementById('matching-results-list');
+      if (!resultsList) return;
+      resultsList.innerHTML = '';
+
+      let totalTokens = 0;
+      let injectedTokens = 0;
+      const fileNames = Object.keys(generatedFiles);
+
+      fileNames.forEach(fn => {
+        const content = generatedFiles[fn];
+        const tokens = Math.round(content.length / 4);
+        totalTokens += tokens;
+
+        let globs = '**/*';
+        let alwaysApply = false;
+        const globsMatch = content.match(/globs:\s*(.+)/);
+        if (globsMatch) globs = globsMatch[1].trim();
+        const alwaysMatch = content.match(/alwaysApply:\s*(true|false)/);
+        if (alwaysMatch) alwaysApply = alwaysMatch[1] === 'true';
+
+        let isMatch = alwaysApply || matchPathAgainstGlobs(testPath, globs);
+        if (isMatch) {
+          injectedTokens += tokens;
+        }
+
+        const item = document.createElement('div');
+        item.className = `p-2 rounded-lg flex items-center justify-between transition border ${
+          isMatch
+            ? 'bg-emerald-950/40 border-emerald-500/30 text-emerald-200'
+            : 'bg-slate-950/40 border-slate-800 text-slate-500 opacity-60'
+        }`;
+        item.innerHTML = `
+          <div class="flex items-center space-x-2">
+            <span class="w-2 h-2 rounded-full ${isMatch ? 'bg-emerald-400 shadow-sm shadow-emerald-400/50' : 'bg-slate-600'}"></span>
+            <span class="font-bold ${isMatch ? 'text-white' : 'text-slate-400'}">${fn}</span>
+            <span class="text-[10px] ${isMatch ? 'text-emerald-400' : 'text-slate-600'}">(${globs})</span>
+          </div>
+          <div class="flex items-center space-x-2 text-[11px]">
+            <span class="${isMatch ? 'text-emerald-300' : 'text-slate-500'}">~${tokens} tok</span>
+            <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase ${
+              isMatch
+                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                : 'bg-slate-800 text-slate-500 border border-slate-700/50'
+            }">
+              ${isMatch ? '⚡ INJECTED' : '💤 IGNORED'}
+            </span>
+          </div>
+        `;
+        resultsList.appendChild(item);
+      });
+
+      const savingsEl = document.getElementById('simulator-savings');
+      if (savingsEl && totalTokens > 0) {
+        const savedPercent = Math.max(0, Math.round(((totalTokens - injectedTokens) / totalTokens) * 100));
+        savingsEl.textContent = `Saved ~${savedPercent}% Context (${injectedTokens} / ${totalTokens} tok)`;
+        if (savedPercent > 0) {
+          savingsEl.className = 'text-[11px] font-mono font-bold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30';
+        } else {
+          savingsEl.className = 'text-[11px] font-mono font-bold text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800';
+        }
+      }
+    }
+
+    function setTestPath(path) {
+      const input = document.getElementById('test-file-path');
+      if (input) {
+        input.value = path;
+        simulateGlobMatching();
+      }
+    }
+
+    function copyTerminalCommand() {
+      let cmd = '';
+      if (currentFormat === 'cursor-mdc') {
+        const fileCommands = Object.entries(generatedFiles).map(([name, content]) => {
+          return `cat << 'EOF' > .cursor/rules/${name}\n${content}\nEOF`;
+        }).join('\n\n');
+
+        cmd = `mkdir -p .cursor/rules && \\\n${fileCommands}\n\necho "✨ Created ${Object.keys(generatedFiles).length} Cursor MDC rules in .cursor/rules/"`;
+      } else {
+        const [name, content] = Object.entries(generatedFiles)[0] || ['rules.txt', ''];
+        cmd = `cat << 'EOF' > ${name}\n${content}\nEOF\n\necho "✨ Created ${name}"`;
+      }
+
+      navigator.clipboard.writeText(cmd).then(() => {
+        const btn = document.getElementById('term-btn');
+        const orig = btn.innerHTML;
+        btn.innerHTML = `<span class="text-emerald-400 font-semibold">✓ Shell Cmd Copied!</span>`;
+        setTimeout(() => {
+          btn.innerHTML = orig;
+        }, 2200);
+      });
     }
 
     function setExportFormat(fmt) {
