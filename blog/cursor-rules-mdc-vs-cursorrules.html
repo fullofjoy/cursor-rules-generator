@@ -17,6 +17,28 @@
   <!-- Umami Analytics -->
   <script defer src="https://umami-ruby-alpha-96.vercel.app/script.js" data-website-id="45cd49ed-6c55-4b37-bcbb-69959c065874"></script>
 
+  <!-- Theme & Language Initialization: Anti-FOUC & Cross-Subdomain Sync -->
+  <script>
+    (function() {
+      function getSharedCookie(name) {
+        var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return m ? decodeURIComponent(m[1]) : null;
+      }
+      var theme = getSharedCookie('pacebowl-theme') || localStorage.getItem('pacebowl-theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      } else if (theme === 'dark' || (!theme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      }
+    })();
+  </script>
+
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://cursor.pacebowl.com/blog/cursor-rules-mdc-vs-cursorrules.html">
@@ -101,67 +123,101 @@
   </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 500: '#6366f1', 600: '#4f46e5' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    html.dark ::-webkit-scrollbar-track { background: #0f172a; }
+    html.dark ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    html.light ::-webkit-scrollbar-track { background: #f8fafc; }
+    html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  </style>
 </head>
-<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white">
+<body class="bg-slate-50 dark:bg-[#0b0f19] text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-200">
 
   <!-- Header -->
-  <header class="border-b border-slate-800/80 bg-[#0b0f19]/80 backdrop-blur sticky top-0 z-50">
+  <header class="border-b border-slate-200 dark:border-slate-800/80 bg-white/80 dark:bg-[#0b0f19]/80 backdrop-blur sticky top-0 z-50 transition-colors duration-200">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       <a href="/" class="flex items-center space-x-2">
         <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-bold text-white shadow-md shadow-indigo-500/20">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
         </div>
-        <span class="font-bold text-base text-white tracking-tight">Cursor Rules <span class="text-indigo-400 font-mono text-xs px-1.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-500/30">.mdc</span></span>
+        <span class="font-bold text-base text-slate-900 dark:text-white tracking-tight">Cursor Rules <span class="text-indigo-600 dark:text-indigo-400 font-mono text-xs px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950/80 border border-indigo-300 dark:border-indigo-500/30">.mdc</span></span>
       </a>
-      <div class="flex items-center space-x-4 text-xs">
-        <a href="/blog/" class="text-slate-400 hover:text-slate-200 transition">← Back to Blog</a>
-        <a href="/" class="px-3 py-1.5 rounded-md font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition">Launch Generator</a>
+
+      <div class="flex items-center space-x-3 text-xs">
+        <!-- Language Switcher Button -->
+        <button id="lang-toggle-btn" onclick="toggleLanguage()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-xs text-slate-700 dark:text-slate-300 transition shadow-sm" title="Toggle English / 简体中文">
+          <svg class="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+          <span id="lang-label" class="font-semibold font-mono text-[11px]">中文</span>
+        </button>
+
+        <!-- Theme Switcher Button -->
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-slate-700 dark:text-slate-300 transition shadow-sm" title="Toggle Light / Dark mode">
+          <svg id="theme-sun-icon" class="w-4 h-4 hidden text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="theme-moon-icon" class="w-4 h-4 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+
+        <a href="/blog/" class="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition" data-i18n="back_blog">← Back to Blog</a>
+        <a href="/" class="px-3 py-1.5 rounded-md font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition" data-i18n="launch_btn">Launch Generator</a>
       </div>
     </div>
   </header>
 
-  <!-- Article Container -->
-  <article class="max-w-3xl mx-auto px-4 py-12 flex-1 w-full">
+  <!-- ========================================== -->
+  <!-- ENGLISH VERSION -->
+  <!-- ========================================== -->
+  <article id="article-en" class="max-w-3xl mx-auto px-4 py-12 flex-1 w-full">
     <!-- Breadcrumb -->
     <nav class="flex items-center space-x-2 text-xs text-slate-500 mb-6 font-mono">
-      <a href="/" class="hover:text-slate-300">Home</a>
+      <a href="/" class="hover:text-slate-700 dark:hover:text-slate-300">Home</a>
       <span>/</span>
-      <a href="/blog/" class="hover:text-slate-300">Blog</a>
+      <a href="/blog/" class="hover:text-slate-700 dark:hover:text-slate-300">Blog</a>
       <span>/</span>
-      <span class="text-indigo-400">Migration Guide</span>
+      <span class="text-indigo-600 dark:text-indigo-400">Migration Guide</span>
     </nav>
 
     <!-- Title & Meta -->
-    <header class="mb-10 pb-8 border-b border-slate-800">
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+    <header class="mb-10 pb-8 border-b border-slate-200 dark:border-slate-800">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4 leading-tight">
         Cursor Rules (.mdc) vs .cursorrules: The Complete 2026 Migration Guide
       </h1>
-      <div class="flex items-center space-x-4 text-xs text-slate-400">
+      <div class="flex items-center space-x-4 text-xs text-slate-500 dark:text-slate-400">
         <span>By Cursor Rules Engineering Team</span>
         <span>•</span>
         <span>Updated September 2026</span>
         <span>•</span>
-        <span class="px-2 py-0.5 rounded bg-indigo-950/80 text-indigo-300 border border-indigo-500/30 font-mono">6 min read</span>
+        <span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/30 font-mono">6 min read</span>
       </div>
     </header>
 
     <!-- In-Article Banner CTA -->
-    <div class="my-6 p-4 rounded-xl bg-indigo-950/40 border border-indigo-500/30 flex items-center justify-between text-xs">
+    <div class="my-6 p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-500/30 flex items-center justify-between text-xs">
       <div>
-        <span class="font-bold text-indigo-200">Need pre-built .mdc rules for Next.js, FastAPI, or Tailwind?</span>
-        <div class="text-slate-400 text-[11px] mt-0.5">Use our free visual generator to download a ready-to-use .cursor/rules.zip archive.</div>
+        <span class="font-bold text-indigo-900 dark:text-indigo-200">Need pre-built .mdc rules for Next.js, FastAPI, or Tailwind?</span>
+        <div class="text-slate-600 dark:text-slate-400 text-[11px] mt-0.5">Use our free visual generator to download a ready-to-use .cursor/rules.zip archive.</div>
       </div>
       <a href="/" class="px-3 py-1.5 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-semibold whitespace-nowrap ml-4 transition">Generate .zip →</a>
     </div>
 
     <!-- Content Body -->
-    <div class="space-y-6 text-slate-300 text-sm leading-relaxed">
+    <div class="space-y-6 text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
       <!-- AEO Direct Answer / TL;DR Box -->
-      <div class="p-4 rounded-xl bg-slate-900/90 border border-emerald-500/40 shadow-lg text-xs space-y-2">
-        <div class="flex items-center gap-2 text-emerald-400 font-bold uppercase tracking-wider text-[11px]">
+      <div class="p-4 rounded-xl bg-white dark:bg-slate-900/90 border border-emerald-500/40 shadow-sm text-xs space-y-2">
+        <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-wider text-[11px]">
           <span>⚡ Direct Answer (TL;DR)</span>
         </div>
-        <p class="text-slate-300 leading-relaxed">
+        <p class="leading-relaxed">
           <strong>Cursor deprecated <code>.cursorrules</code></strong> because placing a single monolithic file in the root forces the AI to load all instructions into every prompt, causing token bloat, higher costs, and instruction dilution. <strong>Modern <code>.cursor/rules/*.mdc</code> files</strong> solve this by using YAML frontmatter (<code>globs</code> and <code>description</code>) to inject rules only when relevant files are being edited—saving 60%–80% of context window space.
         </p>
       </div>
@@ -170,22 +226,22 @@
         If you have been using Cursor AI for more than a few months, you likely remember placing a single <code>.cursorrules</code> file in the root directory of your project. While revolutionary in late 2023, the monolithic <code>.cursorrules</code> file has now been completely superseded by Cursor's modular <code>.cursor/rules/*.mdc</code> format.
       </p>
 
-      <h2 class="text-xl font-bold text-white pt-4">The Fatal Flaw of the Monolithic .cursorrules File</h2>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">The Fatal Flaw of the Monolithic .cursorrules File</h2>
       <p>
         In the old model, the entire content of <code>.cursorrules</code> was injected into the AI's prompt context on <strong>every single interaction</strong>. For small demo projects, this worked fine. However, as projects grew into full-stack applications, this approach introduced three critical bottlenecks:
       </p>
-      <ul class="list-disc pl-5 space-y-2 text-slate-400">
+      <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
         <li><strong>Context Token Bloat:</strong> Hundreds of lines detailing database migrations, backend API endpoints, and styling guidelines were loaded even when the developer was simply editing a CSS file or button component.</li>
         <li><strong>Instruction Dilution & Hallucination:</strong> Modern LLMs have attention limits. Overloading the context window with unrelated guidelines causes the AI to ignore crucial constraints.</li>
         <li><strong>Conflicting Rules:</strong> A rule dictating strict Python type annotations conflicts with JSX component guidelines when bundled into a single document.</li>
       </ul>
 
-      <h2 class="text-xl font-bold text-white pt-4">How Modern .cursor/rules/*.mdc Works</h2>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">How Modern .cursor/rules/*.mdc Works</h2>
       <p>
         Cursor 2026 uses modular <code>.mdc</code> files (Markdown with Frontmatter) stored inside a <code>.cursor/rules/</code> directory. Each file governs a specific concern and defines its own execution criteria using YAML frontmatter:
       </p>
 
-      <pre class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-indigo-300 overflow-x-auto"><code>---
+      <pre class="bg-slate-900 dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800 font-mono text-xs text-indigo-300 overflow-x-auto"><code>---
 description: Next.js 15 App Router and React Server Component guidelines
 globs: app/**/*.{ts,tsx},components/**/*.{ts,tsx}
 alwaysApply: false
@@ -195,35 +251,33 @@ alwaysApply: false
 - Treat all components as Server Components by default.
 - Only add 'use client' when interactive state (useState, useEffect) is required.</code></pre>
 
-      <h3 class="text-base font-semibold text-white pt-2">The Three Frontmatter Directives Explained:</h3>
+      <h3 class="text-base font-semibold text-slate-900 dark:text-white pt-2">The Three Frontmatter Directives Explained:</h3>
       <div class="grid grid-cols-1 gap-3 text-xs">
-        <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
-          <code class="text-indigo-400 font-bold">description</code> (String, Recommended): Tells Cursor's autonomous Agent when and why to invoke this rule set.
+        <div class="p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
+          <code class="text-indigo-600 dark:text-indigo-400 font-bold">description</code> (String, Recommended): Tells Cursor's autonomous Agent when and why to invoke this rule set.
         </div>
-        <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
-          <code class="text-indigo-400 font-bold">globs</code> (String / Array): Glob pattern matching the target files. When you edit a matching file (e.g. <code>app/**</code>), Cursor automatically attaches the rule.
+        <div class="p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
+          <code class="text-indigo-600 dark:text-indigo-400 font-bold">globs</code> (String / Array): Glob pattern matching the target files. When you edit a matching file (e.g. <code>app/**</code>), Cursor automatically attaches the rule.
         </div>
-        <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
-          <code class="text-indigo-400 font-bold">alwaysApply</code> (Boolean): If set to <code>true</code>, this rule loads across all interactions regardless of the active file. Ideal for universal type safety and code hygiene.
+        <div class="p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
+          <code class="text-indigo-600 dark:text-indigo-400 font-bold">alwaysApply</code> (Boolean): If set to <code>true</code>, this rule loads across all interactions regardless of the active file. Ideal for universal type safety and code hygiene.
         </div>
       </div>
 
-      <!-- New Section: Glob Simulator & Token Savings -->
-      <h2 class="text-xl font-bold text-white pt-4">Testing Glob Matching & Simulating Token Savings</h2>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">Testing Glob Matching & Simulating Token Savings</h2>
       <p>
-        How do you know if your glob patterns actually match before deploying them? In the <a href="https://cursor.pacebowl.com" class="text-indigo-400 underline">Cursor Rules Generator</a>, we built a <strong>Live Glob Matcher & Context Simulator</strong>.
+        How do you know if your glob patterns actually match before deploying them? In the <a href="https://cursor.pacebowl.com" class="text-indigo-600 dark:text-indigo-400 underline">Cursor Rules Generator</a>, we built a <strong>Live Glob Matcher & Context Simulator</strong>.
       </p>
       <p>
         You can type any file path (e.g., <code>app/checkout/page.tsx</code> or <code>server/api/users.py</code>) and immediately see which rules are injected (<code>⚡ INJECTED</code>) and which are ignored (<code>💤 IGNORED</code>). Typically, scoped <code>.mdc</code> rules eliminate 70% to 80% of unnecessary tokens per prompt turn.
       </p>
 
-      <!-- New Section: Terminal 1-Line Setup -->
-      <h2 class="text-xl font-bold text-white pt-4">Fastest Setup: Terminal 1-Line Injection</h2>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">Fastest Setup: Terminal 1-Line Injection</h2>
       <p>
         Instead of downloading and unzipping archives manually, you can use our <strong>Terminal 1-Line</strong> copy command. It generates an executable shell snippet that creates <code>.cursor/rules/</code> and writes all <code>.mdc</code> files directly in one shot:
       </p>
 
-      <pre class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-sky-300 overflow-x-auto"><code>mkdir -p .cursor/rules && \
+      <pre class="bg-slate-900 dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800 font-mono text-xs text-sky-300 overflow-x-auto"><code>mkdir -p .cursor/rules && \
 cat &lt;&lt; 'EOF' &gt; .cursor/rules/general.mdc
 ---
 description: Universal engineering standards, type safety, and code hygiene
@@ -233,12 +287,10 @@ alwaysApply: true
 # Core Engineering Guardrails
 EOF</code></pre>
 
-      <h2 class="text-xl font-bold text-white pt-4">Recommended Project Folder Structure</h2>
-      <p>
-        In modern production repositories, organize your rules into 3 to 4 focused files:
-      </p>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">Recommended Project Folder Structure</h2>
+      <p>In modern production repositories, organize your rules into 3 to 4 focused files:</p>
 
-      <pre class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-slate-300"><code>my-project/
+      <pre class="bg-slate-900 dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800 font-mono text-xs text-slate-300"><code>my-project/
 ├── .cursor/
 │   └── rules/
 │       ├── general.mdc     # alwaysApply: true (Strict TypeScript, early return)
@@ -248,58 +300,362 @@ EOF</code></pre>
 ├── package.json
 └── src/</code></pre>
 
-      <h2 class="text-xl font-bold text-white pt-4">Step-by-Step Migration from .cursorrules</h2>
-      <ol class="list-decimal pl-5 space-y-2 text-slate-400">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">Step-by-Step Migration from .cursorrules</h2>
+      <ol class="list-decimal pl-5 space-y-2 text-slate-600 dark:text-slate-400">
         <li>Create the folder <code>.cursor/rules/</code> in your project root.</li>
         <li>Open your existing <code>.cursorrules</code> file and split it into distinct categories (Core, Frontend, Backend).</li>
         <li>Paste each category into its corresponding <code>.mdc</code> file and prepend the YAML frontmatter.</li>
         <li>Delete or archive the legacy <code>.cursorrules</code> file to prevent duplicate instruction loading.</li>
       </ol>
 
-      <!-- Semantic FAQ Section for AEO -->
-      <h2 class="text-xl font-bold text-white pt-6">Frequently Asked Questions (AEO Reference)</h2>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-6">Frequently Asked Questions (AEO Reference)</h2>
       <div class="space-y-4 pt-2">
-        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-          <h3 class="font-bold text-white text-xs mb-1">Why did Cursor deprecate .cursorrules in favor of .cursor/rules/*.mdc?</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">
+        <div class="p-4 rounded-xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs mb-1">Why did Cursor deprecate .cursorrules in favor of .cursor/rules/*.mdc?</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
             The legacy <code>.cursorrules</code> file was monolithic, injecting all rules into every prompt unconditionally. This bloated context windows, increased latency, and diluted AI attention. Modern <code>.cursor/rules/*.mdc</code> files use glob matching and description frontmatter to load instructions only when relevant files are being edited.
           </p>
         </div>
-        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-          <h3 class="font-bold text-white text-xs mb-1">How much context token space does .mdc save over .cursorrules?</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">
+        <div class="p-4 rounded-xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs mb-1">How much context token space does .mdc save over .cursorrules?</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
             By scoping rules to specific file paths (such as frontend rules only to <code>app/**</code> or backend rules only to <code>server/**</code>), <code>.mdc</code> typically reduces prompt token overhead by 60% to 80% compared to monolithic <code>.cursorrules</code> files.
           </p>
         </div>
-        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-          <h3 class="font-bold text-white text-xs mb-1">How to quickly install Cursor .mdc rules without downloading a zip file?</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            You can use the 1-Line Terminal command provided by <a href="https://cursor.pacebowl.com" class="text-indigo-400 underline">Cursor Rules Generator</a> to create the entire directory and write all <code>.mdc</code> files directly in your IDE terminal.
+        <div class="p-4 rounded-xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs mb-1">How to quickly install Cursor .mdc rules without downloading a zip file?</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+            You can use the 1-Line Terminal command provided by <a href="https://cursor.pacebowl.com" class="text-indigo-600 dark:text-indigo-400 underline">Cursor Rules Generator</a> to create the entire directory and write all <code>.mdc</code> files directly in your IDE terminal.
           </p>
         </div>
       </div>
     </div>
 
     <!-- Bottom CTA -->
-    <div class="mt-12 p-6 rounded-2xl bg-slate-900 border border-indigo-500/30 text-center">
-      <h3 class="text-lg font-bold text-white mb-2">Automate Your Migration in 10 Seconds</h3>
-      <p class="text-slate-400 text-xs mb-4">Don't write YAML headers manually. Use our free generator to simulate glob matching, copy terminal scripts, or download a pre-packaged <code>.cursor/rules.zip</code> archive.</p>
+    <div class="mt-12 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-indigo-200 dark:border-indigo-500/30 text-center shadow-sm">
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Automate Your Migration in 10 Seconds</h3>
+      <p class="text-slate-600 dark:text-slate-400 text-xs mb-4">Don't write YAML headers manually. Use our free generator to simulate glob matching, copy terminal scripts, or download a pre-packaged <code>.cursor/rules.zip</code> archive.</p>
       <a href="/" class="inline-flex items-center px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/30 transition">
         Launch Cursor Rules Generator →
       </a>
     </div>
   </article>
 
+  <!-- ========================================== -->
+  <!-- CHINESE VERSION -->
+  <!-- ========================================== -->
+  <article id="article-zh" class="hidden max-w-3xl mx-auto px-4 py-12 flex-1 w-full">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-xs text-slate-500 mb-6 font-mono">
+      <a href="/" class="hover:text-slate-700 dark:hover:text-slate-300">首页</a>
+      <span>/</span>
+      <a href="/blog/" class="hover:text-slate-700 dark:hover:text-slate-300">博客</a>
+      <span>/</span>
+      <span class="text-indigo-600 dark:text-indigo-400">架构迁移指南</span>
+    </nav>
+
+    <!-- Title & Meta -->
+    <header class="mb-10 pb-8 border-b border-slate-200 dark:border-slate-800">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4 leading-tight">
+        Cursor Rules (.mdc) 对比 .cursorrules：2026 完整迁移实战指南
+      </h1>
+      <div class="flex items-center space-x-4 text-xs text-slate-500 dark:text-slate-400">
+        <span>作者：Cursor Rules 架构工程团队</span>
+        <span>•</span>
+        <span>更新于 2026 年 9 月</span>
+        <span>•</span>
+        <span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/30 font-mono">6 分钟阅读</span>
+      </div>
+    </header>
+
+    <!-- In-Article Banner CTA -->
+    <div class="my-6 p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-500/30 flex items-center justify-between text-xs">
+      <div>
+        <span class="font-bold text-indigo-900 dark:text-indigo-200">需要针对 Next.js、FastAPI 或 Tailwind 的现成 .mdc 规则？</span>
+        <div class="text-slate-600 dark:text-slate-400 text-[11px] mt-0.5">使用我们的免费可视化生成器，一键下载打包好的 .cursor/rules.zip 压缩包。</div>
+      </div>
+      <a href="/" class="px-3 py-1.5 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-semibold whitespace-nowrap ml-4 transition">生成 .zip 规则包 →</a>
+    </div>
+
+    <!-- Content Body -->
+    <div class="space-y-6 text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+      <!-- AEO Direct Answer / TL;DR Box -->
+      <div class="p-4 rounded-xl bg-white dark:bg-slate-900/90 border border-emerald-500/40 shadow-sm text-xs space-y-2">
+        <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-wider text-[11px]">
+          <span>⚡ 核心要点速览 (TL;DR)</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>Cursor 官方之所以弃用 <code>.cursorrules</code></strong>，是因为在项目根目录放置单个庞大的单体文件会迫使 AI 在每次会话中无差别加载全量规范，引发 Token 预算浪费、响应延迟增加以及指令稀释。<strong>现代 <code>.cursor/rules/*.mdc</code> 模块化架构</strong>通过 YAML Frontmatter（<code>globs</code> 路径通配与 <code>description</code> 意图描述），实现了仅在开发者编辑相关代码时精准激活规则，从而节省 60%～80% 的 Context Window 上下文空间。
+        </p>
+      </div>
+
+      <p>
+        如果您使用 Cursor AI 超过数月，您一定对在项目根目录创建 <code>.cursorrules</code> 文件的做法记忆犹新。这一方案在 2023 年底堪称突破，但在当下的复杂全栈开发中，单体 <code>.cursorrules</code> 已经被 Cursor 官方力推的模块化 <code>.cursor/rules/*.mdc</code> 架构完全取代。
+      </p>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">单体 .cursorrules 文件的三大致命痛点</h2>
+      <p>
+        在过去的模式下，<code>.cursorrules</code> 的全部内容都会在<strong>每一次提问与代码生成时</strong>无差别注入 Prompt 上下文。对于微型 Demo 项目尚可接受，但在成熟工程中，这种做法暴露了三大瓶颈：
+      </p>
+      <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><strong>上下文 Token 严重浪费：</strong>数百行描写数据库迁移、后端接口和鉴权规范的文字，在开发者仅仅修改一个前端 CSS 样式或按钮组件时依然被全量装载。</li>
+        <li><strong>指令稀释与模型幻觉：</strong>大语言模型的注意力机制存在有效窗口上限。过载的不相关守则会稀释模型的关键注意力，导致模型漏掉核心约束。</li>
+        <li><strong>规则冲突与混淆：</strong>要求严格 Python 类型注解的守则与 React TSX 组件规范混在一起时，容易导致模型在生成代码时产生格式错乱。</li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">现代 .cursor/rules/*.mdc 运作机制</h2>
+      <p>
+        Cursor 2026 采用存放在 <code>.cursor/rules/</code> 目录下的多文件 <code>.mdc</code>（Markdown with Frontmatter）架构。每个文件管理特定领域规范，并通过 YAML 头部声明激活逻辑：
+      </p>
+
+      <pre class="bg-slate-900 dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800 font-mono text-xs text-indigo-300 overflow-x-auto"><code>---
+description: Next.js 15 App Router 与 React 服务端组件架构规范
+globs: app/**/*.{ts,tsx},components/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Next.js 15 核心守则
+- 默认将所有组件视为服务端组件 (RSC)。
+- 仅在需要处理客户端交互状态 (useState, useEffect) 时添加 'use client'。</code></pre>
+
+      <h3 class="text-base font-semibold text-slate-900 dark:text-white pt-2">YAML Frontmatter 三大核心指令解析：</h3>
+      <div class="grid grid-cols-1 gap-3 text-xs">
+        <div class="p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
+          <code class="text-indigo-600 dark:text-indigo-400 font-bold">description</code>（字符串，推荐）：向 Cursor 的自主 Agent 阐述此规则适用的场景与任务目的。
+        </div>
+        <div class="p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
+          <code class="text-indigo-600 dark:text-indigo-400 font-bold">globs</code>（字符串 / 数组）：目标文件通配符匹配规则。当您编辑匹配路径（如 <code>app/**</code>）下的文件时，Cursor 才会自动挂载该规则。
+        </div>
+        <div class="p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
+          <code class="text-indigo-600 dark:text-indigo-400 font-bold">alwaysApply</code>（布尔值）：若设为 <code>true</code>，则不论当前编辑哪个文件均全局激活。非常适合通用代码洁癖、TypeScript 严苛类型与防御性错误处理。
+        </div>
+      </div>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">Glob 路径匹配与 Token 减负实测模拟</h2>
+      <p>
+        在正式部署规则前，如何检验 Glob 规则是否生效？在 <a href="https://cursor.pacebowl.com" class="text-indigo-600 dark:text-indigo-400 underline">Cursor Rules 生成器</a> 中，我们内置了 <strong>Live Glob Matcher 实时上下文匹配模拟器</strong>。
+      </p>
+      <p>
+        您可以随手输入任意文件路径（如 <code>app/checkout/page.tsx</code> 或 <code>server/api/users.py</code>），即时观察哪些规则被激活（<code>⚡ INJECTED</code>）以及哪些被休眠忽略（<code>💤 IGNORED</code>）。实测表明，路径隔离可为单轮对话剔除 70%～80% 的冗余上下文。
+      </p>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">最快安装方式：终端 1 行命令</h2>
+      <p>
+        无需手动下载和解压压缩包，您可以直接使用我们提供的 <strong>终端 1 行命令</strong>。该命令会一键创建 <code>.cursor/rules/</code> 文件夹并直接写入各 <code>.mdc</code> 文件：
+      </p>
+
+      <pre class="bg-slate-900 dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800 font-mono text-xs text-sky-300 overflow-x-auto"><code>mkdir -p .cursor/rules && \
+cat &lt;&lt; 'EOF' &gt; .cursor/rules/general.mdc
+---
+description: 通用工程标准、严苛类型与代码质量规范
+globs: **/*
+alwaysApply: true
+---
+# 核心工程防线守则
+EOF</code></pre>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">推荐生产级项目目录结构</h2>
+      <p>在现代化规范项目中，建议将规则解耦为 3 至 4 个职责单一的文件：</p>
+
+      <pre class="bg-slate-900 dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800 font-mono text-xs text-slate-300"><code>my-project/
+├── .cursor/
+│   └── rules/
+│       ├── general.mdc     # alwaysApply: true (全局严苛 TypeScript、卫语句)
+│       ├── frontend.mdc    # globs: "app/**,src/**" (框架边界与状态管理)
+│       ├── styling.mdc     # globs: "**/*.{css,tsx}" (Tailwind 原子化样式)
+│       └── backend.mdc     # globs: "api/**,server/**" (接口安全与 Schema)
+├── package.json
+└── src/</code></pre>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">从 .cursorrules 平滑迁移的 4 个步骤</h2>
+      <ol class="list-decimal pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+        <li>在项目根目录下新建 <code>.cursor/rules/</code> 文件夹。</li>
+        <li>打开原有 <code>.cursorrules</code> 文件，按架构关注点拆分为不同类别（全局、前端、后端、ORM）。</li>
+        <li>将拆分后的内容分别保存至对应的 <code>.mdc</code> 文件中，并在头部添加标准的 YAML Frontmatter 描述与 Globs 通配。</li>
+        <li>删除或归档旧版 <code>.cursorrules</code> 文件，防止重复加载造成规则干扰。</li>
+      </ol>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-6">常见问题解答 (AEO 问答模块)</h2>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs mb-1">为什么 Cursor 官方要用 .mdc 文件替换 .cursorrules？</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+            单个 <code>.cursorrules</code> 是单体架构，无差别在每次提问中加载全部规则，浪费 Token 并引发模型注意力稀释。全新的 <code>.cursor/rules/*.mdc</code> 借助 glob 模式（如 <code>app/**</code>）仅在编辑关联文件时按需加载。
+          </p>
+        </div>
+        <div class="p-4 rounded-xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs mb-1">相比旧版单体文件，.mdc 大概能节约多少 Token？</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+            通过路径按需隔离（例如前端规则仅加载到 <code>app/**</code>，后端规则仅加载到 <code>server/**</code>），<code>.mdc</code> 通常可将单次请求的不必要 Token 消耗压缩 60%～80%。
+          </p>
+        </div>
+        <div class="p-4 rounded-xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs mb-1">不下载 zip 包，如何快速在项目中生成规则文件？</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+            可以直接使用 <a href="https://cursor.pacebowl.com" class="text-indigo-600 dark:text-indigo-400 underline">Cursor Rules 生成器</a> 提供的“终端 1 行命令”。复制后在 IDE 集成终端中回车执行，即可瞬间自动生成完整的规则目录与文件。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-12 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-indigo-200 dark:border-indigo-500/30 text-center shadow-sm">
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">10 秒内自动化完成架构迁移</h3>
+      <p class="text-slate-600 dark:text-slate-400 text-xs mb-4">无需手写复杂的 YAML 头部。使用我们的免费生成器，实时模拟 Glob 匹配，直接复制终端脚本或打包下载 <code>.cursor/rules.zip</code>。</p>
+      <a href="/" class="inline-flex items-center px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/30 transition">
+        打开 Cursor Rules 规则生成器 →
+      </a>
+    </div>
+  </article>
+
   <!-- Footer -->
-  <footer class="border-t border-slate-800/80 bg-[#090d16] py-8 text-center text-xs text-slate-500">
+  <footer class="border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#090d16] py-8 text-center text-xs text-slate-500 transition-colors duration-200">
     <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <span>Cursor Rules Generator &copy; 2026.</span>
-      <div class="flex items-center space-x-6 text-slate-400">
-        <a href="/" class="hover:text-slate-200 transition">Generator</a>
-        <a href="/blog/" class="hover:text-slate-200 transition">Blog</a>
+      <span data-i18n="footer_copy">Cursor Rules Generator &copy; 2026. Part of the <a href="https://pacebowl.com" class="text-indigo-600 dark:text-indigo-400 hover:underline">PaceBowl Suite</a>.</span>
+      <div class="flex items-center space-x-6 text-slate-600 dark:text-slate-400">
+        <a href="/" class="hover:text-slate-900 dark:hover:text-slate-200 transition" data-i18n="foot_gen">Generator</a>
+        <a href="/blog/" class="hover:text-slate-900 dark:hover:text-slate-200 transition" data-i18n="foot_blog">Blog</a>
       </div>
     </div>
   </footer>
 
+  <script>
+    const I18N = {
+      en: {
+        back_blog: '← Back to Blog',
+        launch_btn: 'Launch Generator',
+        footer_copy: 'Cursor Rules Generator &copy; 2026. Part of the <a href="https://pacebowl.com" class="text-indigo-600 dark:text-indigo-400 hover:underline">PaceBowl Suite</a>.',
+        foot_gen: 'Generator',
+        foot_blog: 'Blog'
+      },
+      zh: {
+        back_blog: '← 返回博客列表',
+        launch_btn: '打开规则生成器',
+        footer_copy: 'Cursor Rules Generator &copy; 2026. 隶属于 <a href="https://pacebowl.com" class="text-indigo-600 dark:text-indigo-400 hover:underline">PaceBowl Suite 生态矩阵</a>。',
+        foot_gen: '规则工坊',
+        foot_blog: '技术博客'
+      }
+    };
+
+    function getSharedCookie(name) {
+      var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+      return m ? decodeURIComponent(m[1]) : null;
+    }
+
+    function setSharedState(key, val) {
+      try { localStorage.setItem(key, val); } catch(e) {}
+      try {
+        var hostname = window.location.hostname;
+        var domain = (hostname.endsWith('pacebowl.com') || hostname === 'pacebowl.com') ? '; domain=.pacebowl.com' : '';
+        document.cookie = key + '=' + encodeURIComponent(val) + domain + '; path=/; max-age=31536000; SameSite=Lax';
+      } catch(e) {}
+    }
+
+    function getSharedTheme() {
+      var t = getSharedCookie('pacebowl-theme') || localStorage.getItem('pacebowl-theme');
+      if (t === 'light' || t === 'dark') return t;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function getSharedLang() {
+      var l = getSharedCookie('pacebowl-lang') || localStorage.getItem('pacebowl-lang');
+      if (l === 'zh' || l === 'en') return l;
+      return (navigator.language && navigator.language.startsWith('zh')) ? 'zh' : 'en';
+    }
+
+    let currentLang = getSharedLang();
+
+    function updateThemeUI(isDark) {
+      const sun = document.getElementById('theme-sun-icon');
+      const moon = document.getElementById('theme-moon-icon');
+      if (!sun || !moon) return;
+      if (isDark) {
+        sun.classList.remove('hidden');
+        moon.classList.add('hidden');
+      } else {
+        sun.classList.add('hidden');
+        moon.classList.remove('hidden');
+      }
+    }
+
+    function applyTheme(isDark, persist) {
+      if (isDark) {
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+        if (persist) setSharedState('pacebowl-theme', 'dark');
+        updateThemeUI(true);
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        if (persist) setSharedState('pacebowl-theme', 'light');
+        updateThemeUI(false);
+      }
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      applyTheme(!isDark, true);
+    }
+
+    function updateLanguageUI() {
+      const label = document.getElementById('lang-label');
+      if (label) {
+        label.textContent = currentLang === 'zh' ? 'EN' : '中文';
+      }
+      document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+
+      const artEn = document.getElementById('article-en');
+      const artZh = document.getElementById('article-zh');
+      if (currentLang === 'zh') {
+        artEn.classList.add('hidden');
+        artZh.classList.remove('hidden');
+      } else {
+        artZh.classList.add('hidden');
+        artEn.classList.remove('hidden');
+      }
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (I18N[currentLang] && I18N[currentLang][key] !== undefined) {
+          el.innerHTML = I18N[currentLang][key];
+        }
+      });
+    }
+
+    function applyLanguage(lang, persist) {
+      currentLang = lang;
+      if (persist) setSharedState('pacebowl-lang', lang);
+      updateLanguageUI();
+    }
+
+    function toggleLanguage() {
+      const nextLang = currentLang === 'zh' ? 'en' : 'zh';
+      applyLanguage(nextLang, true);
+    }
+
+    function checkCrossDomainSync() {
+      const desiredTheme = getSharedTheme();
+      const isDarkCurrent = document.documentElement.classList.contains('dark');
+      if ((desiredTheme === 'dark') !== isDarkCurrent) {
+        applyTheme(desiredTheme === 'dark', false);
+      }
+      const desiredLang = getSharedLang();
+      if (desiredLang !== currentLang) {
+        applyLanguage(desiredLang, false);
+      }
+    }
+
+    window.addEventListener('pageshow', checkCrossDomainSync);
+    window.addEventListener('visibilitychange', () => {
+      if (!document.hidden) checkCrossDomainSync();
+    });
+    window.addEventListener('storage', checkCrossDomainSync);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const theme = getSharedTheme();
+      applyTheme(theme === 'dark', false);
+      applyLanguage(getSharedLang(), false);
+    });
+  </script>
 </body>
 </html>

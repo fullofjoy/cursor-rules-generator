@@ -17,13 +17,35 @@
   <!-- Umami Analytics -->
   <script defer src="https://umami-ruby-alpha-96.vercel.app/script.js" data-website-id="45cd49ed-6c55-4b37-bcbb-69959c065874"></script>
 
+  <!-- Theme & Language Initialization: Anti-FOUC & Cross-Subdomain Sync -->
+  <script>
+    (function() {
+      function getSharedCookie(name) {
+        var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return m ? decodeURIComponent(m[1]) : null;
+      }
+      var theme = getSharedCookie('pacebowl-theme') || localStorage.getItem('pacebowl-theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      } else if (theme === 'dark' || (!theme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      }
+    })();
+  </script>
+
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://cursor.pacebowl.com/blog/how-to-write-nextjs-15-cursor-rules.html">
   <meta property="og:title" content="How to Write Bulletproof Cursor Rules for Next.js 15">
   <meta property="og:description" content="Stop AI from creating legacy Next.js patterns. Production-ready .cursor/rules/nextjs.mdc guidelines.">
 
-  <!-- Schema.org JSON-LD -->
+  <!-- Structured Data: TechArticle, FAQPage & Breadcrumbs -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -101,67 +123,101 @@
   </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 500: '#6366f1', 600: '#4f46e5' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    html.dark ::-webkit-scrollbar-track { background: #0f172a; }
+    html.dark ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    html.light ::-webkit-scrollbar-track { background: #f8fafc; }
+    html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  </style>
 </head>
-<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white">
+<body class="bg-slate-50 dark:bg-[#0b0f19] text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-200">
 
   <!-- Header -->
-  <header class="border-b border-slate-800/80 bg-[#0b0f19]/80 backdrop-blur sticky top-0 z-50">
+  <header class="border-b border-slate-200 dark:border-slate-800/80 bg-white/80 dark:bg-[#0b0f19]/80 backdrop-blur sticky top-0 z-50 transition-colors duration-200">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       <a href="/" class="flex items-center space-x-2">
         <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-bold text-white shadow-md shadow-indigo-500/20">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
         </div>
-        <span class="font-bold text-base text-white tracking-tight">Cursor Rules <span class="text-indigo-400 font-mono text-xs px-1.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-500/30">.mdc</span></span>
+        <span class="font-bold text-base text-slate-900 dark:text-white tracking-tight">Cursor Rules <span class="text-indigo-600 dark:text-indigo-400 font-mono text-xs px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950/80 border border-indigo-300 dark:border-indigo-500/30">.mdc</span></span>
       </a>
-      <div class="flex items-center space-x-4 text-xs">
-        <a href="/blog/" class="text-slate-400 hover:text-slate-200 transition">← Back to Blog</a>
-        <a href="/" class="px-3 py-1.5 rounded-md font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition">Launch Generator</a>
+
+      <div class="flex items-center space-x-3 text-xs">
+        <!-- Language Switcher Button -->
+        <button id="lang-toggle-btn" onclick="toggleLanguage()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-xs text-slate-700 dark:text-slate-300 transition shadow-sm" title="Toggle English / 简体中文">
+          <svg class="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+          <span id="lang-label" class="font-semibold font-mono text-[11px]">中文</span>
+        </button>
+
+        <!-- Theme Switcher Button -->
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-slate-700 dark:text-slate-300 transition shadow-sm" title="Toggle Light / Dark mode">
+          <svg id="theme-sun-icon" class="w-4 h-4 hidden text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="theme-moon-icon" class="w-4 h-4 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+
+        <a href="/blog/" class="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition" data-i18n="back_blog">← Back to Blog</a>
+        <a href="/" class="px-3 py-1.5 rounded-md font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition" data-i18n="launch_btn">Launch Generator</a>
       </div>
     </div>
   </header>
 
-  <!-- Article -->
-  <article class="max-w-3xl mx-auto px-4 py-12 flex-1 w-full">
+  <!-- ========================================== -->
+  <!-- ENGLISH VERSION -->
+  <!-- ========================================== -->
+  <article id="article-en" class="max-w-3xl mx-auto px-4 py-12 flex-1 w-full">
     <!-- Breadcrumb -->
     <nav class="flex items-center space-x-2 text-xs text-slate-500 mb-6 font-mono">
-      <a href="/" class="hover:text-slate-300">Home</a>
+      <a href="/" class="hover:text-slate-700 dark:hover:text-slate-300">Home</a>
       <span>/</span>
-      <a href="/blog/" class="hover:text-slate-300">Blog</a>
+      <a href="/blog/" class="hover:text-slate-700 dark:hover:text-slate-300">Blog</a>
       <span>/</span>
-      <span class="text-indigo-400">Next.js 15 Guide</span>
+      <span class="text-indigo-600 dark:text-indigo-400">Next.js 15 Guide</span>
     </nav>
 
     <!-- Header -->
-    <header class="mb-10 pb-8 border-b border-slate-800">
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+    <header class="mb-10 pb-8 border-b border-slate-200 dark:border-slate-800">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4 leading-tight">
         How to Write Bulletproof Cursor Rules for Next.js 15 (App Router & Server Actions)
       </h1>
-      <div class="flex items-center space-x-4 text-xs text-slate-400">
+      <div class="flex items-center space-x-4 text-xs text-slate-500 dark:text-slate-400">
         <span>By Cursor Rules Engineering Team</span>
         <span>•</span>
         <span>Updated September 2026</span>
         <span>•</span>
-        <span class="px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 font-mono">8 min read</span>
+        <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/30 font-mono">8 min read</span>
       </div>
     </header>
 
     <!-- In-Article Banner CTA -->
-    <div class="my-6 p-4 rounded-xl bg-indigo-950/40 border border-indigo-500/30 flex items-center justify-between text-xs">
+    <div class="my-6 p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-500/30 flex items-center justify-between text-xs">
       <div>
-        <span class="font-bold text-indigo-200">Generate Next.js 15 + Tailwind + Supabase rules instantly:</span>
-        <div class="text-slate-400 text-[11px] mt-0.5">Customized .mdc files ready to download as a pre-packaged zip.</div>
+        <span class="font-bold text-indigo-900 dark:text-indigo-200">Generate Next.js 15 + Tailwind + Supabase rules instantly:</span>
+        <div class="text-slate-600 dark:text-slate-400 text-[11px] mt-0.5">Customized .mdc files ready to download as a pre-packaged zip.</div>
       </div>
       <a href="/" class="px-3 py-1.5 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-semibold whitespace-nowrap ml-4 transition">Open Tool →</a>
     </div>
 
     <!-- Body -->
-    <div class="space-y-6 text-slate-300 text-sm leading-relaxed">
+    <div class="space-y-6 text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
       <!-- AEO Direct Answer Box -->
-      <div class="p-4 rounded-xl bg-slate-900/90 border border-emerald-500/40 shadow-lg text-xs space-y-2">
-        <div class="flex items-center gap-2 text-emerald-400 font-bold uppercase tracking-wider text-[11px]">
+      <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/90 border border-emerald-500/40 shadow-sm text-xs space-y-2">
+        <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-wider text-[11px]">
           <span>⚡ Direct Answer (TL;DR)</span>
         </div>
-        <p class="text-slate-300 leading-relaxed">
+        <p class="leading-relaxed">
           To write bulletproof Next.js 15 Cursor rules, create <strong><code>.cursor/rules/nextjs.mdc</code></strong> with <code>globs: app/**/*.{ts,tsx},components/**/*.{ts,tsx}</code>. Enforce: (1) Server Components by default with <code>'use client'</code> pushed strictly to interactive leaves, (2) Zod validation inside every Server Action, and (3) explicit imports from <code>next/navigation</code> rather than legacy <code>next/router</code>.
         </p>
       </div>
@@ -170,20 +226,20 @@
         Next.js 15 is one of the most popular full-stack frameworks, but Large Language Models (LLMs) notoriously struggle with it. Because older training datasets are saturated with Pages Router code (<code>getServerSideProps</code>, <code>pages/api/</code>), Cursor will frequently default to legacy patterns or scatter <code>'use client'</code> at the top of every file.
       </p>
 
-      <h2 class="text-xl font-bold text-white pt-4">Top 4 Hallucinations AI Makes in Next.js 15</h2>
-      <ul class="list-disc pl-5 space-y-2 text-slate-400">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">Top 4 Hallucinations AI Makes in Next.js 15</h2>
+      <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
         <li><strong>Overusing 'use client':</strong> Making entire page components client-side simply to add a single interactive button, destroying server-side rendering performance.</li>
         <li><strong>Unvalidated Server Actions:</strong> Treating Server Actions like trusted internal functions rather than exposed public HTTP POST endpoints.</li>
         <li><strong>Legacy Routing Conventions:</strong> Mixing <code>next/router</code> (Pages Router) instead of <code>next/navigation</code> (App Router).</li>
         <li><strong>Missing Metadata API:</strong> Using deprecated <code>&lt;Head&gt;</code> tags instead of Next.js 15's native <code>generateMetadata</code> export.</li>
       </ul>
 
-      <h2 class="text-xl font-bold text-white pt-4">The Complete .cursor/rules/nextjs.mdc Rule File</h2>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">The Complete .cursor/rules/nextjs.mdc Rule File</h2>
       <p>
         Save the following configuration inside your repository at <code>.cursor/rules/nextjs.mdc</code>:
       </p>
 
-      <pre class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-indigo-300 overflow-x-auto"><code>---
+      <pre class="bg-slate-900 text-indigo-200 dark:bg-slate-950 p-4 rounded-xl border border-slate-300 dark:border-slate-800 font-mono text-xs overflow-x-auto"><code>---
 description: Next.js 15 App Router, React Server Component, and Server Action standards
 globs: app/**/*.{ts,tsx},components/**/*.{ts,tsx}
 alwaysApply: false
@@ -192,88 +248,381 @@ alwaysApply: false
 # Next.js 15 & React 19 Architectural Rules
 
 ## 1. Server Components vs Client Components
-- Treat all components in \`app/\` and \`components/\` as React Server Components (RSC) by default.
-- Never add \`'use client'\` to root page or layout components.
+- Treat all components in `app/` and `components/` as React Server Components (RSC) by default.
+- Never add `'use client'` to root page or layout components.
 - Push client boundaries to the leaves of your component tree. Extract buttons, modal popups, and form inputs into isolated client sub-components.
 
 ## 2. Server Actions Security & Validation
-- Mark all server mutations with \`'use server'\`.
+- Mark all server mutations with `'use server'`.
 - Always validate every input argument inside Server Actions using Zod schemas. Never trust raw client arguments.
-- Return typed, serializable responses: \`{ success: boolean, data?: T, error?: string }\`.
+- Return typed, serializable responses: `{ success: boolean, data?: T, error?: string }`.
 
 ## 3. Navigation & Routing
-- Always import from \`next/navigation\` (\`useRouter\`, \`usePathname\`, \`redirect\`).
-- Never import from legacy \`next/router\`.
-- Use \`next/link\` with typed \`href\` routes.
+- Always import from `next/navigation` (`useRouter`, `usePathname`, `redirect`).
+- Never import from legacy `next/router`.
+- Use `next/link` with typed `href` routes.
 
 ## 4. Performance & Media
-- Always use \`next/image\` with explicit \`alt\`, \`width\`, and \`height\` (or \`fill\`).
-- Leverage \`next/font/google\` for web font loading to prevent layout shifts.</code></pre>
+- Always use `next/image` with explicit `alt`, `width`, and `height` (or `fill`).
+- Leverage `next/font/google` for web font loading to prevent layout shifts.</code></pre>
 
-      <h2 class="text-xl font-bold text-white pt-4">Integrating Shadcn UI & Vercel AI SDK</h2>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">Integrating Shadcn UI & Vercel AI SDK</h2>
       <p>
         Modern Next.js 15 projects frequently rely on Shadcn UI (Radix primitives) and Vercel AI SDK for generative UI. Add these two blocks to prevent AI from creating custom unstyled buttons or clumsy polling loops:
       </p>
 
-      <pre class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-emerald-300 overflow-x-auto"><code>## Shadcn UI & Radix Primitives
-- Use official Shadcn components located in \`@/components/ui\`. Never build custom primitives when Shadcn provides them.
-- Always use the \`cn()\` utility (clsx + tailwind-merge) when merging and overriding component classes.
-- Use Lucide React icons (\`lucide-react\`) consistently with standard sizing classes (\`size-4\`, \`size-5\`).
+      <pre class="bg-slate-900 text-emerald-200 dark:bg-slate-950 p-4 rounded-xl border border-slate-300 dark:border-slate-800 font-mono text-xs overflow-x-auto"><code>## Shadcn UI & Radix Primitives
+- Use official Shadcn components located in `@/components/ui`. Never build custom primitives when Shadcn provides them.
+- Always use the `cn()` utility (clsx + tailwind-merge) when merging and overriding component classes.
+- Use Lucide React icons (`lucide-react`) consistently with standard sizing classes (`size-4`, `size-5`).
 
 ## Vercel AI SDK Standards
-- Prefer \`streamText\` and \`streamUI\` for streaming LLM responses.
-- Implement structured outputs using \`generateObject\` or \`streamObject\` powered by strict Zod schemas.
-- In Next.js App Router, implement edge route handlers (\`export const runtime = 'edge'\`) for real-time text streaming.</code></pre>
+- Prefer `streamText` and `streamUI` for streaming LLM responses.
+- Implement structured outputs using `generateObject` or `streamObject` powered by strict Zod schemas.
+- In Next.js App Router, implement edge route handlers (`export const runtime = 'edge'`) for real-time text streaming.</code></pre>
 
-      <h2 class="text-xl font-bold text-white pt-4">Why the `globs` Header is Critical</h2>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">Why the `globs` Header is Critical</h2>
       <p>
         Notice the frontmatter pattern: <code>globs: app/**/*.{ts,tsx},components/**/*.{ts,tsx}</code>. This ensures that these Next.js instructions are loaded <strong>only</strong> when you are modifying your React and routing files. When editing your database schema, Dockerfile, or testing scripts, Cursor skips loading this rule, keeping context tokens lean and focused.
       </p>
 
       <!-- Semantic FAQ Section for AEO -->
-      <h2 class="text-xl font-bold text-white pt-6">Frequently Asked Questions (Next.js AEO Reference)</h2>
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-6">Frequently Asked Questions (Next.js AEO Reference)</h2>
       <div class="space-y-4 pt-2">
-        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-          <h3 class="font-bold text-white text-xs mb-1">What is the best way to prevent Cursor AI from overusing 'use client' in Next.js 15?</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">
+        <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs mb-1">What is the best way to prevent Cursor AI from overusing 'use client' in Next.js 15?</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
             Add a specific <code>.cursor/rules/nextjs.mdc</code> rule with <code>globs: app/**/*.{ts,tsx}</code> specifying that all components must default to React Server Components (RSC), and <code>'use client'</code> is only allowed at the lowest leaf nodes of the tree for interactive state.
           </p>
         </div>
-        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-          <h3 class="font-bold text-white text-xs mb-1">How to secure Next.js Server Actions with Cursor Rules?</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">
+        <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs mb-1">How to secure Next.js Server Actions with Cursor Rules?</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
             Instruct Cursor AI via rule prompts to always parse all Server Action arguments through Zod schemas and return typed responses rather than throwing raw unhandled exceptions.
           </p>
         </div>
-        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-          <h3 class="font-bold text-white text-xs mb-1">Does Cursor support Shadcn UI and Vercel AI SDK rules for Next.js 15?</h3>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            Yes, <a href="https://cursor.pacebowl.com" class="text-indigo-400 underline">Cursor Rules Generator</a> provides pre-configured rules enforcing official Shadcn UI primitives from <code>@/components/ui</code>, <code>cn()</code> styling helper, and Vercel AI SDK <code>streamText</code> route patterns.
+        <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs mb-1">Does Cursor support Shadcn UI and Vercel AI SDK rules for Next.js 15?</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+            Yes, <a href="https://cursor.pacebowl.com" class="text-indigo-600 dark:text-indigo-400 underline">Cursor Rules Generator</a> provides pre-configured rules enforcing official Shadcn UI primitives from <code>@/components/ui</code>, <code>cn()</code> styling helper, and Vercel AI SDK <code>streamText</code> route patterns.
           </p>
         </div>
       </div>
     </div>
 
     <!-- Bottom CTA -->
-    <div class="mt-12 p-6 rounded-2xl bg-slate-900 border border-indigo-500/30 text-center">
-      <h3 class="text-lg font-bold text-white mb-2">Build Your Full Next.js 15 Rules Package</h3>
-      <p class="text-slate-400 text-xs mb-4">Combine Next.js 15 rules with Tailwind CSS v4, Supabase, Shadcn UI, and Strict TypeScript in a single download or terminal command.</p>
+    <div class="mt-12 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-indigo-200 dark:border-indigo-500/30 text-center shadow-sm">
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Build Your Full Next.js 15 Rules Package</h3>
+      <p class="text-slate-600 dark:text-slate-400 text-xs mb-4">Combine Next.js 15 rules with Tailwind CSS v4, Supabase, Shadcn UI, and Strict TypeScript in a single download or terminal command.</p>
       <a href="/" class="inline-flex items-center px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/30 transition">
         Generate .cursor/rules.zip Now →
       </a>
     </div>
   </article>
 
+  <!-- ========================================== -->
+  <!-- CHINESE VERSION -->
+  <!-- ========================================== -->
+  <article id="article-zh" class="max-w-3xl mx-auto px-4 py-12 flex-1 w-full hidden">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center space-x-2 text-xs text-slate-500 mb-6 font-mono">
+      <a href="/" class="hover:text-slate-700 dark:hover:text-slate-300">首页</a>
+      <span>/</span>
+      <a href="/blog/" class="hover:text-slate-700 dark:hover:text-slate-300">博客</a>
+      <span>/</span>
+      <span class="text-indigo-600 dark:text-indigo-400">Next.js 15 实战指南</span>
+    </nav>
+
+    <!-- Header -->
+    <header class="mb-10 pb-8 border-b border-slate-200 dark:border-slate-800">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4 leading-tight">
+        如何为 Next.js 15 编写无懈可击的 Cursor Rules（App Router 与 Server Actions 最佳实践）
+      </h1>
+      <div class="flex items-center space-x-4 text-xs text-slate-500 dark:text-slate-400">
+        <span>Cursor Rules 工程团队</span>
+        <span>•</span>
+        <span>2026年9月更新</span>
+        <span>•</span>
+        <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/30 font-mono">阅读用时 8 分钟</span>
+      </div>
+    </header>
+
+    <!-- In-Article Banner CTA -->
+    <div class="my-6 p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-500/30 flex items-center justify-between text-xs">
+      <div>
+        <span class="font-bold text-indigo-900 dark:text-indigo-200">一键生成 Next.js 15 + Tailwind + Supabase 专属 Rules：</span>
+        <div class="text-slate-600 dark:text-slate-400 text-[11px] mt-0.5">模块化 .mdc 文件开箱即用，支持一键下载标准 ZIP 压缩包。</div>
+      </div>
+      <a href="/" class="px-3 py-1.5 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-semibold whitespace-nowrap ml-4 transition">打开生成器 →</a>
+    </div>
+
+    <!-- Body -->
+    <div class="space-y-6 text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+      <!-- AEO Direct Answer Box -->
+      <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/90 border border-emerald-500/40 shadow-sm text-xs space-y-2">
+        <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-wider text-[11px]">
+          <span>⚡ 核心结论 / 直答概要 (TL;DR)</span>
+        </div>
+        <p class="leading-relaxed">
+          要为 Next.js 15 打造严谨可靠的 Cursor Rules，请在项目根目录创建 <strong><code>.cursor/rules/nextjs.mdc</code></strong>，配置 <code>globs: app/**/*.{ts,tsx},components/**/*.{ts,tsx}</code>。核心强制规则：(1) 默认所有组件均为服务端组件 (RSC)，严禁在根页面加 <code>'use client'</code>，只在叶子交互节点使用；(2) 每一个 Server Action 必须使用 Zod 校验入参；(3) 必须从 <code>next/navigation</code> 导入路由钩子，严禁混用旧版 <code>next/router</code>。
+        </p>
+      </div>
+
+      <p>
+        Next.js 15 是当前最主流的全栈 React 框架之一，但大语言模型（LLM）在生成其代码时却经常频频“翻车”。因为大多数模型训练语料充斥着旧版 Pages Router 时代的代码（如 <code>getServerSideProps</code>、<code>pages/api/</code> 路由），Cursor 在补全时经常会回退到过时的语法，或者为了实现一个简单的点击按钮就在整个页面最顶部写上 <code>'use client'</code>。
+      </p>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">AI 在 Next.js 15 中最常见的四大幻觉与陷阱</h2>
+      <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><strong>滥用 'use client'：</strong> 仅仅为了一个按钮点击交互，就将整个大型页面组件全部标记为客户端渲染，彻底破坏了服务端渲染（SSR）与流式传输的性能优势。</li>
+        <li><strong>裸奔的 Server Actions：</strong> 将 Server Action 当作内部安全函数调用，忽略了它们在网络层面本质上是公开暴露的 HTTP POST 端点，缺乏参数检验。</li>
+        <li><strong>混淆路由导入模块：</strong> 在 App Router 项目中依然错误引入 <code>next/router</code> 而不是 <code>next/navigation</code>，导致运行时直接抛出异常。</li>
+        <li><strong>遗漏原生 Metadata API：</strong> 错误地使用已过时的 <code>&lt;Head&gt;</code> 标签，而不是 Next.js 15 推荐的静态 <code>metadata</code> 或动态 <code>generateMetadata</code>。</li>
+      </ul>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">完整的 .cursor/rules/nextjs.mdc 规则规范</h2>
+      <p>
+        将以下配置保存到您项目仓库的 <code>.cursor/rules/nextjs.mdc</code> 文件中：
+      </p>
+
+      <pre class="bg-slate-900 text-indigo-200 dark:bg-slate-950 p-4 rounded-xl border border-slate-300 dark:border-slate-800 font-mono text-xs overflow-x-auto"><code>---
+description: Next.js 15 App Router、React 服务端组件 (RSC) 与 Server Actions 研发规范
+globs: app/**/*.{ts,tsx},components/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Next.js 15 与 React 19 架构约束规范
+
+## 1. 服务端组件 (RSC) vs 客户端组件
+- 默认将 `app/` 与 `components/` 目录下的所有组件视为 React Server Components (RSC)。
+- 严禁在根级 page.tsx 或 layout.tsx 组件添加 `'use client'` 指令。
+- 将客户端边界（Client Boundary）严格下沉推送到组件树的最底层叶子节点。将按钮、弹窗、表单输入提取为独立的客户端子组件。
+
+## 2. Server Actions 安全规范与参数校验
+- 所有服务端数据变更函数必须标记 `'use server'`。
+- Server Action 内部的所有输入参数必须使用 Zod Schema 进行强类型检验，严禁信任客户端原始入参。
+- 统一返回规范的可序列化响应结构：`{ success: boolean, data?: T, error?: string }`。
+
+## 3. 路由与导航规范
+- 统一从 `next/navigation` 导入路由方法（`useRouter`, `usePathname`, `redirect`）。
+- 严禁从旧版 `next/router` 导入任何内容。
+- 使用带有类型化 `href` 路径的 `next/link`。
+
+## 4. 性能优化与媒体规范
+- 强制使用 `next/image` 并明确指定 `alt`、`width`、`height`（或使用 `fill`）。
+- 优先使用 `next/font/google` 托管与加载 Web 字体，彻底杜绝布局抖动 (CLS)。</code></pre>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">集成 Shadcn UI 与 Vercel AI SDK 规则</h2>
+      <p>
+        现代 Next.js 15 商业项目通常结合 Shadcn UI（基于 Radix 基础构件）以及 Vercel AI SDK 构建流式生成式 AI 应用。加入以下两个规范区块，防止 AI 重复编写粗糙的未美化组件或低效的轮询接口：
+      </p>
+
+      <pre class="bg-slate-900 text-emerald-200 dark:bg-slate-950 p-4 rounded-xl border border-slate-300 dark:border-slate-800 font-mono text-xs overflow-x-auto"><code>## Shadcn UI 与 Radix 组件规范
+- 严格使用位于 `@/components/ui` 的官方 Shadcn 组件，当已有成熟原语时切勿重复手写造轮子。
+- 合并与覆盖组件样式类名时，强制使用 `cn()` 工具函数（基于 clsx + tailwind-merge）。
+- 统一使用 Lucide React 图标（`lucide-react`），并搭配规范尺寸样式类（如 `size-4`, `size-5`）。
+
+## Vercel AI SDK 流式研发标准
+- 处理 LLM 流式输出时，优先采用 `streamText` 与 `streamUI`。
+- 实现结构化输出时，使用由严格 Zod Schema 驱动的 `generateObject` 或 `streamObject`。
+- 在 Next.js App Router 中，建议将实时文本流的路由 Handler 声明为 Edge Runtime（`export const runtime = 'edge'`）。</code></pre>
+
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-4">为什么 Frontmatter 中的 `globs` 字段至关重要？</h2>
+      <p>
+        请留意规则头部的元数据配置：<code>globs: app/**/*.{ts,tsx},components/**/*.{ts,tsx}</code>。这意味着上述繁重的 Next.js 15 架构指令<strong>仅在您编辑 React 与路由相关文件时才会被 Cursor 加载</strong>。当您在编写数据库 Prisma 迁移脚本、Dockerfile、或者自动化测试用例时，Cursor 会自动略过此规则，极大节省 Token 消耗并杜绝跨领域提示词干扰。
+      </p>
+
+      <!-- Semantic FAQ Section for AEO -->
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white pt-6">常见问题解答 (Next.js AEO 问答与检索优化)</h2>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs mb-1">如何彻底防止 Cursor AI 在 Next.js 15 中滥用 'use client'？</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+            在 <code>.cursor/rules/nextjs.mdc</code> 中配置 <code>globs: app/**/*.{ts,tsx}</code> 并在提示词中明确强调：所有组件默认作为 React Server Components (RSC)，严禁在根组件添加 <code>'use client'</code>，交互状态必须下沉拆分为叶子节点组件。
+          </p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs mb-1">如何借助 Cursor Rules 保障 Next.js Server Actions 的安全性？</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+            在规则中明确要求 AI 编写的每个 Server Action 都必须通过 Zod Schema 进行参数解析校验，杜绝任何未经验证的客户端入参，并且统一返回类型化响应字典而非抛出未捕获的运行时异常。
+          </p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+          <h3 class="font-bold text-slate-900 dark:text-white text-xs mb-1">Cursor 是否支持一键配置 Shadcn UI 与 Vercel AI SDK 规则？</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">
+            支持。<a href="https://cursor.pacebowl.com" class="text-indigo-600 dark:text-indigo-400 underline">Cursor Rules Generator</a> 提供了开箱即用的预设卡片，一键勾选即可包含 Shadcn UI 标准规范、<code>cn()</code> 助手规范与 Vercel AI SDK <code>streamText</code> 流式路由模版。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-12 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-indigo-200 dark:border-indigo-500/30 text-center shadow-sm">
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">立即生成专属 Next.js 15 规则包</h3>
+      <p class="text-slate-600 dark:text-slate-400 text-xs mb-4">一键将 Next.js 15、Tailwind CSS v4、Supabase、Shadcn UI 及严格 TypeScript 规范打包合并下载。</p>
+      <a href="/" class="inline-flex items-center px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/30 transition">
+        立即生成 .cursor/rules.zip →
+      </a>
+    </div>
+  </article>
+
   <!-- Footer -->
-  <footer class="border-t border-slate-800/80 bg-[#090d16] py-8 text-center text-xs text-slate-500">
+  <footer class="border-t border-slate-200 dark:border-slate-800/80 bg-slate-100 dark:bg-[#090d16] py-8 text-center text-xs text-slate-500 transition-colors duration-200">
     <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
       <span>Cursor Rules Generator &copy; 2026.</span>
-      <div class="flex items-center space-x-6 text-slate-400">
-        <a href="/" class="hover:text-slate-200 transition">Generator</a>
-        <a href="/blog/" class="hover:text-slate-200 transition">Blog</a>
+      <div class="flex items-center space-x-6 text-slate-600 dark:text-slate-400">
+        <a href="/" class="hover:text-slate-900 dark:hover:text-slate-200 transition" data-i18n="footer_generator">Generator</a>
+        <a href="/blog/" class="hover:text-slate-900 dark:hover:text-slate-200 transition" data-i18n="footer_blog">Blog</a>
       </div>
     </div>
   </footer>
 
+  <!-- Theme & Language Switcher Logic with Cross-Subdomain Cookie Sync -->
+  <script>
+    const I18N = {
+      en: {
+        back_blog: '← Back to Blog',
+        launch_btn: 'Launch Generator',
+        footer_generator: 'Generator',
+        footer_blog: 'Blog'
+      },
+      zh: {
+        back_blog: '← 返回博客列表',
+        launch_btn: '启动生成器',
+        footer_generator: '规则生成器',
+        footer_blog: '精选博客'
+      }
+    };
+
+    function getCookie(name) {
+      const match = document.cookie.match(new RegExp('(^|;\\s*)' + name + '=([^;]*)'));
+      return match ? decodeURIComponent(match[2]) : null;
+    }
+
+    function setSharedState(name, value) {
+      try {
+        localStorage.setItem(name, value);
+      } catch (e) {}
+
+      const hostParts = window.location.hostname.split('.');
+      let rootDomain = '';
+      if (hostParts.length >= 2) {
+        rootDomain = '.' + hostParts.slice(-2).join('.');
+      }
+      const cookieDomain = rootDomain ? '; domain=' + rootDomain : '';
+      document.cookie = name + '=' + encodeURIComponent(value) + '; path=/' + cookieDomain + '; max-age=31536000; SameSite=Lax';
+    }
+
+    function getSharedTheme() {
+      const cookie = getCookie('pacebowl-theme');
+      if (cookie === 'light' || cookie === 'dark') return cookie;
+      const ls = localStorage.getItem('pacebowl-theme');
+      if (ls === 'light' || ls === 'dark') return ls;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function getSharedLang() {
+      const cookie = getCookie('pacebowl-lang');
+      if (cookie === 'zh' || cookie === 'en') return cookie;
+      const ls = localStorage.getItem('pacebowl-lang');
+      if (ls === 'zh' || ls === 'en') return ls;
+      return (navigator.language || navigator.userLanguage || '').toLowerCase().startsWith('zh') ? 'zh' : 'en';
+    }
+
+    let currentLang = getSharedLang();
+
+    function updateThemeUI(isDark) {
+      const sun = document.getElementById('theme-sun-icon');
+      const moon = document.getElementById('theme-moon-icon');
+      if (sun && moon) {
+        if (isDark) {
+          sun.classList.remove('hidden');
+          moon.classList.add('hidden');
+        } else {
+          sun.classList.add('hidden');
+          moon.classList.remove('hidden');
+        }
+      }
+    }
+
+    function applyTheme(isDark, persist) {
+      if (isDark) {
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+        if (persist) setSharedState('pacebowl-theme', 'dark');
+        updateThemeUI(true);
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        if (persist) setSharedState('pacebowl-theme', 'light');
+        updateThemeUI(false);
+      }
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      applyTheme(!isDark, true);
+    }
+
+    function updateLanguageUI() {
+      const label = document.getElementById('lang-label');
+      if (label) {
+        label.textContent = currentLang === 'zh' ? 'EN' : '中文';
+      }
+      document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+
+      const artEn = document.getElementById('article-en');
+      const artZh = document.getElementById('article-zh');
+      if (currentLang === 'zh') {
+        artEn.classList.add('hidden');
+        artZh.classList.remove('hidden');
+      } else {
+        artZh.classList.add('hidden');
+        artEn.classList.remove('hidden');
+      }
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (I18N[currentLang] && I18N[currentLang][key] !== undefined) {
+          el.innerHTML = I18N[currentLang][key];
+        }
+      });
+    }
+
+    function applyLanguage(lang, persist) {
+      currentLang = lang;
+      if (persist) setSharedState('pacebowl-lang', lang);
+      updateLanguageUI();
+    }
+
+    function toggleLanguage() {
+      const nextLang = currentLang === 'zh' ? 'en' : 'zh';
+      applyLanguage(nextLang, true);
+    }
+
+    function checkCrossDomainSync() {
+      const desiredTheme = getSharedTheme();
+      const isDarkCurrent = document.documentElement.classList.contains('dark');
+      if ((desiredTheme === 'dark') !== isDarkCurrent) {
+        applyTheme(desiredTheme === 'dark', false);
+      }
+      const desiredLang = getSharedLang();
+      if (desiredLang !== currentLang) {
+        applyLanguage(desiredLang, false);
+      }
+    }
+
+    window.addEventListener('pageshow', checkCrossDomainSync);
+    window.addEventListener('visibilitychange', () => {
+      if (!document.hidden) checkCrossDomainSync();
+    });
+    window.addEventListener('storage', checkCrossDomainSync);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const theme = getSharedTheme();
+      applyTheme(theme === 'dark', false);
+      applyLanguage(getSharedLang(), false);
+    });
+  </script>
 </body>
 </html>

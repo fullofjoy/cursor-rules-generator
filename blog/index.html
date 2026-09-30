@@ -17,6 +17,28 @@
   <!-- Umami Analytics -->
   <script defer src="https://umami-ruby-alpha-96.vercel.app/script.js" data-website-id="45cd49ed-6c55-4b37-bcbb-69959c065874"></script>
 
+  <!-- Theme & Language Initialization: Anti-FOUC & Cross-Subdomain Sync -->
+  <script>
+    (function() {
+      function getSharedCookie(name) {
+        var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return m ? decodeURIComponent(m[1]) : null;
+      }
+      var theme = getSharedCookie('pacebowl-theme') || localStorage.getItem('pacebowl-theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      } else if (theme === 'dark' || (!theme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      }
+    })();
+  </script>
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://cursor.pacebowl.com/blog/">
@@ -40,22 +62,54 @@
   </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 500: '#6366f1', 600: '#4f46e5' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    html.dark ::-webkit-scrollbar-track { background: #0f172a; }
+    html.dark ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    html.light ::-webkit-scrollbar-track { background: #f8fafc; }
+    html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  </style>
 </head>
-<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white">
+<body class="bg-slate-50 dark:bg-[#0b0f19] text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-200">
 
   <!-- Nav -->
-  <header class="border-b border-slate-800/80 bg-[#0b0f19]/80 backdrop-blur sticky top-0 z-50">
+  <header class="border-b border-slate-200 dark:border-slate-800/80 bg-white/80 dark:bg-[#0b0f19]/80 backdrop-blur sticky top-0 z-50 transition-colors duration-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-3">
         <a href="/" class="flex items-center space-x-2">
           <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-bold text-white shadow-md shadow-indigo-500/20">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
           </div>
-          <span class="font-bold text-base text-white tracking-tight">Cursor Rules <span class="text-indigo-400 font-mono text-xs px-1.5 py-0.5 rounded bg-indigo-950/80 border border-indigo-500/30">.mdc</span></span>
+          <span class="font-bold text-base text-slate-900 dark:text-white tracking-tight">Cursor Rules <span class="text-indigo-600 dark:text-indigo-400 font-mono text-xs px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950/80 border border-indigo-300 dark:border-indigo-500/30">.mdc</span></span>
         </a>
       </div>
-      <div class="flex items-center space-x-4">
-        <a href="/" class="inline-flex items-center px-3.5 py-1.5 rounded-md text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-sm shadow-indigo-600/30 transition">
+
+      <div class="flex items-center space-x-3">
+        <!-- Language Switcher Button -->
+        <button id="lang-toggle-btn" onclick="toggleLanguage()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-xs text-slate-700 dark:text-slate-300 transition shadow-sm" title="Toggle English / 简体中文">
+          <svg class="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+          <span id="lang-label" class="font-semibold font-mono text-[11px]">中文</span>
+        </button>
+
+        <!-- Theme Switcher Button -->
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-slate-700 dark:text-slate-300 transition shadow-sm" title="Toggle Light / Dark mode">
+          <svg id="theme-sun-icon" class="w-4 h-4 hidden text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="theme-moon-icon" class="w-4 h-4 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+
+        <a href="/" class="inline-flex items-center px-3.5 py-1.5 rounded-md text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-sm shadow-indigo-600/30 transition" data-i18n="nav_launch">
           Launch Generator →
         </a>
       </div>
@@ -64,13 +118,13 @@
 
   <!-- Hero -->
   <section class="pt-12 pb-8 px-4 text-center max-w-3xl mx-auto">
-    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-950/50 border border-indigo-500/20 text-indigo-300 text-xs mb-3 font-mono">
-      <span>AI ENGINEERING RUNBOOK</span>
+    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-500/20 text-indigo-700 dark:text-indigo-300 text-xs mb-3 font-mono">
+      <span data-i18n="hero_badge">AI ENGINEERING RUNBOOK</span>
     </div>
-    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
-      Cursor Rules & <span class="bg-gradient-to-r from-indigo-400 to-sky-400 bg-clip-text text-transparent">AI Prompt Engineering</span> Blog
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3" data-i18n="hero_title">
+      Cursor Rules & <span class="bg-gradient-to-r from-indigo-500 to-sky-500 dark:from-indigo-400 dark:to-sky-400 bg-clip-text text-transparent">AI Prompt Engineering</span> Blog
     </h1>
-    <p class="text-slate-400 text-sm max-w-xl mx-auto">
+    <p class="text-slate-600 dark:text-slate-400 text-sm max-w-xl mx-auto" data-i18n="hero_desc">
       Actionable blueprints, migration strategies, and token optimization guides for developers using Cursor, Claude Code, and Windsurf.
     </p>
   </section>
@@ -80,68 +134,227 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
       <!-- Article 1 -->
-      <article class="bg-slate-900/80 border border-slate-800 hover:border-indigo-500/50 rounded-2xl p-6 transition flex flex-col justify-between group shadow-lg">
+      <article class="bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 rounded-2xl p-6 transition flex flex-col justify-between group shadow-sm hover:shadow-md">
         <div>
           <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
-            <span class="px-2 py-0.5 rounded bg-indigo-950/80 text-indigo-300 border border-indigo-500/30 font-mono text-[10px]">ARCHITECTURE</span>
-            <span>6 min read</span>
+            <span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/30 font-mono text-[10px]" data-i18n="art1_cat">ARCHITECTURE</span>
+            <span data-i18n="art1_time">6 min read</span>
           </div>
-          <h2 class="text-lg font-bold text-white group-hover:text-indigo-300 transition mb-2">
-            <a href="/blog/cursor-rules-mdc-vs-cursorrules.html">Cursor Rules (.mdc) vs .cursorrules: The Complete 2026 Migration Guide</a>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition mb-2">
+            <a href="/blog/cursor-rules-mdc-vs-cursorrules.html" data-i18n="art1_title">Cursor Rules (.mdc) vs .cursorrules: The Complete 2026 Migration Guide</a>
           </h2>
-          <p class="text-slate-400 text-xs leading-relaxed mb-4">
+          <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4" data-i18n="art1_desc">
             Why did the Cursor team deprecate monolithic .cursorrules files? Learn how modular .mdc files prevent AI hallucinations, slash token consumption, and leverage path globs.
           </p>
         </div>
-        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
-          <span class="text-slate-500">Updated Sept 2026</span>
-          <a href="/blog/cursor-rules-mdc-vs-cursorrules.html" class="text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">Read Guide →</a>
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs">
+          <span class="text-slate-400" data-i18n="updated_date">Updated Sept 2026</span>
+          <a href="/blog/cursor-rules-mdc-vs-cursorrules.html" class="text-indigo-600 dark:text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1" data-i18n="read_btn">Read Guide →</a>
         </div>
       </article>
 
       <!-- Article 2 -->
-      <article class="bg-slate-900/80 border border-slate-800 hover:border-indigo-500/50 rounded-2xl p-6 transition flex flex-col justify-between group shadow-lg">
+      <article class="bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/50 rounded-2xl p-6 transition flex flex-col justify-between group shadow-sm hover:shadow-md">
         <div>
           <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
-            <span class="px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 font-mono text-[10px]">NEXT.JS 15</span>
-            <span>8 min read</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/30 font-mono text-[10px]" data-i18n="art2_cat">NEXT.JS 15</span>
+            <span data-i18n="art2_time">8 min read</span>
           </div>
-          <h2 class="text-lg font-bold text-white group-hover:text-indigo-300 transition mb-2">
-            <a href="/blog/how-to-write-nextjs-15-cursor-rules.html">How to Write Bulletproof Cursor Rules for Next.js 15 (App Router & Server Actions)</a>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition mb-2">
+            <a href="/blog/how-to-write-nextjs-15-cursor-rules.html" data-i18n="art2_title">How to Write Bulletproof Cursor Rules for Next.js 15 (App Router & Server Actions)</a>
           </h2>
-          <p class="text-slate-400 text-xs leading-relaxed mb-4">
+          <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mb-4" data-i18n="art2_desc">
             LLMs constantly confuse Pages Router with App Router or overuse 'use client'. Here is the production-ready .cursor/rules/nextjs.mdc specification that stops common Next.js bugs.
           </p>
         </div>
-        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
-          <span class="text-slate-500">Updated Sept 2026</span>
-          <a href="/blog/how-to-write-nextjs-15-cursor-rules.html" class="text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">Read Guide →</a>
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs">
+          <span class="text-slate-400" data-i18n="updated_date">Updated Sept 2026</span>
+          <a href="/blog/how-to-write-nextjs-15-cursor-rules.html" class="text-indigo-600 dark:text-indigo-400 font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1" data-i18n="read_btn">Read Guide →</a>
         </div>
       </article>
 
     </div>
 
     <!-- CTA Box -->
-    <div class="mt-12 p-8 rounded-2xl bg-gradient-to-r from-indigo-950/60 to-slate-900 border border-indigo-500/30 text-center max-w-3xl mx-auto shadow-xl">
-      <h3 class="text-xl font-bold text-white mb-2">Ready to generate modular .mdc rules for your project?</h3>
-      <p class="text-slate-400 text-xs mb-5 max-w-lg mx-auto">Pick your tech stack (Next.js, FastAPI, Tailwind v4, Supabase), configure engineering guardrails, and download a pre-packaged .zip in 1 click.</p>
-      <a href="/" class="inline-flex items-center px-5 py-2.5 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/30 transition">
+    <div class="mt-12 p-8 rounded-2xl bg-indigo-50 dark:bg-gradient-to-r dark:from-indigo-950/60 dark:to-slate-900 border border-indigo-200 dark:border-indigo-500/30 text-center max-w-3xl mx-auto shadow-xl transition-colors duration-200">
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2" data-i18n="cta_title">Ready to generate modular .mdc rules for your project?</h3>
+      <p class="text-slate-600 dark:text-slate-400 text-xs mb-5 max-w-lg mx-auto" data-i18n="cta_desc">Pick your tech stack (Next.js, FastAPI, Tailwind v4, Supabase), configure engineering guardrails, and download a pre-packaged .zip in 1 click.</p>
+      <a href="/" class="inline-flex items-center px-5 py-2.5 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/30 transition" data-i18n="cta_btn">
         Open Cursor Rules Generator →
       </a>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-800/80 bg-[#090d16] py-8 text-center text-xs text-slate-500">
+  <footer class="border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#090d16] py-8 text-center text-xs text-slate-500 transition-colors duration-200">
     <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <span>Cursor Rules Generator &copy; 2026.</span>
-      <div class="flex items-center space-x-6 text-slate-400">
-        <a href="/" class="hover:text-slate-200 transition">Generator</a>
-        <a href="/blog/" class="hover:text-slate-200 transition">Blog</a>
-        <a href="/#faq" class="hover:text-slate-200 transition">FAQ</a>
+      <span data-i18n="footer_copy">Cursor Rules Generator &copy; 2026. Part of the <a href="https://pacebowl.com" class="text-indigo-600 dark:text-indigo-400 hover:underline">PaceBowl Suite</a>.</span>
+      <div class="flex items-center space-x-6 text-slate-600 dark:text-slate-400">
+        <a href="/" class="hover:text-slate-900 dark:hover:text-slate-200 transition" data-i18n="foot_gen">Generator</a>
+        <a href="/blog/" class="hover:text-slate-900 dark:hover:text-slate-200 transition" data-i18n="foot_blog">Blog</a>
+        <a href="/#faq" class="hover:text-slate-900 dark:hover:text-slate-200 transition" data-i18n="foot_faq">FAQ</a>
       </div>
     </div>
   </footer>
 
+  <script>
+    const I18N = {
+      en: {
+        nav_launch: 'Launch Generator →',
+        hero_badge: 'AI ENGINEERING RUNBOOK',
+        hero_title: 'Cursor Rules & <span class="bg-gradient-to-r from-indigo-500 to-sky-500 dark:from-indigo-400 dark:to-sky-400 bg-clip-text text-transparent">AI Prompt Engineering</span> Blog',
+        hero_desc: 'Actionable blueprints, migration strategies, and token optimization guides for developers using Cursor, Claude Code, and Windsurf.',
+        art1_cat: 'ARCHITECTURE',
+        art1_time: '6 min read',
+        art1_title: 'Cursor Rules (.mdc) vs .cursorrules: The Complete 2026 Migration Guide',
+        art1_desc: 'Why did the Cursor team deprecate monolithic .cursorrules files? Learn how modular .mdc files prevent AI hallucinations, slash token consumption, and leverage path globs.',
+        art2_cat: 'NEXT.JS 15',
+        art2_time: '8 min read',
+        art2_title: 'How to Write Bulletproof Cursor Rules for Next.js 15 (App Router & Server Actions)',
+        art2_desc: 'LLMs constantly confuse Pages Router with App Router or overuse 'use client'. Here is the production-ready .cursor/rules/nextjs.mdc specification that stops common Next.js bugs.',
+        updated_date: 'Updated Sept 2026',
+        read_btn: 'Read Guide →',
+        cta_title: 'Ready to generate modular .mdc rules for your project?',
+        cta_desc: 'Pick your tech stack (Next.js, FastAPI, Tailwind v4, Supabase), configure engineering guardrails, and download a pre-packaged .zip in 1 click.',
+        cta_btn: 'Open Cursor Rules Generator →',
+        footer_copy: 'Cursor Rules Generator &copy; 2026. Part of the <a href="https://pacebowl.com" class="text-indigo-600 dark:text-indigo-400 hover:underline">PaceBowl Suite</a>.',
+        foot_gen: 'Generator',
+        foot_blog: 'Blog',
+        foot_faq: 'FAQ'
+      },
+      zh: {
+        nav_launch: '启动规则生成器 →',
+        hero_badge: 'AI 架构工程实战手册',
+        hero_title: 'Cursor Rules 与 <span class="bg-gradient-to-r from-indigo-500 to-sky-500 dark:from-indigo-400 dark:to-sky-400 bg-clip-text text-transparent">AI 编程提示工程</span> 技术博客',
+        hero_desc: '面向 Cursor、Claude Code 与 Windsurf 开发者的架构实战指南、无痛迁移方案与 Token 上下文优化手册。',
+        art1_cat: '架构演进',
+        art1_time: '6 分钟阅读',
+        art1_title: 'Cursor Rules (.mdc) 对比 .cursorrules：2026 完整迁移实战指南',
+        art1_desc: '为什么 Cursor 官方彻底废弃单体 .cursorrules 文件？深入解析模块化 .mdc 架构、YAML Frontmatter 语法、Glob 路径匹配与 Token 减负实战。',
+        art2_cat: 'NEXT.JS 15',
+        art2_time: '8 分钟阅读',
+        art2_title: '如何为 Next.js 15 编写坚不可摧的 Cursor Rules 规范（App Router 与 Server Actions）',
+        art2_desc: '大模型编写 Next.js 15 代码经常混淆 Pages Router 或滥用 'use client'。本文详解生产级 .cursor/rules/nextjs.mdc 规则规范，彻底阻断常见 Bug。',
+        updated_date: '更新于 2026 年 9 月',
+        read_btn: '阅读实战指南 →',
+        cta_title: '准备好为您的项目生成模块化 .mdc 规则了吗？',
+        cta_desc: '挑选您的技术栈（Next.js、FastAPI、Tailwind v4、Supabase），定制工程防御守则，1 键下载即用型 .zip 压缩包。',
+        cta_btn: '打开 Cursor Rules 生成器 →',
+        footer_copy: 'Cursor Rules Generator &copy; 2026. 隶属于 <a href="https://pacebowl.com" class="text-indigo-600 dark:text-indigo-400 hover:underline">PaceBowl Suite 生态矩阵</a>。',
+        foot_gen: '规则工坊',
+        foot_blog: '技术博客',
+        foot_faq: '常见问题'
+      }
+    };
+
+    function getSharedCookie(name) {
+      var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+      return m ? decodeURIComponent(m[1]) : null;
+    }
+
+    function setSharedState(key, val) {
+      try { localStorage.setItem(key, val); } catch(e) {}
+      try {
+        var hostname = window.location.hostname;
+        var domain = (hostname.endsWith('pacebowl.com') || hostname === 'pacebowl.com') ? '; domain=.pacebowl.com' : '';
+        document.cookie = key + '=' + encodeURIComponent(val) + domain + '; path=/; max-age=31536000; SameSite=Lax';
+      } catch(e) {}
+    }
+
+    function getSharedTheme() {
+      var t = getSharedCookie('pacebowl-theme') || localStorage.getItem('pacebowl-theme');
+      if (t === 'light' || t === 'dark') return t;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function getSharedLang() {
+      var l = getSharedCookie('pacebowl-lang') || localStorage.getItem('pacebowl-lang');
+      if (l === 'zh' || l === 'en') return l;
+      return (navigator.language && navigator.language.startsWith('zh')) ? 'zh' : 'en';
+    }
+
+    let currentLang = getSharedLang();
+
+    function updateThemeUI(isDark) {
+      const sun = document.getElementById('theme-sun-icon');
+      const moon = document.getElementById('theme-moon-icon');
+      if (!sun || !moon) return;
+      if (isDark) {
+        sun.classList.remove('hidden');
+        moon.classList.add('hidden');
+      } else {
+        sun.classList.add('hidden');
+        moon.classList.remove('hidden');
+      }
+    }
+
+    function applyTheme(isDark, persist) {
+      if (isDark) {
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+        if (persist) setSharedState('pacebowl-theme', 'dark');
+        updateThemeUI(true);
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        if (persist) setSharedState('pacebowl-theme', 'light');
+        updateThemeUI(false);
+      }
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      applyTheme(!isDark, true);
+    }
+
+    function updateLanguageUI() {
+      const label = document.getElementById('lang-label');
+      if (label) {
+        label.textContent = currentLang === 'zh' ? 'EN' : '中文';
+      }
+      document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (I18N[currentLang] && I18N[currentLang][key] !== undefined) {
+          el.innerHTML = I18N[currentLang][key];
+        }
+      });
+    }
+
+    function applyLanguage(lang, persist) {
+      currentLang = lang;
+      if (persist) setSharedState('pacebowl-lang', lang);
+      updateLanguageUI();
+    }
+
+    function toggleLanguage() {
+      const nextLang = currentLang === 'zh' ? 'en' : 'zh';
+      applyLanguage(nextLang, true);
+    }
+
+    function checkCrossDomainSync() {
+      const desiredTheme = getSharedTheme();
+      const isDarkCurrent = document.documentElement.classList.contains('dark');
+      if ((desiredTheme === 'dark') !== isDarkCurrent) {
+        applyTheme(desiredTheme === 'dark', false);
+      }
+      const desiredLang = getSharedLang();
+      if (desiredLang !== currentLang) {
+        applyLanguage(desiredLang, false);
+      }
+    }
+
+    window.addEventListener('pageshow', checkCrossDomainSync);
+    window.addEventListener('visibilitychange', () => {
+      if (!document.hidden) checkCrossDomainSync();
+    });
+    window.addEventListener('storage', checkCrossDomainSync);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const theme = getSharedTheme();
+      applyTheme(theme === 'dark', false);
+      applyLanguage(getSharedLang(), false);
+    });
+  </script>
 </body>
 </html>
