@@ -252,16 +252,16 @@
 
   <!-- Hero Section -->
   <section class="pt-10 pb-6 px-4 text-center max-w-4xl mx-auto">
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/50 border border-indigo-500/20 text-indigo-300 text-xs mb-4">
-      <span>✨ Official Multi-file Architecture</span>
-      <span class="text-slate-600">•</span>
-      <span>Zero Context Bloat</span>
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-500/20 text-indigo-700 dark:text-indigo-300 text-xs mb-4">
+      <span data-i18n="hero_badge1">✨ Official Multi-file Architecture</span>
+      <span class="text-slate-400 dark:text-slate-600">•</span>
+      <span data-i18n="hero_badge2">Zero Context Bloat</span>
     </div>
-    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4">
-      The Modern <span class="bg-gradient-to-r from-indigo-400 via-violet-300 to-sky-400 bg-clip-text text-transparent">Cursor Rules (.mdc)</span> Generator
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4" data-i18n="hero_title">
+      The Modern <span class="bg-gradient-to-r from-indigo-500 via-violet-500 to-sky-500 dark:from-indigo-400 dark:via-violet-300 dark:to-sky-400 bg-clip-text text-transparent">Cursor Rules (.mdc)</span> Generator
     </h1>
-    <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-      Old-school monolithic <code class="text-slate-300 bg-slate-800 px-1 py-0.5 rounded text-xs">.cursorrules</code> waste tokens and hallucinate. Configure scoped, path-matched <code class="text-indigo-300 bg-indigo-950/80 px-1 py-0.5 rounded text-xs">.cursor/rules/*.mdc</code> rule sets in seconds.
+    <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed" data-i18n="hero_desc">
+      Old-school monolithic <code class="text-slate-800 dark:text-slate-300 bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded text-xs">.cursorrules</code> waste tokens and hallucinate. Configure scoped, path-matched <code class="text-indigo-600 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-950/80 px-1 py-0.5 rounded text-xs">.cursor/rules/*.mdc</code> rule sets in seconds.
     </p>
   </section>
 
@@ -273,184 +273,184 @@
       <div class="lg:col-span-5 space-y-6">
 
         <!-- 1. Frontend Framework -->
-        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-5 shadow-sm">
+        <div class="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm">
           <div class="flex items-center justify-between mb-3">
-            <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center">
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-400 flex items-center">
               <span class="w-2 h-2 rounded-full bg-indigo-500 mr-2"></span>
-              1. Frontend Framework
+              <span data-i18n="sec1_title">1. Frontend Framework</span>
             </h2>
-            <span class="text-[11px] text-slate-500">Pick one or none</span>
+            <span class="text-[11px] text-slate-500" data-i18n="pick_one_none">Pick one or none</span>
           </div>
           <div class="grid grid-cols-2 gap-2 text-xs">
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/30">
               <input type="radio" name="frontend" value="nextjs15" checked onchange="updateRules()" class="text-indigo-600 focus:ring-0">
               <div>
-                <div class="font-medium text-slate-200">Next.js 15</div>
-                <div class="text-[10px] text-slate-500">App Router, Server Actions</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200">Next.js 15</div>
+                <div class="text-[10px] text-slate-500" data-i18n="next15_sub">App Router, Server Actions</div>
               </div>
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/30">
               <input type="radio" name="frontend" value="react19" onchange="updateRules()" class="text-indigo-600 focus:ring-0">
               <div>
-                <div class="font-medium text-slate-200">React 19 / Vite</div>
-                <div class="text-[10px] text-slate-500">SPA, Custom Hooks</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200">React 19 / Vite</div>
+                <div class="text-[10px] text-slate-500" data-i18n="react19_sub">SPA, Custom Hooks</div>
               </div>
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/30">
               <input type="radio" name="frontend" value="vue3" onchange="updateRules()" class="text-indigo-600 focus:ring-0">
               <div>
-                <div class="font-medium text-slate-200">Vue 3 / Nuxt</div>
-                <div class="text-[10px] text-slate-500">Composition API, Pinia</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200">Vue 3 / Nuxt</div>
+                <div class="text-[10px] text-slate-500" data-i18n="vue3_sub">Composition API, Pinia</div>
               </div>
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/30">
               <input type="radio" name="frontend" value="none" onchange="updateRules()" class="text-indigo-600 focus:ring-0">
               <div>
-                <div class="font-medium text-slate-400">No Frontend</div>
-                <div class="text-[10px] text-slate-500">Pure Backend/CLI</div>
+                <div class="font-medium text-slate-500 dark:text-slate-400" data-i18n="no_frontend">No Frontend</div>
+                <div class="text-[10px] text-slate-500" data-i18n="pure_backend">Pure Backend/CLI</div>
               </div>
             </label>
           </div>
         </div>
 
         <!-- 2. Backend & API -->
-        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-5 shadow-sm">
+        <div class="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm">
           <div class="flex items-center justify-between mb-3">
-            <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center">
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-400 flex items-center">
               <span class="w-2 h-2 rounded-full bg-violet-500 mr-2"></span>
-              2. Backend & Architecture
+              <span data-i18n="sec2_title">2. Backend & Architecture</span>
             </h2>
-            <span class="text-[11px] text-slate-500">Pick one</span>
+            <span class="text-[11px] text-slate-500" data-i18n="pick_one">Pick one</span>
           </div>
           <div class="grid grid-cols-2 gap-2 text-xs">
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/30">
               <input type="radio" name="backend" value="fastapi" checked onchange="updateRules()" class="text-indigo-600 focus:ring-0">
               <div>
-                <div class="font-medium text-slate-200">Python FastAPI</div>
-                <div class="text-[10px] text-slate-500">Pydantic v2, Async</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200">Python FastAPI</div>
+                <div class="text-[10px] text-slate-500" data-i18n="fastapi_sub">Pydantic v2, Async</div>
               </div>
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/30">
               <input type="radio" name="backend" value="nodejs" onchange="updateRules()" class="text-indigo-600 focus:ring-0">
               <div>
-                <div class="font-medium text-slate-200">Node / Hono / Express</div>
-                <div class="text-[10px] text-slate-500">TypeScript, REST API</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200">Node / Hono / Express</div>
+                <div class="text-[10px] text-slate-500" data-i18n="node_sub">TypeScript, REST API</div>
               </div>
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/30">
               <input type="radio" name="backend" value="golang" onchange="updateRules()" class="text-indigo-600 focus:ring-0">
               <div>
-                <div class="font-medium text-slate-200">Golang (Gin/Chi)</div>
-                <div class="text-[10px] text-slate-500">Idiomatic, Structs</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200">Golang (Gin/Chi)</div>
+                <div class="text-[10px] text-slate-500" data-i18n="go_sub">Idiomatic, Structs</div>
               </div>
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2.5 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/30">
               <input type="radio" name="backend" value="serverless" onchange="updateRules()" class="text-indigo-600 focus:ring-0">
               <div>
-                <div class="font-medium text-slate-200">BaaS / Serverless</div>
-                <div class="text-[10px] text-slate-500">Supabase Edge, Cloudflare</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200">BaaS / Serverless</div>
+                <div class="text-[10px] text-slate-500" data-i18n="serverless_sub">Supabase Edge, Cloudflare</div>
               </div>
             </label>
           </div>
         </div>
 
         <!-- 3. Styling & Database Extras -->
-        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-5 shadow-sm">
+        <div class="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm">
           <div class="flex items-center justify-between mb-3">
-            <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center">
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-400 flex items-center">
               <span class="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span>
-              3. UI, ORM & Database Modules
+              <span data-i18n="sec3_title">3. UI, ORM & Database Modules</span>
             </h2>
-            <span class="text-[11px] text-slate-500">Multi-select</span>
+            <span class="text-[11px] text-slate-500" data-i18n="multi_select">Multi-select</span>
           </div>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/30">
               <input type="checkbox" id="mod-tailwind" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
               <div>
-                <div class="font-medium text-slate-200">Tailwind v4</div>
-                <div class="text-[10px] text-slate-500">Atomic utility css</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200">Tailwind v4</div>
+                <div class="text-[10px] text-slate-500" data-i18n="tailwind_sub">Atomic utility css</div>
               </div>
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/30">
               <input type="checkbox" id="mod-shadcn" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
               <div>
-                <div class="font-medium text-slate-200">Shadcn / Radix</div>
-                <div class="text-[10px] text-slate-500">cn(), Lucide icons</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200">Shadcn / Radix</div>
+                <div class="text-[10px] text-slate-500" data-i18n="shadcn_sub">cn(), Lucide icons</div>
               </div>
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/30">
               <input type="checkbox" id="mod-supabase" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
               <div>
-                <div class="font-medium text-slate-200">Supabase + RLS</div>
-                <div class="text-[10px] text-slate-500">Row Level Security</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200">Supabase + RLS</div>
+                <div class="text-[10px] text-slate-500" data-i18n="supabase_sub">Row Level Security</div>
               </div>
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/30">
               <input type="checkbox" id="mod-drizzle" onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
               <div>
-                <div class="font-medium text-slate-200">Drizzle / Prisma</div>
-                <div class="text-[10px] text-slate-500">Type-safe SQL schemas</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200">Drizzle / Prisma</div>
+                <div class="text-[10px] text-slate-500" data-i18n="drizzle_sub">Type-safe SQL schemas</div>
               </div>
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/30">
               <input type="checkbox" id="mod-zod" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
               <div>
-                <div class="font-medium text-slate-200">Zod Validation</div>
-                <div class="text-[10px] text-slate-500">Runtime parsing</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200">Zod Validation</div>
+                <div class="text-[10px] text-slate-500" data-i18n="zod_sub">Runtime parsing</div>
               </div>
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center space-x-2 transition has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/30">
               <input type="checkbox" id="mod-ai-sdk" onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
               <div>
-                <div class="font-medium text-slate-200">Vercel AI SDK</div>
-                <div class="text-[10px] text-slate-500">Stream & tool calls</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200">Vercel AI SDK</div>
+                <div class="text-[10px] text-slate-500" data-i18n="aisdk_sub">Stream & tool calls</div>
               </div>
             </label>
           </div>
         </div>
 
         <!-- 4. Engineering Standards & Toggles -->
-        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-5 shadow-sm">
+        <div class="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm">
           <div class="flex items-center justify-between mb-3">
-            <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center">
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-400 flex items-center">
               <span class="w-2 h-2 rounded-full bg-amber-500 mr-2"></span>
-              4. Code Quality & Guardrails
+              <span data-i18n="sec4_title">4. Code Quality & Guardrails</span>
             </h2>
-            <span class="text-[11px] text-slate-500">Anti-Hallucination & Efficiency</span>
+            <span class="text-[11px] text-slate-500" data-i18n="guard_subtitle">Anti-Hallucination & Efficiency</span>
           </div>
           <div class="space-y-2 text-xs">
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-950/20">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/20">
               <div class="pr-2">
-                <div class="font-medium text-slate-200">Strict TypeScript (No <code class="text-indigo-400 font-mono">any</code>)</div>
-                <div class="text-[11px] text-slate-500">Require explicit return types and avoid non-null assertions (!)</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200" data-i18n="g_ts_title">Strict TypeScript (No <code class="text-indigo-600 dark:text-indigo-400 font-mono">any</code>)</div>
+                <div class="text-[11px] text-slate-500" data-i18n="g_ts_desc">Require explicit return types and avoid non-null assertions (!)</div>
               </div>
               <input type="checkbox" id="guard-strict-ts" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-950/20">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/20">
               <div class="pr-2">
-                <div class="font-medium text-slate-200">Anti-AI Hallucination (Strict Libraries)</div>
-                <div class="text-[11px] text-slate-500">Forbid inventing imaginary npm APIs; enforce inspecting package.json</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200" data-i18n="g_hallucinate_title">Anti-AI Hallucination (Strict Libraries)</div>
+                <div class="text-[11px] text-slate-500" data-i18n="g_hallucinate_desc">Forbid inventing imaginary npm APIs; enforce inspecting package.json</div>
               </div>
               <input type="checkbox" id="guard-no-hallucinate" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-950/20">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/20">
               <div class="pr-2">
-                <div class="font-medium text-slate-200">Early Return & Anti-Nesting</div>
-                <div class="text-[11px] text-slate-500">Max 2 levels of nesting; use guard clauses to handle errors early</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200" data-i18n="g_early_title">Early Return & Anti-Nesting</div>
+                <div class="text-[11px] text-slate-500" data-i18n="g_early_desc">Max 2 levels of nesting; use guard clauses to handle errors early</div>
               </div>
               <input type="checkbox" id="guard-early-return" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-950/20">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/20">
               <div class="pr-2">
-                <div class="font-medium text-slate-200">Zero Silent Failures (Error Boundaries)</div>
-                <div class="text-[11px] text-slate-500">Never swallow catch blocks with empty returns; log and rethrow</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200" data-i18n="g_errors_title">Zero Silent Failures (Error Boundaries)</div>
+                <div class="text-[11px] text-slate-500" data-i18n="g_errors_desc">Never swallow catch blocks with empty returns; log and rethrow</div>
               </div>
               <input type="checkbox" id="guard-errors" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
             </label>
-            <label class="cursor-pointer border border-slate-800 hover:border-slate-700 bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-950/20">
+            <label class="cursor-pointer border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 rounded-lg flex items-center justify-between transition has-[:checked]:border-indigo-500/60 has-[:checked]:bg-indigo-50/70 dark:has-[:checked]:bg-indigo-950/20">
               <div class="pr-2">
-                <div class="font-medium text-slate-200">Zero Redundant Comments</div>
-                <div class="text-[11px] text-slate-500">Forbid AI from adding redundant restatements of obvious code</div>
+                <div class="font-medium text-slate-800 dark:text-slate-200" data-i18n="g_comments_title">Zero Redundant Comments</div>
+                <div class="text-[11px] text-slate-500" data-i18n="g_comments_desc">Forbid AI from adding redundant restatements of obvious code</div>
               </div>
               <input type="checkbox" id="guard-clean-comments" checked onchange="updateRules()" class="rounded text-indigo-600 focus:ring-0">
             </label>
@@ -463,42 +463,42 @@
       <div class="lg:col-span-7 space-y-4 sticky top-20">
 
         <!-- Target Format Selector & Global Actions -->
-        <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex flex-wrap items-center justify-between gap-3 shadow-md">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3 flex flex-wrap items-center justify-between gap-3 shadow-md">
           <!-- Editor Tabs -->
-          <div class="flex items-center space-x-1 bg-slate-950 p-1 rounded-lg border border-slate-800/80 text-xs">
+          <div class="flex items-center space-x-1 bg-slate-100 dark:bg-slate-950 p-1 rounded-lg border border-slate-200 dark:border-slate-800/80 text-xs">
             <button onclick="setExportFormat('cursor-mdc')" id="tab-cursor-mdc" class="px-3 py-1.5 rounded-md font-medium text-white bg-indigo-600 shadow-sm transition">
               Cursor (.mdc)
             </button>
-            <button onclick="setExportFormat('claude')" id="tab-claude" class="px-3 py-1.5 rounded-md font-medium text-slate-400 hover:text-slate-200 transition">
+            <button onclick="setExportFormat('claude')" id="tab-claude" class="px-3 py-1.5 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition">
               Claude Code
             </button>
-            <button onclick="setExportFormat('windsurf')" id="tab-windsurf" class="px-3 py-1.5 rounded-md font-medium text-slate-400 hover:text-slate-200 transition">
+            <button onclick="setExportFormat('windsurf')" id="tab-windsurf" class="px-3 py-1.5 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition">
               Windsurf
             </button>
-            <button onclick="setExportFormat('legacy')" id="tab-legacy" class="px-3 py-1.5 rounded-md font-medium text-slate-400 hover:text-slate-200 transition">
+            <button onclick="setExportFormat('legacy')" id="tab-legacy" class="px-3 py-1.5 rounded-md font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition">
               .cursorrules (Legacy)
             </button>
           </div>
 
           <!-- Actions -->
           <div class="flex items-center space-x-2">
-            <button onclick="copyTerminalCommand()" id="term-btn" class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-indigo-500/30 transition shadow-sm" title="Copy 1-line shell command to create all files in terminal">
+            <button onclick="copyTerminalCommand()" id="term-btn" class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-indigo-600 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/30 transition shadow-sm" title="Copy 1-line shell command to create all files in terminal">
               <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              Terminal 1-Line
+              <span id="term-btn-text" data-i18n="btn_terminal">Terminal 1-Line</span>
             </button>
-            <button onclick="copyCurrentContent()" id="copy-btn" class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+            <button onclick="copyCurrentContent()" id="copy-btn" class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition">
               <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
               </svg>
-              Copy File
+              <span id="copy-btn-text" data-i18n="btn_copy">Copy File</span>
             </button>
             <button onclick="downloadAllZip()" class="inline-flex items-center px-3.5 py-1.5 rounded-md text-xs font-semibold bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white shadow-md shadow-indigo-600/20 transition">
               <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
-              Download .zip
+              <span data-i18n="btn_zip">Download .zip</span>
             </button>
           </div>
         </div>
@@ -521,30 +521,30 @@
         </div>
 
         <!-- Live Glob Matcher & Token Savings Simulator -->
-        <div class="bg-slate-900/90 border border-indigo-500/30 rounded-xl p-4 shadow-lg">
+        <div class="bg-white dark:bg-slate-900/90 border border-indigo-200 dark:border-indigo-500/30 rounded-xl p-4 shadow-lg">
           <div class="flex items-center justify-between mb-2">
-            <span class="text-xs font-bold text-white flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              Live Cursor Glob Matcher & Context Simulator
+            <span class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse"></span>
+              <span data-i18n="sim_title">Live Cursor Glob Matcher & Context Simulator</span>
             </span>
-            <span id="simulator-savings" class="text-[11px] font-mono font-bold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
+            <span id="simulator-savings" class="text-[11px] font-mono font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-500/30">
               Saved ~75% Context
             </span>
           </div>
-          <p class="text-[11px] text-slate-400 mb-2.5">Simulate which rules Cursor AI injects when editing a file in your project:</p>
+          <p class="text-[11px] text-slate-600 dark:text-slate-400 mb-2.5" data-i18n="sim_desc">Simulate which rules Cursor AI injects when editing a file in your project:</p>
           <div class="flex items-center gap-2 mb-2.5">
             <div class="relative flex-1">
-              <span class="absolute left-2.5 top-1.5 text-slate-500 font-mono text-xs">/</span>
-              <input type="text" id="test-file-path" value="app/checkout/page.tsx" oninput="simulateGlobMatching()" placeholder="e.g. app/api/route.ts" class="w-full bg-slate-950 border border-slate-700 rounded-lg pl-6 pr-3 py-1.5 text-xs font-mono text-sky-300 focus:outline-none focus:border-indigo-500">
+              <span class="absolute left-2.5 top-1.5 text-slate-400 dark:text-slate-500 font-mono text-xs">/</span>
+              <input type="text" id="test-file-path" value="app/checkout/page.tsx" oninput="simulateGlobMatching()" placeholder="e.g. app/api/route.ts" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-lg pl-6 pr-3 py-1.5 text-xs font-mono text-slate-900 dark:text-sky-300 focus:outline-none focus:border-indigo-500">
             </div>
           </div>
           <!-- Quick Test Presets -->
-          <div class="flex flex-wrap items-center gap-1.5 mb-3 text-[10px] font-mono text-slate-400">
-            <span class="text-slate-500">Try:</span>
-            <button onclick="setTestPath('app/checkout/page.tsx')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition">app/checkout/page.tsx</button>
-            <button onclick="setTestPath('server/api/users.py')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition">server/api/users.py</button>
-            <button onclick="setTestPath('src/db/schema.ts')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition">src/db/schema.ts</button>
-            <button onclick="setTestPath('components/ui/Button.tsx')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition">components/ui/Button.tsx</button>
+          <div class="flex flex-wrap items-center gap-1.5 mb-3 text-[10px] font-mono text-slate-500 dark:text-slate-400">
+            <span class="text-slate-500" data-i18n="sim_try">Try:</span>
+            <button onclick="setTestPath('app/checkout/page.tsx')" class="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition">app/checkout/page.tsx</button>
+            <button onclick="setTestPath('server/api/users.py')" class="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition">server/api/users.py</button>
+            <button onclick="setTestPath('src/db/schema.ts')" class="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition">src/db/schema.ts</button>
+            <button onclick="setTestPath('components/ui/Button.tsx')" class="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition">components/ui/Button.tsx</button>
           </div>
           <!-- Evaluation Output List -->
           <div id="matching-results-list" class="space-y-1.5 text-xs font-mono">
@@ -553,15 +553,15 @@
         </div>
 
         <!-- Multi-file architecture callout -->
-        <div class="p-3.5 rounded-lg bg-indigo-950/30 border border-indigo-500/20 flex items-start space-x-3 text-xs text-slate-300">
-          <div class="text-indigo-400 mt-0.5">
+        <div class="p-3.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-500/20 flex items-start space-x-3 text-xs text-slate-700 dark:text-slate-300">
+          <div class="text-indigo-600 dark:text-indigo-400 mt-0.5">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
           <div>
-            <span class="font-semibold text-indigo-200">How to use this .zip:</span>
-            Unzip and drop the generated <code class="text-indigo-300 bg-indigo-950 px-1 py-0.5 rounded font-mono">.cursor/rules/</code> folder straight into your project root. Cursor will automatically match relevant rules to files using glob patterns without polluting unrelated contexts.
+            <span class="font-semibold text-indigo-700 dark:text-indigo-200" data-i18n="callout_title">How to use this .zip:</span>
+            <span data-i18n="callout_desc">Unzip and drop the generated <code class="text-indigo-600 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-950 px-1 py-0.5 rounded font-mono">.cursor/rules/</code> folder straight into your project root. Cursor will automatically match relevant rules to files using glob patterns without polluting unrelated contexts.</span>
           </div>
         </div>
 
@@ -674,17 +674,17 @@
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-800/80 bg-[#090d16] py-8 text-center text-xs text-slate-500">
+  <footer class="border-t border-slate-200 dark:border-slate-800/80 bg-slate-100 dark:bg-[#090d16] py-8 text-center text-xs text-slate-500 transition-colors duration-200">
     <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
-        <span>PaceBowl Tools &copy; 2026. Part of the <a href="https://pacebowl.com" class="text-indigo-400 hover:underline">PaceBowl Suite Matrix</a>.</span>
+        <span data-i18n="footer_brand">PaceBowl Tools &copy; 2026. Part of the <a href="https://pacebowl.com" class="text-indigo-600 dark:text-indigo-400 hover:underline">PaceBowl Suite Matrix</a>.</span>
       </div>
-      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-slate-400">
-        <a href="https://hot.pacebowl.com" class="hover:text-rose-400 text-rose-300/80 transition font-medium">🔥 AI Radar</a>
-        <a href="https://comfy.pacebowl.com" class="text-sky-400 hover:text-sky-300 transition">⚡ ComfyUI Studio</a>
-        <a href="/blog/" class="hover:text-slate-200 transition">Blog & Guides</a>
-        <a href="#faq" class="hover:text-slate-200 transition">FAQ</a>
-        <a href="https://cursor.com" target="_blank" rel="noopener" class="hover:text-slate-200 transition">Cursor IDE</a>
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-slate-600 dark:text-slate-400">
+        <a href="https://hot.pacebowl.com" class="hover:text-rose-500 dark:hover:text-rose-400 text-rose-600 dark:text-rose-300/80 transition font-medium" data-i18n="footer_hot">🔥 AI Radar</a>
+        <a href="https://comfy.pacebowl.com" class="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition" data-i18n="footer_comfy">⚡ ComfyUI Studio</a>
+        <a href="/blog/" class="hover:text-slate-900 dark:hover:text-slate-200 transition" data-i18n="footer_blog">Blog & Guides</a>
+        <a href="#faq" class="hover:text-slate-900 dark:hover:text-slate-200 transition" data-i18n="footer_faq">FAQ</a>
+        <a href="https://cursor.com" target="_blank" rel="noopener" class="hover:text-slate-900 dark:hover:text-slate-200 transition">Cursor IDE</a>
       </div>
     </div>
   </footer>
@@ -1170,8 +1170,263 @@ ${dbContent.trim()}`;
       URL.revokeObjectURL(a.href);
     }
 
+
+    // --- Bilingual & Theme System ---
+    const I18N = {
+      en: {
+        suite_btn: 'PaceBowl Suite',
+        suite_title: 'PaceBowl Ecosystem',
+        suite_hub: 'PaceBowl Mothership',
+        suite_hub_sub: 'Central Hub & Runbooks',
+        suite_hot: 'AI Radar & Hotlist',
+        suite_hot_sub: '24h Automated Tech Intel & Digest',
+        suite_cursor: 'Cursor Rules Studio',
+        suite_cursor_sub: 'Active • .mdc Generator',
+        suite_comfy: 'ComfyUI Prompt Studio',
+        suite_comfy_sub: 'Flux.1 & 1MP Latent Calc',
+        nav_faq: 'How it Works',
+        nav_blog: 'Guides & Blog',
+        hero_badge1: '✨ Official Multi-file Architecture',
+        hero_badge2: 'Zero Context Bloat',
+        hero_title: 'The Modern <span class="bg-gradient-to-r from-indigo-500 via-violet-500 to-sky-500 dark:from-indigo-400 dark:via-violet-300 dark:to-sky-400 bg-clip-text text-transparent">Cursor Rules (.mdc)</span> Generator',
+        hero_desc: 'Old-school monolithic <code class="text-slate-800 dark:text-slate-300 bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded text-xs">.cursorrules</code> waste tokens and hallucinate. Configure scoped, path-matched <code class="text-indigo-600 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-950/80 px-1 py-0.5 rounded text-xs">.cursor/rules/*.mdc</code> rule sets in seconds.',
+        sec1_title: '1. Frontend Framework',
+        pick_one_none: 'Pick one or none',
+        next15_sub: 'App Router, Server Actions',
+        react19_sub: 'SPA, Custom Hooks',
+        vue3_sub: 'Composition API, Pinia',
+        no_frontend: 'No Frontend',
+        pure_backend: 'Pure Backend/CLI',
+        sec2_title: '2. Backend & Architecture',
+        pick_one: 'Pick one',
+        fastapi_sub: 'Pydantic v2, Async',
+        node_sub: 'TypeScript, REST API',
+        go_sub: 'Idiomatic, Structs',
+        serverless_sub: 'Supabase Edge, Cloudflare',
+        sec3_title: '3. UI, ORM & Database Modules',
+        multi_select: 'Multi-select',
+        tailwind_sub: 'Atomic utility css',
+        shadcn_sub: 'cn(), Lucide icons',
+        supabase_sub: 'Row Level Security',
+        drizzle_sub: 'Type-safe SQL schemas',
+        zod_sub: 'Runtime parsing',
+        aisdk_sub: 'Stream & tool calls',
+        sec4_title: '4. Code Quality & Guardrails',
+        guard_subtitle: 'Anti-Hallucination & Efficiency',
+        g_ts_title: 'Strict TypeScript (No <code class="text-indigo-600 dark:text-indigo-400 font-mono">any</code>)',
+        g_ts_desc: 'Require explicit return types and avoid non-null assertions (!)',
+        g_hallucinate_title: 'Anti-AI Hallucination (Strict Libraries)',
+        g_hallucinate_desc: 'Forbid inventing imaginary npm APIs; enforce inspecting package.json',
+        g_early_title: 'Early Return & Anti-Nesting',
+        g_early_desc: 'Max 2 levels of nesting; use guard clauses to handle errors early',
+        g_errors_title: 'Zero Silent Failures (Error Boundaries)',
+        g_errors_desc: 'Never swallow catch blocks with empty returns; log and rethrow',
+        g_comments_title: 'Zero Redundant Comments',
+        g_comments_desc: 'Forbid AI from adding redundant restatements of obvious code',
+        btn_terminal: 'Terminal 1-Line',
+        btn_copy: 'Copy File',
+        btn_zip: 'Download .zip',
+        sim_title: 'Live Cursor Glob Matcher & Context Simulator',
+        sim_desc: 'Simulate which rules Cursor AI injects when editing a file in your project:',
+        sim_try: 'Try:',
+        callout_title: 'How to use this .zip:',
+        callout_desc: 'Unzip and drop the generated <code class="text-indigo-600 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-950 px-1 py-0.5 rounded font-mono">.cursor/rules/</code> folder straight into your project root. Cursor will automatically match relevant rules to files using glob patterns without polluting unrelated contexts.',
+        arch_tag: 'ARCHITECTURAL SHIFT',
+        arch_title: 'Legacy .cursorrules vs Modern .cursor/rules/*.mdc',
+        arch_desc: 'Understanding why Cursor deprecated single-file rules in favor of scoped multi-file modules.',
+        th_feature: 'Feature / Criterion',
+        th_legacy: 'Legacy .cursorrules',
+        th_modern: 'Modern .cursor/rules/*.mdc',
+        tr1_name: 'File Layout',
+        tr1_leg: 'Single monolithic file in project root',
+        tr1_mod: 'Modular directory (<code class="bg-slate-100 dark:bg-slate-900 px-1 py-0.5 rounded text-indigo-600 dark:text-indigo-300">.cursor/rules/*.mdc</code>)',
+        tr2_name: 'Context Token Usage',
+        tr2_leg: '100% of rules injected into every prompt (Token bloat)',
+        tr2_mod: 'Scoped: loaded only when editing matched glob patterns',
+        tr3_name: 'Path Scoping (Globs)',
+        tr3_leg: 'Not supported (cannot isolate backend from frontend)',
+        tr3_mod: 'Native <code class="bg-slate-100 dark:bg-slate-900 px-1 py-0.5 rounded text-indigo-600 dark:text-indigo-300">globs: app/**</code> support in YAML frontmatter',
+        tr4_name: 'Rule Independence',
+        tr4_leg: 'Rules easily conflict and dilute AI attention',
+        tr4_mod: 'Isolated concerns (<code class="text-slate-700 dark:text-slate-300">frontend.mdc</code>, <code class="text-slate-700 dark:text-slate-300">backend.mdc</code>, <code class="text-slate-700 dark:text-slate-300">db.mdc</code>)',
+        tr5_name: 'Cursor IDE Support',
+        tr5_leg: 'Deprecated / Backward compatibility only',
+        tr5_mod: 'Official 2026 Recommended Standard',
+        faq_title: 'Frequently Asked Questions',
+        faq_subtitle: "Everything you need to know about Cursor's modern .mdc rules system.",
+        faq1_q: 'Why did Cursor replace .cursorrules with .mdc files?',
+        faq1_a: 'A single <code class="text-slate-800 dark:text-slate-300">.cursorrules</code> file forces the AI to load entire styling, database, and backend rules into every prompt—wasting context tokens and confusing the model. The new <code class="text-slate-800 dark:text-slate-300">.cursor/rules/*.mdc</code> format uses glob patterns (like <code class="text-slate-800 dark:text-slate-300">app/**</code>) to load instructions only when relevant files are being edited.',
+        faq2_q: 'What is the YAML frontmatter in .mdc files?',
+        faq2_a: 'Each <code class="text-slate-800 dark:text-slate-300">.mdc</code> file begins with a header defining its scope: <code class="text-slate-800 dark:text-slate-300">description</code> explains when to apply the rule, <code class="text-slate-800 dark:text-slate-300">globs</code> defines matching file patterns, and <code class="text-slate-800 dark:text-slate-300">alwaysApply</code> specifies if it should run unconditionally across all files.',
+        faq3_q: "How does this differ from Cursor's built-in /Generate command?",
+        faq3_a: "Cursor's internal command requires an existing, mature codebase to analyze. When you are starting a fresh project from scratch (cold start), our generator provides battle-tested production blueprints and pre-configured architectural guardrails ready before you write your first line of code.",
+        faq4_q: 'Can I use these rules with Claude Code or Windsurf?',
+        faq4_a: 'Yes! Simply switch the export format tab to <code class="text-indigo-600 dark:text-indigo-300">Claude Code</code> (generates a unified <code class="text-indigo-600 dark:text-indigo-300">CLAUDE.md</code>) or <code class="text-indigo-600 dark:text-indigo-300">Windsurf</code> (generates <code class="text-indigo-600 dark:text-indigo-300">.windsurfrules</code>) to maintain identical engineering standards across different AI coding tools.',
+        banner_title: 'Also in the PaceBowl Suite: ComfyUI Prompt & Latent Studio',
+        banner_desc: 'Calculate trained 1-Megapixel Empty Latent dimensions and generate T5 natural language prompts with 0 GPU memory overhead.',
+        banner_btn: 'Open Comfy Studio →',
+        footer_brand: 'PaceBowl Tools &copy; 2026. Part of the <a href="https://pacebowl.com" class="text-indigo-600 dark:text-indigo-400 hover:underline">PaceBowl Suite Matrix</a>.',
+        footer_hot: '🔥 AI Radar',
+        footer_comfy: '⚡ ComfyUI Studio',
+        footer_blog: 'Blog & Guides',
+        footer_faq: 'FAQ'
+      },
+      zh: {
+        suite_btn: 'PaceBowl 套件',
+        suite_title: 'PaceBowl 生态矩阵',
+        suite_hub: 'PaceBowl 母舰枢纽',
+        suite_hub_sub: '中心枢纽与实战指南',
+        suite_hot: '科技热榜 · AI Radar',
+        suite_hot_sub: '24h 自动化 AI 情报雷达 & 晨报',
+        suite_cursor: 'Cursor 规则工坊',
+        suite_cursor_sub: '活跃中 • .mdc 生成器',
+        suite_comfy: 'ComfyUI 提示词工坊',
+        suite_comfy_sub: 'Flux.1 与 1MP 潜空间计算器',
+        nav_faq: '工作原理',
+        nav_blog: '实战手册与博客',
+        hero_badge1: '✨ 官方推荐多文件规范架构',
+        hero_badge2: '零上下文臃肿污染',
+        hero_title: '现代 <span class="bg-gradient-to-r from-indigo-500 via-violet-500 to-sky-500 dark:from-indigo-400 dark:via-violet-300 dark:to-sky-400 bg-clip-text text-transparent">Cursor Rules (.mdc)</span> 规则生成器',
+        hero_desc: '陈旧的单体 <code class="text-slate-800 dark:text-slate-300 bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded text-xs">.cursorrules</code> 文件会浪费大量 Token 并引发模型幻觉。数秒内定制基于路径匹配与作用域隔离的 <code class="text-indigo-600 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-950/80 px-1 py-0.5 rounded text-xs">.cursor/rules/*.mdc</code> 规则集。',
+        sec1_title: '1. 前端技术栈',
+        pick_one_none: '单选或无前端',
+        next15_sub: 'App Router, Server Actions',
+        react19_sub: 'SPA 单页应用, 自定义 Hook',
+        vue3_sub: '组合式 API, Pinia 状态管理',
+        no_frontend: '无前端',
+        pure_backend: '纯后端服务或命令行工具',
+        sec2_title: '2. 后端与系统架构',
+        pick_one: '单选',
+        fastapi_sub: 'Pydantic v2, 异步 I/O',
+        node_sub: 'TypeScript, RESTful 接口',
+        go_sub: 'Idiomatic 惯用法, 结构体设计',
+        serverless_sub: 'Supabase Edge, Cloudflare Workers',
+        sec3_title: '3. UI、ORM 与数据库扩展',
+        multi_select: '多选模块',
+        tailwind_sub: '原子化实用 CSS 样式',
+        shadcn_sub: 'cn() 合并, Lucide 图标集',
+        supabase_sub: '行级安全策略 (RLS)',
+        drizzle_sub: '类型安全 SQL Schema 映射',
+        zod_sub: '运行时入参校验解析',
+        aisdk_sub: '流式输出与 Tool Call 工具调用',
+        sec4_title: '4. 工程标准与代码质量守则',
+        guard_subtitle: '防 AI 代码幻觉与防御性编码',
+        g_ts_title: '严苛 TypeScript (严禁 <code class="text-indigo-600 dark:text-indigo-400 font-mono">any</code>)',
+        g_ts_desc: '强制函数与 API 显式声明返回类型，禁止非空断言 (!)',
+        g_hallucinate_title: '防 AI 库幻觉 (严格依赖纪律)',
+        g_hallucinate_desc: '禁止臆造不存在的 npm 包 API，强制根据 package.json 规范编码',
+        g_early_title: '卫语句早返回 (Anti-Nesting 扁平化)',
+        g_early_desc: '最大嵌套深度严控在 2 层以内，利用前置条件快速拦截异常',
+        g_errors_title: '零静默异常崩溃 (错误边界覆盖)',
+        g_errors_desc: '严禁空 catch 块吞掉异常，记录日志并统一抛出结构化 AppError',
+        g_comments_title: '拒绝废话注释 (代码即文档)',
+        g_comments_desc: '禁止 AI 逐行复述显而易见的代码操作，仅保留关键架构决策与复杂算法说明',
+        btn_terminal: '终端 1 行命令',
+        btn_copy: '复制文件',
+        btn_zip: '打包下载 .zip',
+        sim_title: '实时 Cursor Glob 路径匹配与 Context 模拟器',
+        sim_desc: '实时模拟当你在项目中打开特定文件时，Cursor AI 会精准注入哪些规则：',
+        sim_try: '快捷测试：',
+        callout_title: '如何使用生成的 .zip：',
+        callout_desc: '解压后将生成的 <code class="text-indigo-600 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-950 px-1 py-0.5 rounded font-mono">.cursor/rules/</code> 文件夹直接拖入项目根目录。Cursor 将自动根据文件路径应用对应规则，绝不向无关文件泄露提示词。',
+        arch_tag: '架构升级演进',
+        arch_title: '传统 .cursorrules 对比 现代 .cursor/rules/*.mdc',
+        arch_desc: '深入理解为什么 Cursor 官方全面弃用单体规则文件，转而推崇多文件作用域模块化架构。',
+        th_feature: '特性与衡量标准',
+        th_legacy: '传统 .cursorrules',
+        th_modern: '现代 .cursor/rules/*.mdc',
+        tr1_name: '文件布局',
+        tr1_leg: '项目根目录下的单体庞大文件',
+        tr1_mod: '模块化目录规范 (<code class="bg-slate-100 dark:bg-slate-900 px-1 py-0.5 rounded text-indigo-600 dark:text-indigo-300">.cursor/rules/*.mdc</code>)',
+        tr2_name: '上下文 Token 消耗',
+        tr2_leg: '每次提问强制全量加载（严重浪费 Token）',
+        tr2_mod: '按需加载：仅当匹配当前文件路径 Glob 时才加载',
+        tr3_name: '路径作用域 (Globs)',
+        tr3_leg: '不支持（无法隔离前后端或数据库规范）',
+        tr3_mod: 'YAML Frontmatter 原生支持 <code class="bg-slate-100 dark:bg-slate-900 px-1 py-0.5 rounded text-indigo-600 dark:text-indigo-300">globs: app/**</code>',
+        tr4_name: '规则独立性',
+        tr4_leg: '各技术栈规则极易产生冲突与上下文稀释',
+        tr4_mod: '关注点完全分离 (<code class="text-slate-700 dark:text-slate-300">frontend.mdc</code>, <code class="text-slate-700 dark:text-slate-300">backend.mdc</code>, <code class="text-slate-700 dark:text-slate-300">db.mdc</code>)',
+        tr5_name: 'Cursor IDE 官方支持',
+        tr5_leg: '已废弃 / 仅保留向后兼容',
+        tr5_mod: '官方 2026 年度主推架构标准',
+        faq_title: '常见问题解答',
+        faq_subtitle: '关于 Cursor 现代 .mdc 多文件规则系统的一切核心要点。',
+        faq1_q: '为什么 Cursor 官方要用 .mdc 文件替换 .cursorrules？',
+        faq1_a: '单个 <code class="text-slate-800 dark:text-slate-300">.cursorrules</code> 会迫使 AI 在处理每个小需求时都加载整个项目的全量样式、数据库与后端规范，极大挤占有效 Prompt 上下文并干扰模型注意力。<code class="text-slate-800 dark:text-slate-300">.cursor/rules/*.mdc</code> 借助 glob（例如 <code class="text-slate-800 dark:text-slate-300">app/**</code>）仅在编辑关联文件时激活。',
+        faq2_q: '.mdc 文件顶部的 YAML Frontmatter 是什么作用？',
+        faq2_a: '每个 <code class="text-slate-800 dark:text-slate-300">.mdc</code> 顶部都包含作用域元数据：<code class="text-slate-800 dark:text-slate-300">description</code> 说明规则适用场景，<code class="text-slate-800 dark:text-slate-300">globs</code> 指定匹配文件路径通配符，<code class="text-slate-800 dark:text-slate-300">alwaysApply</code> 决定是否全局激活。',
+        faq3_q: '这与 Cursor 自带的 /Generate Rules 命令有何不同？',
+        faq3_a: 'Cursor 内置命令要求必须有现存且相对成熟的代码库供其分析。而当你在冷启动阶段新建项目时，我们的生成器可在你写下第一行代码前，直接提供经过生产验证的现代架构蓝图与防护守则。',
+        faq4_q: '生成的规则能用于 Claude Code 或 Windsurf 吗？',
+        faq4_a: '完全支持！直接切换上方的导出格式选项卡即可无缝切换到 <code class="text-indigo-600 dark:text-indigo-300">Claude Code</code>（生成标准 <code class="text-indigo-600 dark:text-indigo-300">CLAUDE.md</code>）或 <code class="text-indigo-600 dark:text-indigo-300">Windsurf</code>（生成 <code class="text-indigo-600 dark:text-indigo-300">.windsurfrules</code>），保持全团队 AI 工具规范统一。',
+        banner_title: 'PaceBowl 旗舰生态联动：ComfyUI 提示词 & 潜空间工坊',
+        banner_desc: '计算训练级 1-Megapixel 黄金潜空间尺寸，智能生成针对 Flux T5 优化的自然语言长文本提示词，0 显存本地开销。',
+        banner_btn: '打开 Comfy 工坊 →',
+        footer_brand: 'PaceBowl Tools &copy; 2026. 隶属于 <a href="https://pacebowl.com" class="text-indigo-600 dark:text-indigo-400 hover:underline">PaceBowl Suite 生态矩阵</a>。',
+        footer_hot: '🔥 科技热榜',
+        footer_comfy: '⚡ ComfyUI 工坊',
+        footer_blog: '博客与指南',
+        footer_faq: '常见问题'
+      }
+    };
+
+    let currentLang = localStorage.getItem('pacebowl-lang') || (navigator.language && navigator.language.startsWith('zh') ? 'zh' : 'en');
+
+    function updateThemeUI(isDark) {
+      const sun = document.getElementById('theme-sun-icon');
+      const moon = document.getElementById('theme-moon-icon');
+      if (!sun || !moon) return;
+      if (isDark) {
+        sun.classList.remove('hidden');
+        moon.classList.add('hidden');
+      } else {
+        sun.classList.add('hidden');
+        moon.classList.remove('hidden');
+      }
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      if (isDark) {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        localStorage.setItem('pacebowl-theme', 'light');
+        updateThemeUI(false);
+      } else {
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('pacebowl-theme', 'dark');
+        updateThemeUI(true);
+      }
+    }
+
+    function updateLanguageUI() {
+      const label = document.getElementById('lang-label');
+      if (label) {
+        label.textContent = currentLang === 'zh' ? 'EN' : '中文';
+      }
+      document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (I18N[currentLang] && I18N[currentLang][key] !== undefined) {
+          el.innerHTML = I18N[currentLang][key];
+        }
+      });
+      simulateGlobMatching();
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'zh' ? 'en' : 'zh';
+      localStorage.setItem('pacebowl-lang', currentLang);
+      updateLanguageUI();
+    }
+
     // Initialize on load
     window.addEventListener('DOMContentLoaded', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      updateThemeUI(isDark);
+      updateLanguageUI();
       updateRules();
     });
   </script>
