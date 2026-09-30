@@ -5,16 +5,18 @@
 ## Overview
 Cursor Rules Generator (https://cursor.pacebowl.com/) is a developer utility designed to generate modular, path-scoped `.cursor/rules/*.mdc` files. It prevents AI context bloat and token waste by scoping development instructions to specific file patterns via glob matching.
 
-## Key Capabilities
+## Key Capabilities & Tools
+- **Live Cursor Glob Matcher & Token Simulator**: Interactive path tester that evaluates active file paths (e.g. `app/checkout/page.tsx`) against rule globs and visualizes token savings in real time (~75% context reduction).
+- **Terminal 1-Line Setup**: 1-click clipboard copy of shell script (`mkdir -p .cursor/rules && cat << 'EOF' ...`) for instant command-line file creation without zip downloads.
 - **Modular Multi-file Architecture**: Exports rules to `.cursor/rules/*.mdc` with standard YAML frontmatter (`description`, `globs`, `alwaysApply`).
 - **1-Click Zip Export**: Packages the full `.cursor/rules/` directory structure using client-side JSZip.
 - **Universal Multi-Target Export**: Generates `.cursor/rules/*.mdc` (Cursor), `CLAUDE.md` (Claude Code), `.windsurfrules` (Windsurf), and legacy `.cursorrules`.
-- **Framework Presets**: Production-ready configurations for Next.js 15 (App Router, Server Actions), React 19, Vue 3 / Nuxt, Python FastAPI (Pydantic v2), Golang (Gin/Chi), Node.js, Tailwind CSS v4, Supabase (with RLS), and Zod.
-- **Guardrails**: Strict TypeScript, Early Return pattern, error boundary conventions, and zero redundant AI comments.
+- **Framework & Library Presets**: Next.js 15 (App Router, Server Actions), React 19, Vue 3 / Nuxt, Python FastAPI (Pydantic v2), Golang, Node.js, Tailwind CSS v4, Shadcn UI / Radix primitives, Vercel AI SDK (streamText/streamUI), Supabase (with RLS), and Zod.
+- **Engineering Guardrails**: Anti-AI Hallucination (strict package.json discipline), Strict TypeScript, Early Return pattern, error boundary conventions, and zero redundant AI comments.
 
 ## Engineering Guides & Tutorials
-- [Cursor Rules (.mdc) vs .cursorrules Migration Guide](https://cursor.pacebowl.com/blog/cursor-rules-mdc-vs-cursorrules.html): Explains the technical rationale behind replacing monolithic .cursorrules with path-scoped .mdc files.
-- [How to Write Next.js 15 Cursor Rules](https://cursor.pacebowl.com/blog/how-to-write-nextjs-15-cursor-rules.html): Production rules for App Router, React Server Components boundaries, and Server Actions validation.
+- [Cursor Rules (.mdc) vs .cursorrules Migration Guide](https://cursor.pacebowl.com/blog/cursor-rules-mdc-vs-cursorrules.html): Explains the technical rationale behind replacing monolithic .cursorrules with path-scoped .mdc files, glob simulation, and terminal 1-line setup.
+- [How to Write Next.js 15 Cursor Rules](https://cursor.pacebowl.com/blog/how-to-write-nextjs-15-cursor-rules.html): Production rules for App Router, React Server Components boundaries, Server Actions validation, and Shadcn/AI SDK integration.
 
 ## Modern .mdc vs Legacy .cursorrules
 - **Legacy `.cursorrules`**: Single monolithic file injected into every prompt. Leads to high token usage, context contamination, and conflicting instructions.
@@ -23,6 +25,6 @@ Cursor Rules Generator (https://cursor.pacebowl.com/) is a developer utility des
 ## Usage
 1. Open https://cursor.pacebowl.com/
 2. Select target frontend, backend, database, and styling presets.
-3. Configure code quality guardrails (strict types, early return, error handling).
-4. Click "Download .zip" to get the ready-to-use `.cursor/rules/` folder.
-5. Extract the archive into your project root.
+3. Configure code quality guardrails (strict types, anti-hallucination, early return).
+4. Test your globs in the Live Glob Matcher to preview context token savings.
+5. Click "Terminal 1-Line" to paste directly into your IDE terminal, or click "Download .zip".

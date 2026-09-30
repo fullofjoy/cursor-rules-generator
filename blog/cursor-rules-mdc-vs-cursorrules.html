@@ -23,7 +23,7 @@
   <meta property="og:title" content="Cursor Rules (.mdc) vs .cursorrules: The Complete 2026 Migration Guide">
   <meta property="og:description" content="Why monolithic .cursorrules files are obsolete and how to migrate to modular, path-scoped .cursor/rules/*.mdc.">
 
-  <!-- Structured Data: TechArticle & Breadcrumbs -->
+  <!-- Structured Data: TechArticle, FAQPage & Breadcrumbs -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -38,11 +38,40 @@
           "name": "Cursor Rules Generator"
         },
         "datePublished": "2026-09-29",
-        "dateModified": "2026-09-29",
+        "dateModified": "2026-09-30",
         "publisher": {
           "@type": "Organization",
           "name": "Cursor Rules Generator"
         }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why did Cursor deprecate .cursorrules in favor of .cursor/rules/*.mdc?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The legacy .cursorrules file was monolithic, injecting all rules into every prompt unconditionally. This bloated context windows, increased latency, and diluted AI attention. Modern .cursor/rules/*.mdc files use glob matching and description frontmatter to load instructions only when relevant files are being edited."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much context token space does .mdc save over .cursorrules?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "By scoping rules to specific file paths (such as frontend rules only to app/** or backend rules only to server/**), .mdc typically reduces prompt token overhead by 60% to 80% compared to monolithic .cursorrules files."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How to quickly install Cursor .mdc rules without downloading a zip file?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can use the 1-Line Terminal command provided by Cursor Rules Generator: 'mkdir -p .cursor/rules && cat << 'EOF' > .cursor/rules/general.mdc ...' to create the entire directory and all .mdc files directly in your IDE terminal."
+            }
+          }
+        ]
       },
       {
         "@type": "BreadcrumbList",
@@ -127,6 +156,16 @@
 
     <!-- Content Body -->
     <div class="space-y-6 text-slate-300 text-sm leading-relaxed">
+      <!-- AEO Direct Answer / TL;DR Box -->
+      <div class="p-4 rounded-xl bg-slate-900/90 border border-emerald-500/40 shadow-lg text-xs space-y-2">
+        <div class="flex items-center gap-2 text-emerald-400 font-bold uppercase tracking-wider text-[11px]">
+          <span>⚡ Direct Answer (TL;DR)</span>
+        </div>
+        <p class="text-slate-300 leading-relaxed">
+          <strong>Cursor deprecated <code>.cursorrules</code></strong> because placing a single monolithic file in the root forces the AI to load all instructions into every prompt, causing token bloat, higher costs, and instruction dilution. <strong>Modern <code>.cursor/rules/*.mdc</code> files</strong> solve this by using YAML frontmatter (<code>globs</code> and <code>description</code>) to inject rules only when relevant files are being edited—saving 60%–80% of context window space.
+        </p>
+      </div>
+
       <p>
         If you have been using Cursor AI for more than a few months, you likely remember placing a single <code>.cursorrules</code> file in the root directory of your project. While revolutionary in late 2023, the monolithic <code>.cursorrules</code> file has now been completely superseded by Cursor's modular <code>.cursor/rules/*.mdc</code> format.
       </p>
@@ -169,6 +208,31 @@ alwaysApply: false
         </div>
       </div>
 
+      <!-- New Section: Glob Simulator & Token Savings -->
+      <h2 class="text-xl font-bold text-white pt-4">Testing Glob Matching & Simulating Token Savings</h2>
+      <p>
+        How do you know if your glob patterns actually match before deploying them? In the <a href="https://cursor.pacebowl.com" class="text-indigo-400 underline">Cursor Rules Generator</a>, we built a <strong>Live Glob Matcher & Context Simulator</strong>.
+      </p>
+      <p>
+        You can type any file path (e.g., <code>app/checkout/page.tsx</code> or <code>server/api/users.py</code>) and immediately see which rules are injected (<code>⚡ INJECTED</code>) and which are ignored (<code>💤 IGNORED</code>). Typically, scoped <code>.mdc</code> rules eliminate 70% to 80% of unnecessary tokens per prompt turn.
+      </p>
+
+      <!-- New Section: Terminal 1-Line Setup -->
+      <h2 class="text-xl font-bold text-white pt-4">Fastest Setup: Terminal 1-Line Injection</h2>
+      <p>
+        Instead of downloading and unzipping archives manually, you can use our <strong>Terminal 1-Line</strong> copy command. It generates an executable shell snippet that creates <code>.cursor/rules/</code> and writes all <code>.mdc</code> files directly in one shot:
+      </p>
+
+      <pre class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-sky-300 overflow-x-auto"><code>mkdir -p .cursor/rules && \
+cat &lt;&lt; 'EOF' &gt; .cursor/rules/general.mdc
+---
+description: Universal engineering standards, type safety, and code hygiene
+globs: **/*
+alwaysApply: true
+---
+# Core Engineering Guardrails
+EOF</code></pre>
+
       <h2 class="text-xl font-bold text-white pt-4">Recommended Project Folder Structure</h2>
       <p>
         In modern production repositories, organize your rules into 3 to 4 focused files:
@@ -191,12 +255,35 @@ alwaysApply: false
         <li>Paste each category into its corresponding <code>.mdc</code> file and prepend the YAML frontmatter.</li>
         <li>Delete or archive the legacy <code>.cursorrules</code> file to prevent duplicate instruction loading.</li>
       </ol>
+
+      <!-- Semantic FAQ Section for AEO -->
+      <h2 class="text-xl font-bold text-white pt-6">Frequently Asked Questions (AEO Reference)</h2>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+          <h3 class="font-bold text-white text-xs mb-1">Why did Cursor deprecate .cursorrules in favor of .cursor/rules/*.mdc?</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            The legacy <code>.cursorrules</code> file was monolithic, injecting all rules into every prompt unconditionally. This bloated context windows, increased latency, and diluted AI attention. Modern <code>.cursor/rules/*.mdc</code> files use glob matching and description frontmatter to load instructions only when relevant files are being edited.
+          </p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+          <h3 class="font-bold text-white text-xs mb-1">How much context token space does .mdc save over .cursorrules?</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            By scoping rules to specific file paths (such as frontend rules only to <code>app/**</code> or backend rules only to <code>server/**</code>), <code>.mdc</code> typically reduces prompt token overhead by 60% to 80% compared to monolithic <code>.cursorrules</code> files.
+          </p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+          <h3 class="font-bold text-white text-xs mb-1">How to quickly install Cursor .mdc rules without downloading a zip file?</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            You can use the 1-Line Terminal command provided by <a href="https://cursor.pacebowl.com" class="text-indigo-400 underline">Cursor Rules Generator</a> to create the entire directory and write all <code>.mdc</code> files directly in your IDE terminal.
+          </p>
+        </div>
+      </div>
     </div>
 
     <!-- Bottom CTA -->
     <div class="mt-12 p-6 rounded-2xl bg-slate-900 border border-indigo-500/30 text-center">
       <h3 class="text-lg font-bold text-white mb-2">Automate Your Migration in 10 Seconds</h3>
-      <p class="text-slate-400 text-xs mb-4">Don't write YAML headers manually. Use our free generator to download a pre-packaged <code>.cursor/rules.zip</code> archive tailored to your exact stack.</p>
+      <p class="text-slate-400 text-xs mb-4">Don't write YAML headers manually. Use our free generator to simulate glob matching, copy terminal scripts, or download a pre-packaged <code>.cursor/rules.zip</code> archive.</p>
       <a href="/" class="inline-flex items-center px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/30 transition">
         Launch Cursor Rules Generator →
       </a>

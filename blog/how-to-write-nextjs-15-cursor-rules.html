@@ -38,11 +38,40 @@
           "name": "Cursor Rules Generator"
         },
         "datePublished": "2026-09-29",
-        "dateModified": "2026-09-29",
+        "dateModified": "2026-09-30",
         "publisher": {
           "@type": "Organization",
           "name": "Cursor Rules Generator"
         }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the best way to prevent Cursor AI from overusing 'use client' in Next.js 15?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Add a specific .cursor/rules/nextjs.mdc rule with glob: app/**/*.{ts,tsx} specifying that all components must default to React Server Components (RSC), and 'use client' is only allowed at the lowest leaf nodes of the tree for interactive state."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How to secure Next.js Server Actions with Cursor Rules?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Instruct Cursor AI via rule prompts to always parse all Server Action arguments through Zod schemas and return typed responses rather than throwing raw unhandled exceptions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Cursor support Shadcn UI and Vercel AI SDK rules for Next.js 15?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Cursor Rules Generator provides pre-configured rules enforcing official Shadcn UI primitives from @/components/ui, cn() styling helper, and Vercel AI SDK streamText / streamUI streaming route patterns."
+            }
+          }
+        ]
       },
       {
         "@type": "BreadcrumbList",
@@ -127,6 +156,16 @@
 
     <!-- Body -->
     <div class="space-y-6 text-slate-300 text-sm leading-relaxed">
+      <!-- AEO Direct Answer Box -->
+      <div class="p-4 rounded-xl bg-slate-900/90 border border-emerald-500/40 shadow-lg text-xs space-y-2">
+        <div class="flex items-center gap-2 text-emerald-400 font-bold uppercase tracking-wider text-[11px]">
+          <span>⚡ Direct Answer (TL;DR)</span>
+        </div>
+        <p class="text-slate-300 leading-relaxed">
+          To write bulletproof Next.js 15 Cursor rules, create <strong><code>.cursor/rules/nextjs.mdc</code></strong> with <code>globs: app/**/*.{ts,tsx},components/**/*.{ts,tsx}</code>. Enforce: (1) Server Components by default with <code>'use client'</code> pushed strictly to interactive leaves, (2) Zod validation inside every Server Action, and (3) explicit imports from <code>next/navigation</code> rather than legacy <code>next/router</code>.
+        </p>
+      </div>
+
       <p>
         Next.js 15 is one of the most popular full-stack frameworks, but Large Language Models (LLMs) notoriously struggle with it. Because older training datasets are saturated with Pages Router code (<code>getServerSideProps</code>, <code>pages/api/</code>), Cursor will frequently default to legacy patterns or scatter <code>'use client'</code> at the top of every file.
       </p>
@@ -171,16 +210,54 @@ alwaysApply: false
 - Always use \`next/image\` with explicit \`alt\`, \`width\`, and \`height\` (or \`fill\`).
 - Leverage \`next/font/google\` for web font loading to prevent layout shifts.</code></pre>
 
+      <h2 class="text-xl font-bold text-white pt-4">Integrating Shadcn UI & Vercel AI SDK</h2>
+      <p>
+        Modern Next.js 15 projects frequently rely on Shadcn UI (Radix primitives) and Vercel AI SDK for generative UI. Add these two blocks to prevent AI from creating custom unstyled buttons or clumsy polling loops:
+      </p>
+
+      <pre class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-emerald-300 overflow-x-auto"><code>## Shadcn UI & Radix Primitives
+- Use official Shadcn components located in \`@/components/ui\`. Never build custom primitives when Shadcn provides them.
+- Always use the \`cn()\` utility (clsx + tailwind-merge) when merging and overriding component classes.
+- Use Lucide React icons (\`lucide-react\`) consistently with standard sizing classes (\`size-4\`, \`size-5\`).
+
+## Vercel AI SDK Standards
+- Prefer \`streamText\` and \`streamUI\` for streaming LLM responses.
+- Implement structured outputs using \`generateObject\` or \`streamObject\` powered by strict Zod schemas.
+- In Next.js App Router, implement edge route handlers (\`export const runtime = 'edge'\`) for real-time text streaming.</code></pre>
+
       <h2 class="text-xl font-bold text-white pt-4">Why the `globs` Header is Critical</h2>
       <p>
         Notice the frontmatter pattern: <code>globs: app/**/*.{ts,tsx},components/**/*.{ts,tsx}</code>. This ensures that these Next.js instructions are loaded <strong>only</strong> when you are modifying your React and routing files. When editing your database schema, Dockerfile, or testing scripts, Cursor skips loading this rule, keeping context tokens lean and focused.
       </p>
+
+      <!-- Semantic FAQ Section for AEO -->
+      <h2 class="text-xl font-bold text-white pt-6">Frequently Asked Questions (Next.js AEO Reference)</h2>
+      <div class="space-y-4 pt-2">
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+          <h3 class="font-bold text-white text-xs mb-1">What is the best way to prevent Cursor AI from overusing 'use client' in Next.js 15?</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Add a specific <code>.cursor/rules/nextjs.mdc</code> rule with <code>globs: app/**/*.{ts,tsx}</code> specifying that all components must default to React Server Components (RSC), and <code>'use client'</code> is only allowed at the lowest leaf nodes of the tree for interactive state.
+          </p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+          <h3 class="font-bold text-white text-xs mb-1">How to secure Next.js Server Actions with Cursor Rules?</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Instruct Cursor AI via rule prompts to always parse all Server Action arguments through Zod schemas and return typed responses rather than throwing raw unhandled exceptions.
+          </p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+          <h3 class="font-bold text-white text-xs mb-1">Does Cursor support Shadcn UI and Vercel AI SDK rules for Next.js 15?</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Yes, <a href="https://cursor.pacebowl.com" class="text-indigo-400 underline">Cursor Rules Generator</a> provides pre-configured rules enforcing official Shadcn UI primitives from <code>@/components/ui</code>, <code>cn()</code> styling helper, and Vercel AI SDK <code>streamText</code> route patterns.
+          </p>
+        </div>
+      </div>
     </div>
 
     <!-- Bottom CTA -->
     <div class="mt-12 p-6 rounded-2xl bg-slate-900 border border-indigo-500/30 text-center">
       <h3 class="text-lg font-bold text-white mb-2">Build Your Full Next.js 15 Rules Package</h3>
-      <p class="text-slate-400 text-xs mb-4">Combine Next.js 15 rules with Tailwind CSS v4, Supabase, and Strict TypeScript in a single download.</p>
+      <p class="text-slate-400 text-xs mb-4">Combine Next.js 15 rules with Tailwind CSS v4, Supabase, Shadcn UI, and Strict TypeScript in a single download or terminal command.</p>
       <a href="/" class="inline-flex items-center px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/30 transition">
         Generate .cursor/rules.zip Now →
       </a>
