@@ -1221,14 +1221,18 @@ ${dbContent.trim()}`;
     }
 
     
-    // --- Umami Event Tracking & Attribution ---
+    // --- Umami & OpenGEO Event Tracking & Attribution ---
     function trackUmami(eventName, eventData) {
       try {
         if (window.umami && typeof window.umami.track === 'function') {
           window.umami.track(eventName, eventData);
         }
       } catch(e) {}
-
+      try {
+        if (window.geotrace && typeof window.geotrace.track === 'function') {
+          window.geotrace.track(eventName, eventData);
+        }
+      } catch(e) {}
     }
 
     function captureUtmParams() {
