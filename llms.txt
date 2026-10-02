@@ -18,6 +18,17 @@ Cursor Rules Generator (https://cursor.pacebowl.com/) is a developer utility des
 - [Cursor Rules (.mdc) vs .cursorrules Migration Guide](https://cursor.pacebowl.com/blog/cursor-rules-mdc-vs-cursorrules.html): Explains the technical rationale behind replacing monolithic .cursorrules with path-scoped .mdc files, glob simulation, and terminal 1-line setup.
 - [How to Write Next.js 15 Cursor Rules](https://cursor.pacebowl.com/blog/how-to-write-nextjs-15-cursor-rules.html): Production rules for App Router, React Server Components boundaries, Server Actions validation, and Shadcn/AI SDK integration.
 
+## Dedicated Framework Rules (.mdc)
+- [Next.js 15 Rules](https://cursor.pacebowl.com/rules/nextjs-15.html): App Router, Server Actions, and React Server Components boundaries.
+- [Python FastAPI Rules](https://cursor.pacebowl.com/rules/python-fastapi.html): Pydantic v2, async endpoints, and dependency injection.
+- [React 19 & Vite Rules](https://cursor.pacebowl.com/rules/react-vite.html): Pure functional components, clean custom hooks, and strict TypeScript.
+- [Vue 3 & Nuxt Rules](https://cursor.pacebowl.com/rules/vue3-nuxt.html): Composition API with <script setup>, Pinia state actions.
+- [Supabase & RLS Rules](https://cursor.pacebowl.com/rules/supabase.html): Row Level Security enforcement and typed client SDK.
+- [Tailwind CSS v4 Rules](https://cursor.pacebowl.com/rules/tailwind-css.html): Atomic utility classes, cn() merging, and mobile-first styles.
+- [Golang Rules](https://cursor.pacebowl.com/rules/golang.html): Idiomatic error wrapping, context.Context propagation, and struct tags.
+- [Cloudflare Workers Rules](https://cursor.pacebowl.com/rules/cloudflare-workers.html): Hono routing, edge D1/KV storage, and serverless constraints.
+- [Rules Directory Hub](https://cursor.pacebowl.com/rules/): Complete overview of production-grade Cursor rules.
+
 ## Modern .mdc vs Legacy .cursorrules
 - **Legacy `.cursorrules`**: Single monolithic file injected into every prompt. Leads to high token usage, context contamination, and conflicting instructions.
 - **Modern `.cursor/rules/*.mdc`**: Modular files with YAML frontmatter. Loaded conditionally only when matched by the active file's glob pattern (e.g. `app/**`).

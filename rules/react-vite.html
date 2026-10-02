@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React 19 & Vite TypeScript Cursor Rules (.mdc) - Modern Hooks & State</title>
+  <meta name="description" content="Production-ready Cursor .mdc rules for React 19 and Vite. Enforce clean custom hooks, prevent redundant useEffect cycles, and guarantee strict TypeScript safety.">
+  <meta name="keywords" content="react 19 cursor rules, vite react cursor mdc, react typescript cursorrules, react hooks best practices cursor, modern react cursor prompt">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://cursor.pacebowl.com/rules/react-vite.html">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://cursor.pacebowl.com/rules/react-vite.html">
+  <meta property="og:title" content="React 19 & Vite TypeScript Cursor Rules (.mdc) - Modern Hooks & State">
+  <meta property="og:description" content="Production-ready Cursor .mdc rules for React 19 and Vite. Enforce clean custom hooks, prevent redundant useEffect cycles, and guarantee strict TypeScript safety.">
+  <meta property="og:image" content="https://cursor.pacebowl.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="React 19 & Vite TypeScript Cursor Rules (.mdc) - Modern Hooks & State">
+  <meta property="og:site_name" content="Cursor Rules Generator">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://cursor.pacebowl.com/rules/react-vite.html">
+  <meta name="twitter:title" content="React 19 & Vite TypeScript Cursor Rules (.mdc) - Modern Hooks & State">
+  <meta name="twitter:description" content="Production-ready Cursor .mdc rules for React 19 and Vite. Enforce clean custom hooks, prevent redundant useEffect cycles, and guarantee strict TypeScript safety.">
+  <meta name="twitter:image" content="https://cursor.pacebowl.com/og-image.png">
+
+  <!-- Analytics -->
+  <script defer src="https://umami-ruby-alpha-96.vercel.app/script.js" data-website-id="45cd49ed-6c55-4b37-bcbb-69959c065874"></script>
+  <script defer data-domain="cursor.pacebowl.com" data-api="https://geo.pacebowl.com/api" src="https://geo.pacebowl.com/geo.js"></script>
+
+  <!-- Structured Data: TechArticle, SoftwareSourceCode & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": "React 19 & Vite TypeScript Cursor Rules",
+        "description": "Production-ready Cursor .mdc rules for React 19 and Vite. Enforce clean custom hooks, prevent redundant useEffect cycles, and guarantee strict TypeScript safety.",
+        "url": "https://cursor.pacebowl.com/rules/react-vite.html",
+        "author": {
+          "@type": "Organization",
+          "name": "Cursor Rules Generator",
+          "url": "https://cursor.pacebowl.com/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Pacebowl Studio",
+          "url": "https://pacebowl.com"
+        }
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "name": "React 19 / Vite .cursorrules .mdc configuration",
+        "programmingLanguage": "Markdown",
+        "targetProduct": "Cursor AI IDE"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do these rules improve React hook hygiene?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "They forbid using useEffect for calculating derived state. The AI is instructed to compute values inline during render or use useMemo only when backed by performance measurements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this rule work with Vite and TypeScript?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, globs are scoped to src/**/*.{ts,tsx} and enforce strict TypeScript without any 'any' types, along with modern ES module imports."
+          }
+        }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://cursor.pacebowl.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Rules",
+            "item": "https://cursor.pacebowl.com/rules/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "React 19 / Vite",
+            "item": "https://cursor.pacebowl.com/rules/react-vite.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 500: '#6366f1', 600: '#4f46e5' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-[#0b0f19] text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Header -->
+  <header class="border-b border-slate-200 dark:border-slate-800/80 bg-white/80 dark:bg-[#0b0f19]/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center space-x-2">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-bold text-white shadow-md shadow-indigo-500/20">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+        </div>
+        <span class="font-bold text-base text-slate-900 dark:text-white tracking-tight">Cursor Rules <span class="text-indigo-600 dark:text-indigo-400 font-mono text-xs px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950/80 border border-indigo-300 dark:border-indigo-500/30">.mdc</span></span>
+      </a>
+
+      <div class="flex items-center space-x-3 text-xs">
+        <a href="/blog/" class="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition hidden sm:inline">Guides & Blog</a>
+        <a href="/?frontend=react19&backend=nodejs&tailwind=true&zod=true" class="px-3.5 py-1.5 rounded-lg font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition flex items-center gap-1.5 shadow-sm">
+          <span>⚡</span>
+          <span>Customize Stack</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="max-w-5xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500 dark:text-slate-400 flex items-center space-x-2">
+    <a href="/" class="hover:text-indigo-500">Home</a>
+    <span>/</span>
+    <span class="text-slate-400 dark:text-slate-500">Rules</span>
+    <span>/</span>
+    <span class="text-slate-900 dark:text-slate-200 font-medium">React 19 / Vite</span>
+  </nav>
+
+  <!-- Hero -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
+    <div class="mb-8">
+      <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800/60 mb-3">
+        <span>Production-Ready Rule</span>
+        <span>•</span>
+        <span class="font-mono text-[11px]">src/**/*.{ts,tsx}</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
+        React 19 & Vite TypeScript Cursor Rules
+      </h1>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
+        Production-ready Cursor .mdc rules for React 19 and Vite. Enforce clean custom hooks, prevent redundant useEffect cycles, and guarantee strict TypeScript safety.
+      </p>
+    </div>
+
+    <!-- Actions & Code Card -->
+    <div class="border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900/90 shadow-sm overflow-hidden mb-12">
+      <!-- Card Toolbar -->
+      <div class="px-4 py-3 bg-slate-100/80 dark:bg-slate-950/60 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center space-x-2">
+          <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+          <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+          <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+          <span class="ml-2 font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">.cursor/rules/react-vite.mdc</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button id="copy-btn" onclick="copyMdc()" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition flex items-center gap-1.5 shadow-sm">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            <span id="copy-text">Copy .mdc</span>
+          </button>
+          <button onclick="downloadMdc()" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition flex items-center gap-1.5 shadow-sm">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <span>Download</span>
+          </button>
+          <a href="/?frontend=react19&backend=nodejs&tailwind=true&zod=true" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition flex items-center gap-1.5 shadow-sm">
+            <span>⚡ Open in Generator</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Code Box -->
+      <div class="p-5 overflow-x-auto bg-[#0d1117] text-slate-200 font-mono text-xs leading-relaxed max-h-[540px]">
+        <pre id="mdc-code-block"><code>---
+description: React 19 and Vite SPA development standards with strict TypeScript
+globs: src/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# React 19 & Vite Standards
+
+## Component Architecture
+- Use functional components exclusively with TypeScript interfaces for props.
+- Keep components small and focused. Extract sub-components when JSX exceeds ~120 lines.
+- Do NOT use `React.FC`. Define props directly: `function Button({ label, onClick }: ButtonProps)`.
+
+## Hook Hygiene & State Management
+- Never use `useEffect` to synchronize or derive state that can be computed during render.
+- Keep `useState` local to the component that requires it; lift state only when shared by siblings.
+- Custom hooks must start with `use*`, reside in `src/hooks/`, and return typed arrays or objects.</code></pre>
+      </div>
+    </div>
+
+    <!-- Technical Rationale & FAQ Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+      <div class="lg:col-span-2 space-y-4">
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <span>Frequently Asked Questions & Implementation Notes</span>
+        </h2>
+        <div class="space-y-3">
+          
+        <div class="border border-slate-200 dark:border-slate-800/80 rounded-xl p-5 bg-white dark:bg-slate-900/40">
+          <h3 class="text-sm font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+            How do these rules improve React hook hygiene?
+          </h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">They forbid using useEffect for calculating derived state. The AI is instructed to compute values inline during render or use useMemo only when backed by performance measurements.</p>
+        </div>
+        <div class="border border-slate-200 dark:border-slate-800/80 rounded-xl p-5 bg-white dark:bg-slate-900/40">
+          <h3 class="text-sm font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+            Does this rule work with Vite and TypeScript?
+          </h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Yes, globs are scoped to src/**/*.{ts,tsx} and enforce strict TypeScript without any 'any' types, along with modern ES module imports.</p>
+        </div>
+        </div>
+      </div>
+
+      <!-- Sidebar: Other Stacks -->
+      <div class="space-y-4">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+          Explore Other Frameworks
+        </h2>
+        <div class="grid grid-cols-1 gap-2">
+          
+        <a href="/rules/nextjs-15.html" class="p-3 rounded-lg border text-xs transition flex items-center justify-between border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 hover:text-white">
+          <span>Next.js 15</span>
+          <span class="text-[10px] font-mono text-slate-500">.mdc</span>
+        </a>
+        <a href="/rules/python-fastapi.html" class="p-3 rounded-lg border text-xs transition flex items-center justify-between border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 hover:text-white">
+          <span>Python FastAPI</span>
+          <span class="text-[10px] font-mono text-slate-500">.mdc</span>
+        </a>
+        <a href="/rules/react-vite.html" class="p-3 rounded-lg border text-xs transition flex items-center justify-between border-indigo-500 bg-indigo-500/10 text-indigo-400 font-semibold">
+          <span>React 19 / Vite</span>
+          <span class="text-[10px] font-mono text-slate-500">.mdc</span>
+        </a>
+        <a href="/rules/vue3-nuxt.html" class="p-3 rounded-lg border text-xs transition flex items-center justify-between border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 hover:text-white">
+          <span>Vue 3 / Nuxt</span>
+          <span class="text-[10px] font-mono text-slate-500">.mdc</span>
+        </a>
+        <a href="/rules/supabase.html" class="p-3 rounded-lg border text-xs transition flex items-center justify-between border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 hover:text-white">
+          <span>Supabase + RLS</span>
+          <span class="text-[10px] font-mono text-slate-500">.mdc</span>
+        </a>
+        <a href="/rules/tailwind-css.html" class="p-3 rounded-lg border text-xs transition flex items-center justify-between border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 hover:text-white">
+          <span>Tailwind v4</span>
+          <span class="text-[10px] font-mono text-slate-500">.mdc</span>
+        </a>
+        <a href="/rules/golang.html" class="p-3 rounded-lg border text-xs transition flex items-center justify-between border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 hover:text-white">
+          <span>Golang</span>
+          <span class="text-[10px] font-mono text-slate-500">.mdc</span>
+        </a>
+        <a href="/rules/cloudflare-workers.html" class="p-3 rounded-lg border text-xs transition flex items-center justify-between border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 hover:text-white">
+          <span>Cloudflare Workers</span>
+          <span class="text-[10px] font-mono text-slate-500">.mdc</span>
+        </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-950/60 py-8 text-xs text-slate-500 transition-colors">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-2">
+        <span>© 2026 Pacebowl Studio</span>
+        <span>•</span>
+        <a href="https://pacebowl.com" class="hover:text-indigo-500">Pacebowl.com</a>
+        <span>•</span>
+        <a href="https://comfy.pacebowl.com" class="hover:text-indigo-500">ComfyUI Studio</a>
+        <span>•</span>
+        <a href="https://geo.pacebowl.com" class="hover:text-indigo-500">OpenGEO</a>
+      </div>
+      <div>
+        <a href="/sitemap.xml" class="hover:text-indigo-500">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mdcText = `---
+description: React 19 and Vite SPA development standards with strict TypeScript
+globs: src/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# React 19 & Vite Standards
+
+## Component Architecture
+- Use functional components exclusively with TypeScript interfaces for props.
+- Keep components small and focused. Extract sub-components when JSX exceeds ~120 lines.
+- Do NOT use \`React.FC\`. Define props directly: \`function Button({ label, onClick }: ButtonProps)\`.
+
+## Hook Hygiene & State Management
+- Never use \`useEffect\` to synchronize or derive state that can be computed during render.
+- Keep \`useState\` local to the component that requires it; lift state only when shared by siblings.
+- Custom hooks must start with \`use*\`, reside in \`src/hooks/\`, and return typed arrays or objects.`;
+
+    function copyMdc() {
+      navigator.clipboard.writeText(mdcText).then(() => {
+        const btn = document.getElementById('copy-text');
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy .mdc', 2000);
+      });
+    }
+
+    function downloadMdc() {
+      const blob = new Blob([mdcText], { type: 'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'react-vite.mdc';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>

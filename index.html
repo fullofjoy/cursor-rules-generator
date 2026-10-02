@@ -50,6 +50,10 @@
   <meta property="og:url" content="https://cursor.pacebowl.com/">
   <meta property="og:title" content="Cursor Rules Generator (.mdc) - Modern Multi-File AI Coding Rules Builder">
   <meta property="og:description" content="Generate modular, path-scoped .cursor/rules/*.mdc files for Cursor AI. Instant 1-click download as .zip or single files.">
+  <meta property="og:image" content="https://cursor.pacebowl.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Cursor Rules Generator (.mdc) Preview Card">
   <meta property="og:site_name" content="Cursor Rules Generator">
   <meta property="og:locale" content="en_US">
 
@@ -58,6 +62,8 @@
   <meta name="twitter:url" content="https://cursor.pacebowl.com/">
   <meta name="twitter:title" content="Cursor Rules Generator (.mdc) - Modern AI Coding Rules Builder">
   <meta name="twitter:description" content="Generate modular, path-scoped .cursor/rules/*.mdc files for Cursor AI. Next.js 15, FastAPI, Tailwind v4, Supabase.">
+  <meta name="twitter:image" content="https://cursor.pacebowl.com/og-image.png">
+  <meta name="twitter:image:alt" content="Cursor Rules Generator (.mdc) Preview Card">
 
   <!-- Structured Data: JSON-LD for AEO & GEO (AI Overviews & Perplexity) -->
   <script type="application/ld+json">
@@ -286,6 +292,7 @@
           <span class="hidden sm:inline" data-i18n="nav_coffee">Sponsor</span>
         </a>
         <a href="#faq" class="text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition hidden md:inline" data-i18n="nav_faq">How it Works</a>
+        <a href="/rules/" data-umami-event="header-nav-rules" class="text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-500 font-medium transition hidden sm:inline" data-i18n="nav_rules">Rules Directory</a>
         <a href="/blog/" data-umami-event="header-nav-blog" class="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 font-medium transition" data-i18n="nav_blog">Guides & Blog</a>
         <button id="quick-zip-btn" data-umami-event="header-download-zip" onclick="downloadAllZip()" class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition shadow-sm shadow-indigo-600/30">
           <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -310,6 +317,38 @@
     <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed" data-i18n="hero_desc">
       Old-school monolithic <code class="text-slate-800 dark:text-slate-300 bg-slate-200 dark:bg-slate-800 px-1 py-0.5 rounded text-xs">.cursorrules</code> waste tokens and hallucinate. Configure scoped, path-matched <code class="text-indigo-600 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-950/80 px-1 py-0.5 rounded text-xs">.cursor/rules/*.mdc</code> rule sets in seconds.
     </p>
+
+    <!-- Long-tail Programmatic Quick Links -->
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-2 max-w-3xl mx-auto">
+      <span class="text-xs text-slate-500 font-medium mr-1">Popular Rules:</span>
+      <a href="/rules/nextjs-15.html" class="px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition shadow-xs flex items-center gap-1.5">
+        <span>⚡ Next.js 15</span>
+      </a>
+      <a href="/rules/python-fastapi.html" class="px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition shadow-xs flex items-center gap-1.5">
+        <span>🐍 FastAPI</span>
+      </a>
+      <a href="/rules/react-vite.html" class="px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition shadow-xs flex items-center gap-1.5">
+        <span>⚛️ React 19</span>
+      </a>
+      <a href="/rules/vue3-nuxt.html" class="px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition shadow-xs flex items-center gap-1.5">
+        <span>💚 Vue 3</span>
+      </a>
+      <a href="/rules/supabase.html" class="px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition shadow-xs flex items-center gap-1.5">
+        <span>⚡ Supabase</span>
+      </a>
+      <a href="/rules/tailwind-css.html" class="px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition shadow-xs flex items-center gap-1.5">
+        <span>🎨 Tailwind v4</span>
+      </a>
+      <a href="/rules/golang.html" class="px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition shadow-xs flex items-center gap-1.5">
+        <span>🔷 Golang</span>
+      </a>
+      <a href="/rules/cloudflare-workers.html" class="px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition shadow-xs flex items-center gap-1.5">
+        <span>☁️ Workers</span>
+      </a>
+      <a href="/rules/" class="px-2.5 py-1 rounded-lg text-xs bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">
+        All Rules →
+      </a>
+    </div>
   </section>
 
   <!-- Main App Workspace -->
@@ -1819,11 +1858,34 @@ ${dbContent.trim()}`;
     });
     window.addEventListener('storage', checkCrossDomainSync);
 
+    function applyUrlPresets() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const frontend = params.get('frontend') || params.get('stack');
+        if (frontend) {
+          const radio = document.querySelector(`input[name="frontend"][value="${frontend}"]`);
+          if (radio) radio.checked = true;
+        }
+        const backend = params.get('backend');
+        if (backend) {
+          const radio = document.querySelector(`input[name="backend"][value="${backend}"]`);
+          if (radio) radio.checked = true;
+        }
+        ['tailwind', 'shadcn', 'supabase', 'drizzle', 'zod', 'ai-sdk'].forEach(mod => {
+          if (params.has(mod)) {
+            const el = document.getElementById(`mod-${mod}`);
+            if (el) el.checked = params.get(mod) === '1' || params.get(mod) === 'true';
+          }
+        });
+      } catch(e) {}
+    }
+
     // Initialize on load
     window.addEventListener('DOMContentLoaded', () => {
       const theme = getSharedTheme();
       applyTheme(theme === 'dark', false);
       applyLanguage(getSharedLang(), false);
+      applyUrlPresets();
       updateRules();
       captureUtmParams();
       initMobileBanner();
