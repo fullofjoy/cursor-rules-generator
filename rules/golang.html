@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Golang & Gin/Chi Cursor Rules (.mdc) - Idiomatic Go Microservice Standards</title>
-  <meta name="description" content="Production-tested .cursor/rules/*.mdc configuration for Golang. Enforce idiomatic error handling, context propagation, and zero-allocation struct discipline.">
-  <meta name="keywords" content="golang cursor rules, go gin cursor mdc, go chi cursorrules, idiomatic go ai rules, golang cursor prompt">
+  <title>Golang .cursorrules & .mdc Rules - Idiomatic Go Microservice Standards</title>
+  <meta name="description" content="Production-tested .cursorrules and .cursor/rules/*.mdc configuration for Golang. Enforce idiomatic error handling, context propagation, and zero-allocation struct discipline.">
+  <meta name="keywords" content="cursorrule, cursorrules, .cursorrules, golang cursor rules, go gin cursor mdc, go chi cursorrules, idiomatic go ai rules, golang cursor prompt">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://cursor.pacebowl.com/rules/golang.html">
 
@@ -17,19 +17,19 @@
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://cursor.pacebowl.com/rules/golang.html">
-  <meta property="og:title" content="Golang & Gin/Chi Cursor Rules (.mdc) - Idiomatic Go Microservice Standards">
-  <meta property="og:description" content="Production-tested .cursor/rules/*.mdc configuration for Golang. Enforce idiomatic error handling, context propagation, and zero-allocation struct discipline.">
+  <meta property="og:title" content="Golang .cursorrules & .mdc Rules - Idiomatic Go Microservice Standards">
+  <meta property="og:description" content="Production-tested .cursorrules and .cursor/rules/*.mdc configuration for Golang. Enforce idiomatic error handling, context propagation, and zero-allocation struct discipline.">
   <meta property="og:image" content="https://cursor.pacebowl.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Golang & Gin/Chi Cursor Rules (.mdc) - Idiomatic Go Microservice Standards">
+  <meta property="og:image:alt" content="Golang .cursorrules & .mdc Rules - Idiomatic Go Microservice Standards">
   <meta property="og:site_name" content="Cursor Rules Generator">
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://cursor.pacebowl.com/rules/golang.html">
-  <meta name="twitter:title" content="Golang & Gin/Chi Cursor Rules (.mdc) - Idiomatic Go Microservice Standards">
-  <meta name="twitter:description" content="Production-tested .cursor/rules/*.mdc configuration for Golang. Enforce idiomatic error handling, context propagation, and zero-allocation struct discipline.">
+  <meta name="twitter:title" content="Golang .cursorrules & .mdc Rules - Idiomatic Go Microservice Standards">
+  <meta name="twitter:description" content="Production-tested .cursorrules and .cursor/rules/*.mdc configuration for Golang. Enforce idiomatic error handling, context propagation, and zero-allocation struct discipline.">
   <meta name="twitter:image" content="https://cursor.pacebowl.com/og-image.png">
 
   <!-- Analytics -->
@@ -43,8 +43,8 @@
     "@graph": [
       {
         "@type": "TechArticle",
-        "headline": "Golang & Gin/Chi Microservices Cursor Rules",
-        "description": "Production-tested .cursor/rules/*.mdc configuration for Golang. Enforce idiomatic error handling, context propagation, and zero-allocation struct discipline.",
+        "headline": "Golang & Gin/Chi Microservices .cursorrules (.mdc)",
+        "description": "Production-tested .cursorrules and .cursor/rules/*.mdc configuration for Golang. Enforce idiomatic error handling, context propagation, and zero-allocation struct discipline.",
         "url": "https://cursor.pacebowl.com/rules/golang.html",
         "author": {
           "@type": "Organization",
@@ -165,10 +165,10 @@
         <span class="font-mono text-[11px]">**/*.go</span>
       </div>
       <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
-        Golang & Gin/Chi Microservices Cursor Rules
+        Golang & Gin/Chi Microservices .cursorrules (.mdc)
       </h1>
       <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
-        Production-tested .cursor/rules/*.mdc configuration for Golang. Enforce idiomatic error handling, context propagation, and zero-allocation struct discipline.
+        Production-tested .cursorrules and .cursor/rules/*.mdc configuration for Golang. Enforce idiomatic error handling, context propagation, and zero-allocation struct discipline.
       </p>
     </div>
 
@@ -217,6 +217,23 @@ alwaysApply: false
 - Pass `ctx context.Context` as the very first parameter to any function doing I/O.
 - Always release resources using `defer resp.Body.Close()` or `defer rows.Close()` immediately after checking for errors.
 - Never start unmanaged goroutines without `sync.WaitGroup` or cancellation signals.</code></pre>
+      </div>
+    </div>
+
+    <!-- Community Backlink & Citation Bar (Builds Natural Referring Domains) -->
+    <div class="p-4 rounded-xl bg-slate-100/90 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs mb-10 shadow-xs">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="text-base">⭐</span>
+        <span class="text-slate-700 dark:text-slate-300 font-medium">Using this rule in your open-source project? Reference in your README:</span>
+        <code class="bg-white dark:bg-slate-950 px-2 py-0.5 rounded text-[11px] font-mono border border-slate-200 dark:border-slate-800 text-indigo-600 dark:text-indigo-400 select-all">https://cursor.pacebowl.com/rules/golang.html</code>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="https://github.com/fullofjoy/cursor-rules-generator" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 hover:border-indigo-400 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 transition font-medium flex items-center gap-1.5 shadow-2xs">
+          <span>Star on GitHub</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Production%20.cursorrules%20and%20.mdc%20configuration%20for%20Golang:%20https://cursor.pacebowl.com/rules/golang.html" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 hover:border-sky-400 border border-sky-200 dark:border-sky-800 text-sky-600 dark:text-sky-300 transition font-medium shadow-2xs">
+          Share on X
+        </a>
       </div>
     </div>
 

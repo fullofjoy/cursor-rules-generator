@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cloudflare Workers & Hono Cursor Rules (.mdc) - Edge Serverless Standards</title>
-  <meta name="description" content="High-performance .cursor/rules/*.mdc configuration for Cloudflare Workers and Hono. Optimize edge startup times, D1 database queries, and KV caching.">
-  <meta name="keywords" content="cloudflare workers cursor rules, hono cursor mdc, cloudflare d1 cursorrules, cloudflare edge serverless ai rules, wrangler cursor prompt">
+  <title>Cloudflare Workers .cursorrules & .mdc Rules - Edge Serverless Standards</title>
+  <meta name="description" content="High-performance .cursorrules and .cursor/rules/*.mdc configuration for Cloudflare Workers and Hono. Optimize edge startup times, D1 database queries, and KV caching.">
+  <meta name="keywords" content="cursorrule, cursorrules, .cursorrules, cloudflare workers cursor rules, hono cursor mdc, cloudflare d1 cursorrules, cloudflare edge serverless ai rules, wrangler cursor prompt">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://cursor.pacebowl.com/rules/cloudflare-workers.html">
 
@@ -17,19 +17,19 @@
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://cursor.pacebowl.com/rules/cloudflare-workers.html">
-  <meta property="og:title" content="Cloudflare Workers & Hono Cursor Rules (.mdc) - Edge Serverless Standards">
-  <meta property="og:description" content="High-performance .cursor/rules/*.mdc configuration for Cloudflare Workers and Hono. Optimize edge startup times, D1 database queries, and KV caching.">
+  <meta property="og:title" content="Cloudflare Workers .cursorrules & .mdc Rules - Edge Serverless Standards">
+  <meta property="og:description" content="High-performance .cursorrules and .cursor/rules/*.mdc configuration for Cloudflare Workers and Hono. Optimize edge startup times, D1 database queries, and KV caching.">
   <meta property="og:image" content="https://cursor.pacebowl.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Cloudflare Workers & Hono Cursor Rules (.mdc) - Edge Serverless Standards">
+  <meta property="og:image:alt" content="Cloudflare Workers .cursorrules & .mdc Rules - Edge Serverless Standards">
   <meta property="og:site_name" content="Cursor Rules Generator">
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://cursor.pacebowl.com/rules/cloudflare-workers.html">
-  <meta name="twitter:title" content="Cloudflare Workers & Hono Cursor Rules (.mdc) - Edge Serverless Standards">
-  <meta name="twitter:description" content="High-performance .cursor/rules/*.mdc configuration for Cloudflare Workers and Hono. Optimize edge startup times, D1 database queries, and KV caching.">
+  <meta name="twitter:title" content="Cloudflare Workers .cursorrules & .mdc Rules - Edge Serverless Standards">
+  <meta name="twitter:description" content="High-performance .cursorrules and .cursor/rules/*.mdc configuration for Cloudflare Workers and Hono. Optimize edge startup times, D1 database queries, and KV caching.">
   <meta name="twitter:image" content="https://cursor.pacebowl.com/og-image.png">
 
   <!-- Analytics -->
@@ -43,8 +43,8 @@
     "@graph": [
       {
         "@type": "TechArticle",
-        "headline": "Cloudflare Workers & Hono Edge Serverless Cursor Rules",
-        "description": "High-performance .cursor/rules/*.mdc configuration for Cloudflare Workers and Hono. Optimize edge startup times, D1 database queries, and KV caching.",
+        "headline": "Cloudflare Workers & Hono Edge Serverless .cursorrules (.mdc)",
+        "description": "High-performance .cursorrules and .cursor/rules/*.mdc configuration for Cloudflare Workers and Hono. Optimize edge startup times, D1 database queries, and KV caching.",
         "url": "https://cursor.pacebowl.com/rules/cloudflare-workers.html",
         "author": {
           "@type": "Organization",
@@ -165,10 +165,10 @@
         <span class="font-mono text-[11px]">worker/**/*.{ts,js}, src/**/*.{ts,js}</span>
       </div>
       <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
-        Cloudflare Workers & Hono Edge Serverless Cursor Rules
+        Cloudflare Workers & Hono Edge Serverless .cursorrules (.mdc)
       </h1>
       <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
-        High-performance .cursor/rules/*.mdc configuration for Cloudflare Workers and Hono. Optimize edge startup times, D1 database queries, and KV caching.
+        High-performance .cursorrules and .cursor/rules/*.mdc configuration for Cloudflare Workers and Hono. Optimize edge startup times, D1 database queries, and KV caching.
       </p>
     </div>
 
@@ -217,6 +217,23 @@ alwaysApply: false
 - Type your Hono instance with the environment bindings: `const app = new Hono<{ Bindings: Env }>()`.
 - Always return typed JSON using `c.json({ ... }, 200)` and handle errors with `app.onError()`.
 - Ensure all asynchronous background tasks use `ctx.waitUntil(...)` so execution completes reliably.</code></pre>
+      </div>
+    </div>
+
+    <!-- Community Backlink & Citation Bar (Builds Natural Referring Domains) -->
+    <div class="p-4 rounded-xl bg-slate-100/90 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs mb-10 shadow-xs">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="text-base">⭐</span>
+        <span class="text-slate-700 dark:text-slate-300 font-medium">Using this rule in your open-source project? Reference in your README:</span>
+        <code class="bg-white dark:bg-slate-950 px-2 py-0.5 rounded text-[11px] font-mono border border-slate-200 dark:border-slate-800 text-indigo-600 dark:text-indigo-400 select-all">https://cursor.pacebowl.com/rules/cloudflare-workers.html</code>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="https://github.com/fullofjoy/cursor-rules-generator" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 hover:border-indigo-400 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 transition font-medium flex items-center gap-1.5 shadow-2xs">
+          <span>Star on GitHub</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Production%20.cursorrules%20and%20.mdc%20configuration%20for%20Cloudflare Workers:%20https://cursor.pacebowl.com/rules/cloudflare-workers.html" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 hover:border-sky-400 border border-sky-200 dark:border-sky-800 text-sky-600 dark:text-sky-300 transition font-medium shadow-2xs">
+          Share on X
+        </a>
       </div>
     </div>
 

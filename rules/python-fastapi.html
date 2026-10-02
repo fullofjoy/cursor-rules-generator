@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python FastAPI Cursor Rules (.mdc) - Pydantic v2 & Async Best Practices</title>
-  <meta name="description" content="Production-grade .cursor/rules/*.mdc configuration for FastAPI and Pydantic v2. Enforce dependency injection, async I/O discipline, and strict typing.">
-  <meta name="keywords" content="fastapi cursor rules, python cursor mdc, pydantic v2 cursor rules, fastapi async best practices cursor, python cursorrules">
+  <title>Python FastAPI .cursorrules & .mdc Rules - Pydantic v2 Best Practices</title>
+  <meta name="description" content="Production-grade .cursorrules and .cursor/rules/*.mdc configuration for FastAPI and Pydantic v2. Enforce dependency injection, async I/O discipline, and strict typing.">
+  <meta name="keywords" content="cursorrule, cursorrules, .cursorrules, fastapi cursor rules, python cursor mdc, pydantic v2 cursor rules, fastapi async best practices cursor, python cursorrules">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://cursor.pacebowl.com/rules/python-fastapi.html">
 
@@ -17,19 +17,19 @@
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://cursor.pacebowl.com/rules/python-fastapi.html">
-  <meta property="og:title" content="Python FastAPI Cursor Rules (.mdc) - Pydantic v2 & Async Best Practices">
-  <meta property="og:description" content="Production-grade .cursor/rules/*.mdc configuration for FastAPI and Pydantic v2. Enforce dependency injection, async I/O discipline, and strict typing.">
+  <meta property="og:title" content="Python FastAPI .cursorrules & .mdc Rules - Pydantic v2 Best Practices">
+  <meta property="og:description" content="Production-grade .cursorrules and .cursor/rules/*.mdc configuration for FastAPI and Pydantic v2. Enforce dependency injection, async I/O discipline, and strict typing.">
   <meta property="og:image" content="https://cursor.pacebowl.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Python FastAPI Cursor Rules (.mdc) - Pydantic v2 & Async Best Practices">
+  <meta property="og:image:alt" content="Python FastAPI .cursorrules & .mdc Rules - Pydantic v2 Best Practices">
   <meta property="og:site_name" content="Cursor Rules Generator">
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://cursor.pacebowl.com/rules/python-fastapi.html">
-  <meta name="twitter:title" content="Python FastAPI Cursor Rules (.mdc) - Pydantic v2 & Async Best Practices">
-  <meta name="twitter:description" content="Production-grade .cursor/rules/*.mdc configuration for FastAPI and Pydantic v2. Enforce dependency injection, async I/O discipline, and strict typing.">
+  <meta name="twitter:title" content="Python FastAPI .cursorrules & .mdc Rules - Pydantic v2 Best Practices">
+  <meta name="twitter:description" content="Production-grade .cursorrules and .cursor/rules/*.mdc configuration for FastAPI and Pydantic v2. Enforce dependency injection, async I/O discipline, and strict typing.">
   <meta name="twitter:image" content="https://cursor.pacebowl.com/og-image.png">
 
   <!-- Analytics -->
@@ -43,8 +43,8 @@
     "@graph": [
       {
         "@type": "TechArticle",
-        "headline": "Python FastAPI & Pydantic v2 Cursor Rules",
-        "description": "Production-grade .cursor/rules/*.mdc configuration for FastAPI and Pydantic v2. Enforce dependency injection, async I/O discipline, and strict typing.",
+        "headline": "Python FastAPI & Pydantic v2 .cursorrules (.mdc)",
+        "description": "Production-grade .cursorrules and .cursor/rules/*.mdc configuration for FastAPI and Pydantic v2. Enforce dependency injection, async I/O discipline, and strict typing.",
         "url": "https://cursor.pacebowl.com/rules/python-fastapi.html",
         "author": {
           "@type": "Organization",
@@ -173,10 +173,10 @@
         <span class="font-mono text-[11px]">**/*.py, api/**/*.py, routers/**/*.py</span>
       </div>
       <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
-        Python FastAPI & Pydantic v2 Cursor Rules
+        Python FastAPI & Pydantic v2 .cursorrules (.mdc)
       </h1>
       <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
-        Production-grade .cursor/rules/*.mdc configuration for FastAPI and Pydantic v2. Enforce dependency injection, async I/O discipline, and strict typing.
+        Production-grade .cursorrules and .cursor/rules/*.mdc configuration for FastAPI and Pydantic v2. Enforce dependency injection, async I/O discipline, and strict typing.
       </p>
     </div>
 
@@ -231,6 +231,23 @@ alwaysApply: false
 - Use `async def` for I/O-bound operations (database queries, external HTTP calls via `httpx`).
 - Use standard `def` for synchronous CPU-bound operations or libraries without async support (e.g. pandas, Pillow).
 - Always raise `HTTPException(status_code=..., detail=...)` with standard `status` constants.</code></pre>
+      </div>
+    </div>
+
+    <!-- Community Backlink & Citation Bar (Builds Natural Referring Domains) -->
+    <div class="p-4 rounded-xl bg-slate-100/90 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs mb-10 shadow-xs">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="text-base">⭐</span>
+        <span class="text-slate-700 dark:text-slate-300 font-medium">Using this rule in your open-source project? Reference in your README:</span>
+        <code class="bg-white dark:bg-slate-950 px-2 py-0.5 rounded text-[11px] font-mono border border-slate-200 dark:border-slate-800 text-indigo-600 dark:text-indigo-400 select-all">https://cursor.pacebowl.com/rules/python-fastapi.html</code>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="https://github.com/fullofjoy/cursor-rules-generator" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 hover:border-indigo-400 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 transition font-medium flex items-center gap-1.5 shadow-2xs">
+          <span>Star on GitHub</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=Production%20.cursorrules%20and%20.mdc%20configuration%20for%20Python FastAPI:%20https://cursor.pacebowl.com/rules/python-fastapi.html" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 hover:border-sky-400 border border-sky-200 dark:border-sky-800 text-sky-600 dark:text-sky-300 transition font-medium shadow-2xs">
+          Share on X
+        </a>
       </div>
     </div>
 
