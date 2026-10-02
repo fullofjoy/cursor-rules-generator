@@ -28,6 +28,8 @@ Cursor Rules Generator (https://cursor.pacebowl.com/) is a developer utility des
 - [Golang Rules](https://cursor.pacebowl.com/rules/golang.html): Idiomatic error wrapping, context.Context propagation, and struct tags.
 - [Cloudflare Workers Rules](https://cursor.pacebowl.com/rules/cloudflare-workers.html): Hono routing, edge D1/KV storage, and serverless constraints.
 - [Rules Directory Hub](https://cursor.pacebowl.com/rules/): Complete overview of production-grade Cursor rules.
+- [Rules Open API (JSON)](https://cursor.pacebowl.com/api/rules.json): Direct structured JSON catalog of all 8 production rules and raw .mdc contents.
+- [Model Context Protocol Specification](https://cursor.pacebowl.com/api/mcp.json): MCP server manifest and client configuration blueprint for IDE agents.
 
 ## Modern .mdc vs Legacy .cursorrules
 - **Legacy `.cursorrules`**: Single monolithic file injected into every prompt. Leads to high token usage, context contamination, and conflicting instructions.

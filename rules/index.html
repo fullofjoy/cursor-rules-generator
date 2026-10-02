@@ -16,71 +16,178 @@
 <body class="bg-slate-50 dark:bg-[#0b0f19] text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans antialiased">
   <header class="border-b border-slate-200 dark:border-slate-800/80 bg-white/80 dark:bg-[#0b0f19]/80 backdrop-blur sticky top-0 z-50">
     <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-      <a href="/" class="font-bold text-base text-slate-900 dark:text-white">Cursor Rules <span class="text-indigo-400 font-mono text-xs">.mdc</span></a>
-      <a href="/" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white">⚡ Launch Generator</a>
+      <div class="flex items-center space-x-3">
+        <a href="https://pacebowl.com" class="text-xs font-mono text-slate-400 hover:text-white transition flex items-center gap-1.5 py-1 px-2.5 rounded-lg bg-slate-900 border border-slate-800">
+          <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+          <span>PaceBowl</span>
+        </a>
+        <span class="text-slate-600 font-mono">/</span>
+        <a href="/" class="font-bold text-base text-slate-900 dark:text-white">Cursor Rules <span class="text-indigo-400 font-mono text-xs">.mdc</span></a>
+      </div>
+      <a href="/" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/20 transition">⚡ Launch Generator</a>
     </div>
   </header>
   <main class="max-w-5xl mx-auto px-4 py-12 flex-1 w-full">
-    <h1 class="text-3xl font-extrabold text-white mb-3">Cursor .mdc Framework Rules Directory</h1>
-    <p class="text-sm text-slate-400 mb-8 max-w-2xl">Production-tested multi-file rules tailored with precise glob patterns for Cursor AI, Windsurf, and Claude Code.</p>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <a href="/rules/nextjs-15.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group">
+    <!-- Header Hero -->
+    <div class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/80 border border-indigo-800 text-indigo-300 text-xs font-mono font-medium mb-3">
+        <span>8 Production Framework Presets</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white mb-3 tracking-tight">Cursor .mdc Framework Rules Directory</h1>
+      <p class="text-sm text-slate-400 max-w-2xl leading-relaxed">
+        Production-tested multi-file rules tailored with precise glob patterns for Cursor AI, Windsurf, and Claude Code. Prevent context bloat and hallucination by scoping prompts to exact file paths.
+      </p>
+    </div>
+
+    <!-- Developer API & MCP Integration Box -->
+    <div class="p-5 rounded-2xl bg-gradient-to-r from-indigo-950/50 via-slate-900 to-purple-950/40 border border-indigo-500/30 mb-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-400">Open API & MCP Server</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">v1.0</span>
+        </div>
+        <p class="text-xs text-slate-300">
+          Directly fetch structured JSON rules or connect your IDE agent via Model Context Protocol:
+        </p>
+        <code class="text-[11px] font-mono text-emerald-400 bg-slate-950 px-2 py-1 rounded mt-2 inline-block border border-slate-800">
+          curl -s https://cursor.pacebowl.com/api/rules.json
+        </code>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="/api/rules.json" target="_blank" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-mono text-xs border border-slate-700 transition">
+          rules.json
+        </a>
+        <a href="/api/mcp.json" target="_blank" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-mono text-xs shadow-sm transition">
+          mcp.json
+        </a>
+      </div>
+    </div>
+
+    <!-- Rules Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-14">
+      <a href="/rules/nextjs-15.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group hover:shadow-lg hover:shadow-indigo-950/30">
         <div class="flex items-center justify-between mb-2">
           <h2 class="text-base font-bold text-white group-hover:text-indigo-400 transition">Next.js 15</h2>
           <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">.mdc</span>
         </div>
-        <p class="text-xs text-slate-400 line-clamp-2">Production-tested .cursor/rules/*.mdc configuration for Next.js 15. Enforce React Server Components (RSC), Zod-validated Server Actions, and prevent AI context pollution.</p>
+        <p class="text-xs text-slate-400 line-clamp-2 mb-3">Production-tested .cursor/rules/*.mdc configuration for Next.js 15. Enforce React Server Components (RSC), Zod-validated Server Actions, and prevent AI context pollution.</p>
+        <div class="text-[11px] font-mono text-slate-500 flex items-center gap-1.5">
+          <span>Glob:</span>
+          <span class="text-slate-400">app/**/*.{ts,tsx}, components/**/*.{ts,tsx}</span>
+        </div>
       </a>
-      <a href="/rules/python-fastapi.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group">
+      <a href="/rules/python-fastapi.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group hover:shadow-lg hover:shadow-indigo-950/30">
         <div class="flex items-center justify-between mb-2">
           <h2 class="text-base font-bold text-white group-hover:text-indigo-400 transition">Python FastAPI</h2>
           <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">.mdc</span>
         </div>
-        <p class="text-xs text-slate-400 line-clamp-2">Production-grade .cursor/rules/*.mdc configuration for FastAPI and Pydantic v2. Enforce dependency injection, async I/O discipline, and strict typing.</p>
+        <p class="text-xs text-slate-400 line-clamp-2 mb-3">Production-grade .cursor/rules/*.mdc configuration for FastAPI and Pydantic v2. Enforce dependency injection, async I/O discipline, and strict typing.</p>
+        <div class="text-[11px] font-mono text-slate-500 flex items-center gap-1.5">
+          <span>Glob:</span>
+          <span class="text-slate-400">**/*.py, api/**/*.py, routers/**/*.py</span>
+        </div>
       </a>
-      <a href="/rules/react-vite.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group">
+      <a href="/rules/react-vite.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group hover:shadow-lg hover:shadow-indigo-950/30">
         <div class="flex items-center justify-between mb-2">
           <h2 class="text-base font-bold text-white group-hover:text-indigo-400 transition">React 19 / Vite</h2>
           <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">.mdc</span>
         </div>
-        <p class="text-xs text-slate-400 line-clamp-2">Production-ready Cursor .mdc rules for React 19 and Vite. Enforce clean custom hooks, prevent redundant useEffect cycles, and guarantee strict TypeScript safety.</p>
+        <p class="text-xs text-slate-400 line-clamp-2 mb-3">Production-ready Cursor .mdc rules for React 19 and Vite. Enforce clean custom hooks, prevent redundant useEffect cycles, and guarantee strict TypeScript safety.</p>
+        <div class="text-[11px] font-mono text-slate-500 flex items-center gap-1.5">
+          <span>Glob:</span>
+          <span class="text-slate-400">src/**/*.{ts,tsx}</span>
+        </div>
       </a>
-      <a href="/rules/vue3-nuxt.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group">
+      <a href="/rules/vue3-nuxt.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group hover:shadow-lg hover:shadow-indigo-950/30">
         <div class="flex items-center justify-between mb-2">
           <h2 class="text-base font-bold text-white group-hover:text-indigo-400 transition">Vue 3 / Nuxt</h2>
           <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">.mdc</span>
         </div>
-        <p class="text-xs text-slate-400 line-clamp-2">Production .cursor/rules/*.mdc configuration for Vue 3 and Nuxt. Enforce <script setup lang='ts'>, Pinia stores, and clean reactivity patterns.</p>
+        <p class="text-xs text-slate-400 line-clamp-2 mb-3">Production .cursor/rules/*.mdc configuration for Vue 3 and Nuxt. Enforce <script setup lang='ts'>, Pinia stores, and clean reactivity patterns.</p>
+        <div class="text-[11px] font-mono text-slate-500 flex items-center gap-1.5">
+          <span>Glob:</span>
+          <span class="text-slate-400">**/*.vue, stores/**/*.ts, composables/**/*.ts</span>
+        </div>
       </a>
-      <a href="/rules/supabase.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group">
+      <a href="/rules/supabase.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group hover:shadow-lg hover:shadow-indigo-950/30">
         <div class="flex items-center justify-between mb-2">
           <h2 class="text-base font-bold text-white group-hover:text-indigo-400 transition">Supabase + RLS</h2>
           <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">.mdc</span>
         </div>
-        <p class="text-xs text-slate-400 line-clamp-2">Security-focused .cursor/rules/*.mdc guidelines for Supabase. Mandate Row Level Security (RLS) policies, prevent key leaks, and enforce typed queries.</p>
+        <p class="text-xs text-slate-400 line-clamp-2 mb-3">Security-focused .cursor/rules/*.mdc guidelines for Supabase. Mandate Row Level Security (RLS) policies, prevent key leaks, and enforce typed queries.</p>
+        <div class="text-[11px] font-mono text-slate-500 flex items-center gap-1.5">
+          <span>Glob:</span>
+          <span class="text-slate-400">supabase/**/*.{sql,ts}, lib/supabase/**/*.{ts,tsx}</span>
+        </div>
       </a>
-      <a href="/rules/tailwind-css.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group">
+      <a href="/rules/tailwind-css.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group hover:shadow-lg hover:shadow-indigo-950/30">
         <div class="flex items-center justify-between mb-2">
           <h2 class="text-base font-bold text-white group-hover:text-indigo-400 transition">Tailwind v4</h2>
           <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">.mdc</span>
         </div>
-        <p class="text-xs text-slate-400 line-clamp-2">High-velocity .cursor/rules/*.mdc configuration for Tailwind CSS v4. Enforce cn() utility merging, mobile-first responsiveness, and prevent arbitrary class sprawl.</p>
+        <p class="text-xs text-slate-400 line-clamp-2 mb-3">High-velocity .cursor/rules/*.mdc configuration for Tailwind CSS v4. Enforce cn() utility merging, mobile-first responsiveness, and prevent arbitrary class sprawl.</p>
+        <div class="text-[11px] font-mono text-slate-500 flex items-center gap-1.5">
+          <span>Glob:</span>
+          <span class="text-slate-400">**/*.{tsx,jsx,vue,svelte,html,css}</span>
+        </div>
       </a>
-      <a href="/rules/golang.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group">
+      <a href="/rules/golang.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group hover:shadow-lg hover:shadow-indigo-950/30">
         <div class="flex items-center justify-between mb-2">
           <h2 class="text-base font-bold text-white group-hover:text-indigo-400 transition">Golang</h2>
           <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">.mdc</span>
         </div>
-        <p class="text-xs text-slate-400 line-clamp-2">Production-tested .cursor/rules/*.mdc configuration for Golang. Enforce idiomatic error handling, context propagation, and zero-allocation struct discipline.</p>
+        <p class="text-xs text-slate-400 line-clamp-2 mb-3">Production-tested .cursor/rules/*.mdc configuration for Golang. Enforce idiomatic error handling, context propagation, and zero-allocation struct discipline.</p>
+        <div class="text-[11px] font-mono text-slate-500 flex items-center gap-1.5">
+          <span>Glob:</span>
+          <span class="text-slate-400">**/*.go</span>
+        </div>
       </a>
-      <a href="/rules/cloudflare-workers.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group">
+      <a href="/rules/cloudflare-workers.html" class="p-5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-indigo-500/60 transition group hover:shadow-lg hover:shadow-indigo-950/30">
         <div class="flex items-center justify-between mb-2">
           <h2 class="text-base font-bold text-white group-hover:text-indigo-400 transition">Cloudflare Workers</h2>
           <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">.mdc</span>
         </div>
-        <p class="text-xs text-slate-400 line-clamp-2">High-performance .cursor/rules/*.mdc configuration for Cloudflare Workers and Hono. Optimize edge startup times, D1 database queries, and KV caching.</p>
+        <p class="text-xs text-slate-400 line-clamp-2 mb-3">High-performance .cursor/rules/*.mdc configuration for Cloudflare Workers and Hono. Optimize edge startup times, D1 database queries, and KV caching.</p>
+        <div class="text-[11px] font-mono text-slate-500 flex items-center gap-1.5">
+          <span>Glob:</span>
+          <span class="text-slate-400">worker/**/*.{ts,js}, src/**/*.{ts,js}</span>
+        </div>
       </a>
     </div>
+
+    <!-- RelNav: PaceBowl Ecosystem Matrix Grid -->
+    <section class="border-t border-slate-800/80 pt-8 mt-12 w-full">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">PaceBowl Suite Matrix</h3>
+        <a href="https://pacebowl.com" class="text-xs font-mono text-indigo-400 hover:text-indigo-300 transition">Mothership Hub &rarr;</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <a href="https://comfy.pacebowl.com" class="p-3 rounded-xl border border-slate-800/70 bg-slate-900/40 hover:border-pink-500/40 hover:bg-slate-900/80 transition flex items-start gap-3 group">
+          <span class="w-8 h-8 rounded-lg bg-pink-500/10 text-pink-400 flex items-center justify-center font-bold text-xs shrink-0 border border-pink-500/20 group-hover:scale-105 transition">CF</span>
+          <div>
+            <div class="font-semibold text-xs text-white group-hover:text-pink-300 transition">ComfyUI Prompt Studio</div>
+            <div class="text-[11px] text-slate-400 leading-snug mt-0.5">1MP Latent calculator and T5 prompt builder for Flux.1.</div>
+          </div>
+        </a>
+        <a href="https://hot.pacebowl.com" class="p-3 rounded-xl border border-slate-800/70 bg-slate-900/40 hover:border-amber-500/40 hover:bg-slate-900/80 transition flex items-start gap-3 group">
+          <span class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-xs shrink-0 border border-amber-500/20 group-hover:scale-105 transition">AI</span>
+          <div>
+            <div class="font-semibold text-xs text-white group-hover:text-amber-300 transition">Tech News &bull; AI Radar</div>
+            <div class="text-[11px] text-slate-400 leading-snug mt-0.5">Autonomous breaking AI news and open-source models radar.</div>
+          </div>
+        </a>
+        <a href="https://geo.pacebowl.com" class="p-3 rounded-xl border border-slate-800/70 bg-slate-900/40 hover:border-emerald-500/40 hover:bg-slate-900/80 transition flex items-start gap-3 group">
+          <span class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0 border border-emerald-500/20 group-hover:scale-105 transition">GEO</span>
+          <div>
+            <div class="font-semibold text-xs text-white group-hover:text-emerald-300 transition">OpenGEO Attribution</div>
+            <div class="text-[11px] text-slate-400 leading-snug mt-0.5">Track AI search engine visibility and conversion attribution.</div>
+          </div>
+        </a>
+      </div>
+    </section>
   </main>
+  <footer class="border-t border-slate-800/80 py-6 text-center text-xs text-slate-500">
+    PaceBowl Cursor Rules &copy; 2026. Part of the <a href="https://pacebowl.com" class="text-indigo-400 hover:underline">PaceBowl Suite Matrix</a>.
+  </footer>
 </body>
 </html>

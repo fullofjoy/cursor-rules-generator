@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "name": "pacebowl-cursor-rules",
+  "description": "Model Context Protocol (MCP) server & rule provider for Cursor IDE, Windsurf, and Claude Code.",
+  "version": "1.0.0",
+  "vendor": "PaceBowl Tools (https://pacebowl.com)",
+  "capabilities": {
+    "tools": [
+      {
+        "name": "list_rules",
+        "description": "Lists all available framework rule templates with glob patterns and descriptions."
+      },
+      {
+        "name": "get_rule",
+        "description": "Fetches production-ready .mdc content for a given framework slug (e.g., nextjs-15, python-fastapi)."
+      }
+    ],
+    "resources": [
+      {
+        "uri": "rules://catalog",
+        "name": "Rules Catalog",
+        "mimeType": "application/json"
+      }
+    ]
+  },
+  "cursor_setup": {
+    "mcpServers": {
+      "pacebowl-rules": {
+        "type": "command",
+        "command": "npx",
+        "args": [
+          "-y",
+          "@pacebowl/cursor-rules-mcp"
+        ]
+      }
+    }
+  },
+  "direct_api_endpoint": "https://cursor.pacebowl.com/api/rules.json"
+}

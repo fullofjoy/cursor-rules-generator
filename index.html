@@ -828,20 +828,80 @@
       </div>
     </div>
 
-    <!-- PaceBowl Matrix Companion Banner -->
-    <div class="mt-8 p-4 rounded-xl bg-gradient-to-r from-slate-900 via-sky-950/20 to-slate-900 border border-sky-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg shadow-sky-500/5">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-lg bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 font-bold text-sm shrink-0">
-          ⚡
+    <!-- Open API & MCP Server Developer Integration (Inspired by seo.web.cafe) -->
+    <div class="mt-12 p-6 rounded-2xl bg-gradient-to-r from-indigo-950/40 via-purple-950/30 to-slate-900 border border-indigo-500/30 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center text-indigo-400 font-mono font-bold text-lg shrink-0">
+          MCP
         </div>
         <div>
-          <div class="text-xs font-bold text-white">Also in the PaceBowl Suite: ComfyUI Prompt & Latent Studio</div>
-          <div class="text-[11px] text-slate-400 mt-0.5">Calculate trained 1-Megapixel Empty Latent dimensions and generate T5 natural language prompts with 0 GPU memory overhead.</div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-sm text-white" data-i18n="mcp_title">Use PaceBowl Tools in Cursor & Claude via MCP / Open API</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-semibold">Open Standard</span>
+          </div>
+          <p class="text-xs text-slate-400 mt-1 leading-relaxed" data-i18n="mcp_desc">
+            Directly fetch modular .mdc rules, validate glob paths, and query production blueprints from your local AI coding agent without opening the browser.
+          </p>
         </div>
       </div>
-      <a href="https://comfy.pacebowl.com" data-umami-event="companion-banner-comfy" class="shrink-0 px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold text-xs transition shadow-sm shadow-sky-500/20">
-        Open Comfy Studio →
-      </a>
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="/rules/" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-md shadow-indigo-600/20 transition flex items-center gap-1.5" data-i18n="mcp_btn">
+          <span>Browse Rules API</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- RelNav: PaceBowl Ecosystem Matrix Grid (Inspired by seo.web.cafe) -->
+    <div class="mt-12 pt-8 border-t border-slate-800/80">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+            <span data-i18n="relnav_title">Explore PaceBowl Suite Matrix</span>
+          </h3>
+          <p class="text-xs text-slate-400 mt-0.5" data-i18n="relnav_sub">Zero-friction client-side power tools crafted for the modern AI workflow.</p>
+        </div>
+        <a href="https://pacebowl.com" class="text-xs text-indigo-400 hover:underline font-medium hidden sm:inline" data-i18n="relnav_hub">Mothership Hub →</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Card 1: ComfyUI Prompt Studio -->
+        <a href="https://comfy.pacebowl.com" data-umami-event="relnav-click-comfy" class="p-4 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-sky-500/60 transition group flex flex-col justify-between shadow-xs">
+          <div class="flex items-center gap-3 mb-2.5">
+            <div class="w-9 h-9 rounded-lg bg-sky-600 flex items-center justify-center text-white font-bold text-xs shadow-sm">CF</div>
+            <div>
+              <h4 class="text-sm font-bold text-white group-hover:text-sky-400 transition" data-i18n="rel_cf_title">ComfyUI Prompt Studio</h4>
+              <span class="text-[10px] font-mono text-slate-500">comfy.pacebowl.com</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed" data-i18n="rel_cf_desc">1MP Empty Latent calculator and natural language T5 prompt builder for Flux.1 and SDXL.</p>
+        </a>
+
+        <!-- Card 2: AI Radar & Hotlist -->
+        <a href="https://hot.pacebowl.com" data-umami-event="relnav-click-hot" class="p-4 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-rose-500/60 transition group flex flex-col justify-between shadow-xs">
+          <div class="flex items-center gap-3 mb-2.5">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-rose-500 to-amber-500 flex items-center justify-center text-white text-base shadow-sm">🔥</div>
+            <div>
+              <h4 class="text-sm font-bold text-white group-hover:text-rose-400 transition" data-i18n="rel_hot_title">AI Radar & Hotlist</h4>
+              <span class="text-[10px] font-mono text-slate-500">hot.pacebowl.com</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed" data-i18n="rel_hot_desc">24/7 automated tech radar tracking frontier papers, LLM releases, and daily AI digests.</p>
+        </a>
+
+        <!-- Card 3: OpenGEO Studio -->
+        <a href="https://geo.pacebowl.com" data-umami-event="relnav-click-geo" class="p-4 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-emerald-500/60 transition group flex flex-col justify-between shadow-xs">
+          <div class="flex items-center gap-3 mb-2.5">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-white font-bold text-xs shadow-sm">GEO</div>
+            <div>
+              <h4 class="text-sm font-bold text-white group-hover:text-emerald-400 transition" data-i18n="rel_geo_title">OpenGEO Attribution</h4>
+              <span class="text-[10px] font-mono text-slate-500">geo.pacebowl.com</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed" data-i18n="rel_geo_desc">Track AI search referrals and revenue conversions from Perplexity, ChatGPT, and Claude.</p>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -1627,6 +1687,18 @@ ${dbContent.trim()}`;
         banner_desc: 'Calculate trained 1-Megapixel Empty Latent dimensions and generate T5 natural language prompts with 0 GPU memory overhead.',
         banner_btn: 'Open Comfy Studio →',
         footer_brand: 'PaceBowl Tools &copy; 2026. Part of the <a href="https://pacebowl.com" class="text-indigo-600 dark:text-indigo-400 hover:underline">PaceBowl Suite Matrix</a>.',
+        mcp_title: 'Use PaceBowl Tools in Cursor & Claude via MCP / Open API',
+        mcp_desc: 'Directly fetch modular .mdc rules, validate glob paths, and query production blueprints from your local AI coding agent without opening the browser.',
+        mcp_btn: 'Browse Rules API',
+        relnav_title: 'Explore PaceBowl Suite Matrix',
+        relnav_sub: 'Zero-friction client-side power tools crafted for the modern AI workflow.',
+        relnav_hub: 'Mothership Hub →',
+        rel_cf_title: 'ComfyUI Prompt Studio',
+        rel_cf_desc: '1MP Empty Latent calculator and natural language T5 prompt builder for Flux.1 and SDXL.',
+        rel_hot_title: 'AI Radar & Hotlist',
+        rel_hot_desc: '24/7 automated tech radar tracking frontier papers, LLM releases, and daily AI digests.',
+        rel_geo_title: 'OpenGEO Attribution',
+        rel_geo_desc: 'Track AI search referrals and revenue conversions from Perplexity, ChatGPT, and Claude.',
         footer_hot: '🔥 AI Radar',
         footer_comfy: '⚡ ComfyUI Studio',
         footer_blog: 'Blog & Guides',
@@ -1743,6 +1815,18 @@ ${dbContent.trim()}`;
         mobile_banner_btn: '复制链接',
         nav_coffee: '赞助支持',
         footer_coffee: '请开发者喝杯咖啡',
+        mcp_title: '在 Cursor 与 Claude 中通过 MCP / 开放 API 直接调用 PaceBowl',
+        mcp_desc: '无需离开本地 IDE，直接在本地 AI 编码助手内拉取生产级 .mdc 规则、模拟 Glob 路径并注入最佳工程规范。',
+        mcp_btn: '浏览规则 API 中心',
+        relnav_title: '探索 PaceBowl 生产力工具矩阵',
+        relnav_sub: '专为现代 AI 创作者与全栈工程师打造的零摩擦纯客户端工具箱。',
+        relnav_hub: '母舰大厅 →',
+        rel_cf_title: 'ComfyUI 提示词工坊',
+        rel_cf_desc: 'Flux.1 与 SDXL 专属 100万像素训练桶尺寸计算器与自然语言长提示词生成器。',
+        rel_hot_title: '科技热榜 · AI Radar',
+        rel_hot_desc: '24h 全天候自主追踪全球大模型突破、开源模型与前沿论文速报。',
+        rel_geo_title: 'OpenGEO 商业归因',
+        rel_geo_desc: '监控 Perplexity、ChatGPT、Claude 搜索引擎带来的流量与 Stripe 转化。',
         magic_title: '粘贴 package.json 自动识别配置',
         magic_sample: '载入范例',
         magic_desc: '粘贴依赖代码，0.1秒自动匹配并勾选专属技术栈规则：',
