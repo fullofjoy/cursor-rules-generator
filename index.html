@@ -683,6 +683,137 @@
     </div>
   </main>
 
+  <!-- Interactive Token ROI & Cost Savings Calculator (Inspired by GeFei's Calculator Playbook) -->
+  <section id="token-calculator" class="max-w-5xl mx-auto px-4 py-8 w-full">
+    <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-indigo-950/40 via-slate-900 to-purple-950/30 border border-indigo-500/30 shadow-2xl relative overflow-hidden">
+      <!-- Glow decoration -->
+      <div class="absolute -top-24 -right-24 w-60 h-60 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-6 border-b border-slate-800">
+        <div>
+          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 text-[11px] font-mono font-medium mb-2 border border-indigo-500/30">
+            <span data-i18n="calc_badge">🧮 Developer ROI Calculator</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-white" data-i18n="calc_title">
+            AI Coding Token Cost & Savings Calculator
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-400 mt-1 max-w-xl" data-i18n="calc_sub">
+            Calculate how many wasted tokens and cloud dollars modular <code class="text-indigo-300 font-mono">.mdc</code> rules save your team compared to monolithic <code class="text-rose-400 font-mono">.cursorrules</code>.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="copySavingsReport()" id="copy-savings-btn" class="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition flex items-center gap-1.5 shadow-md shadow-indigo-600/30">
+            <span>📋</span>
+            <span data-i18n="calc_copy_btn">Copy Savings Report</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Controls Column (6 cols) -->
+        <div class="lg:col-span-6 space-y-5">
+          <!-- Team Size Slider -->
+          <div>
+            <div class="flex justify-between items-center text-xs font-medium mb-1.5">
+              <span class="text-slate-300" data-i18n="calc_team">Team Developers</span>
+              <span id="calc-team-val" class="font-mono font-bold text-indigo-400 text-sm">3 engineers</span>
+            </div>
+            <input type="range" id="calc-team-range" min="1" max="50" value="3" oninput="updateTokenCalculator()" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+            <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+              <span>1 solo</span>
+              <span>10 team</span>
+              <span>25 dept</span>
+              <span>50 corp</span>
+            </div>
+          </div>
+
+          <!-- Prompts / Day Slider -->
+          <div>
+            <div class="flex justify-between items-center text-xs font-medium mb-1.5">
+              <span class="text-slate-300" data-i18n="calc_prompts">Daily AI Prompts / Engineer</span>
+              <span id="calc-prompts-val" class="font-mono font-bold text-indigo-400 text-sm">30 prompts/day</span>
+            </div>
+            <input type="range" id="calc-prompts-range" min="5" max="100" step="5" value="30" oninput="updateTokenCalculator()" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+            <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+              <span>5 light</span>
+              <span>30 normal</span>
+              <span>60 heavy</span>
+              <span>100 intense</span>
+            </div>
+          </div>
+
+          <!-- Model Selector -->
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5" data-i18n="calc_model">
+              Active LLM Pricing Tier
+            </label>
+            <select id="calc-model-select" onchange="updateTokenCalculator()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-mono text-slate-200 focus:outline-none focus:border-indigo-500">
+              <option value="3.00" selected>Claude 3.7 Sonnet ($3.00 / 1M Input Tokens)</option>
+              <option value="2.50">GPT-4o ($2.50 / 1M Input Tokens)</option>
+              <option value="0.80">Claude 3.5 Haiku ($0.80 / 1M Input Tokens)</option>
+              <option value="0.55">DeepSeek-V3 / R1 ($0.55 / 1M Input Tokens)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Metrics Display Cards (6 cols) -->
+        <div class="lg:col-span-6 grid grid-cols-2 gap-3.5">
+          <!-- Card 1: Annual Dollar Savings -->
+          <div class="p-4 rounded-xl bg-slate-900/90 border border-emerald-500/40 col-span-2 sm:col-span-1 shadow-lg shadow-emerald-950/20">
+            <div class="text-[11px] font-mono text-emerald-400 font-semibold mb-1" data-i18n="calc_card_savings">
+              Annual Cash Savings
+            </div>
+            <div id="calc-res-annual" class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono tracking-tight">
+              $238.40
+            </div>
+            <div class="text-[10px] text-slate-400 mt-1 leading-snug" data-i18n="calc_card_savings_sub">
+              Saved from unnecessary context injection
+            </div>
+          </div>
+
+          <!-- Card 2: Tokens Saved / Mo -->
+          <div class="p-4 rounded-xl bg-slate-900/90 border border-indigo-500/30 col-span-2 sm:col-span-1">
+            <div class="text-[11px] font-mono text-indigo-400 font-semibold mb-1" data-i18n="calc_card_tokens">
+              Wasted Tokens Prevented
+            </div>
+            <div id="calc-res-tokens" class="text-2xl sm:text-3xl font-extrabold text-white font-mono tracking-tight">
+              6.62 M
+            </div>
+            <div class="text-[10px] text-slate-400 mt-1 leading-snug" data-i18n="calc_card_tokens_sub">
+              Tokens pruned every month via path globs
+            </div>
+          </div>
+
+          <!-- Card 3: Context Reduction % -->
+          <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800">
+            <div class="text-[11px] font-mono text-sky-400 font-semibold mb-1" data-i18n="calc_card_ratio">
+              Context Token Reduction
+            </div>
+            <div class="text-xl sm:text-2xl font-bold text-white font-mono">
+              79.8%
+            </div>
+            <div class="text-[10px] text-slate-400 mt-1 leading-snug" data-i18n="calc_card_ratio_sub">
+              ~850 tokens vs ~4,200 tokens
+            </div>
+          </div>
+
+          <!-- Card 4: Hallucination Risk -->
+          <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800">
+            <div class="text-[11px] font-mono text-purple-400 font-semibold mb-1" data-i18n="calc_card_hallucination">
+              Hallucination Risk
+            </div>
+            <div class="text-xl sm:text-2xl font-bold text-purple-300 font-mono">
+              -85%
+            </div>
+            <div class="text-[10px] text-slate-400 mt-1 leading-snug" data-i18n="calc_card_hallucination_sub">
+              No cross-stack prompt pollution
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- AEO & GEO Architectural Comparison Section (Optimized for AI Overviews & Perplexity) -->
   <section class="max-w-5xl mx-auto px-4 py-12 border-t border-slate-800/80 mt-12">
     <div class="text-center mb-8">
@@ -1319,6 +1450,63 @@ ${dbContent.trim()}`;
       }
     }
 
+    // --- Interactive Token ROI Calculator (Inspired by GeFei's Calculator Playbook) ---
+    function updateTokenCalculator() {
+      const teamEl = document.getElementById('calc-team-range');
+      const promptsEl = document.getElementById('calc-prompts-range');
+      const modelEl = document.getElementById('calc-model-select');
+      if (!teamEl || !promptsEl || !modelEl) return;
+
+      const team = parseInt(teamEl.value, 10);
+      const prompts = parseInt(promptsEl.value, 10);
+      const pricePerM = parseFloat(modelEl.value);
+      
+      const teamValEl = document.getElementById('calc-team-val');
+      const promptsValEl = document.getElementById('calc-prompts-val');
+      if (teamValEl) teamValEl.textContent = team + (currentLang === 'zh' ? ' 位工程师' : (team === 1 ? ' engineer' : ' engineers'));
+      if (promptsValEl) promptsValEl.textContent = prompts + (currentLang === 'zh' ? ' 次交互/人/天' : ' prompts/day');
+
+      // Working days per month: 22
+      const workDays = 22;
+      const wastedTokensPerPrompt = 4200 - 850; // ~3350 tokens pruned per prompt
+      const monthlyPrompts = team * prompts * workDays;
+      const monthlyTokensSaved = monthlyPrompts * wastedTokensPerPrompt;
+      const monthlyCostSaved = (monthlyTokensSaved / 1000000) * pricePerM;
+      const annualCostSaved = monthlyCostSaved * 12;
+
+      let tokensFormatted = '';
+      if (monthlyTokensSaved >= 1000000) {
+        tokensFormatted = (monthlyTokensSaved / 1000000).toFixed(2) + ' M';
+      } else {
+        tokensFormatted = (monthlyTokensSaved / 1000).toFixed(0) + ' k';
+      }
+
+      const resTokensEl = document.getElementById('calc-res-tokens');
+      const resAnnualEl = document.getElementById('calc-res-annual');
+      if (resTokensEl) resTokensEl.textContent = tokensFormatted;
+      if (resAnnualEl) resAnnualEl.textContent = '$' + annualCostSaved.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function copySavingsReport() {
+      const team = document.getElementById('calc-team-range')?.value || '3';
+      const prompts = document.getElementById('calc-prompts-range')?.value || '30';
+      const tokens = document.getElementById('calc-res-tokens')?.textContent || '6.62 M';
+      const annual = document.getElementById('calc-res-annual')?.textContent || '$238.40';
+      
+      const text = currentLang === 'zh'
+        ? `📊 AI 编程团队 ROI 测算报告 (来自 cursor.pacebowl.com):\n• 研发团队规模: ${team} 位工程师\n• 每日交互频次: ${prompts} 次 / 人\n• 每月拦截无用 Token 浪费: ${tokens} / 月\n• 团队每年直接省下 API 成本: ${annual} / 年\n• 架构升级: 采用模块化 .cursor/rules/*.mdc 路径隔离匹配\n立即生成团队规则: https://cursor.pacebowl.com/`
+        : `📊 AI Coding ROI Report (via cursor.pacebowl.com):\n• Team Size: ${team} engineers\n• Daily Prompts: ${prompts} / dev\n• Wasted Tokens Prevented: ${tokens} / month\n• Annual Engineering Savings: ${annual} / year\n• Architecture: Modular .cursor/rules/*.mdc path scoping\nGenerate your team rules: https://cursor.pacebowl.com/`;
+      
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copy-savings-btn');
+        if (btn) {
+          const original = btn.innerHTML;
+          btn.innerHTML = '<span>✓ Copied!</span>';
+          setTimeout(() => { btn.innerHTML = original; }, 2000);
+        }
+      });
+    }
+
     
     // --- Umami & OpenGEO Event Tracking & Attribution ---
     function trackUmami(eventName, eventData) {
@@ -1702,7 +1890,22 @@ ${dbContent.trim()}`;
         footer_hot: '🔥 AI Radar',
         footer_comfy: '⚡ ComfyUI Studio',
         footer_blog: 'Blog & Guides',
-        footer_faq: 'FAQ'
+        footer_faq: 'FAQ',
+        calc_badge: '🧮 Developer ROI Calculator',
+        calc_title: 'AI Coding Token Cost & Savings Calculator',
+        calc_sub: 'Calculate how many wasted tokens and cloud dollars modular <code class="text-indigo-300 font-mono">.mdc</code> rules save your team compared to monolithic <code class="text-rose-400 font-mono">.cursorrules</code>.',
+        calc_copy_btn: 'Copy Savings Report',
+        calc_team: 'Team Developers',
+        calc_prompts: 'Daily AI Prompts / Engineer',
+        calc_model: 'Active LLM Pricing Tier',
+        calc_card_savings: 'Annual Cash Savings',
+        calc_card_savings_sub: 'Saved from unnecessary context injection',
+        calc_card_tokens: 'Wasted Tokens Prevented',
+        calc_card_tokens_sub: 'Tokens pruned every month via path globs',
+        calc_card_ratio: 'Context Token Reduction',
+        calc_card_ratio_sub: '~850 tokens vs ~4,200 tokens',
+        calc_card_hallucination: 'Hallucination Risk',
+        calc_card_hallucination_sub: 'No cross-stack prompt pollution'
       },
       zh: {
         suite_btn: 'PaceBowl 套件',
@@ -1831,6 +2034,21 @@ ${dbContent.trim()}`;
         magic_sample: '载入范例',
         magic_desc: '粘贴依赖代码，0.1秒自动匹配并勾选专属技术栈规则：',
         magic_btn: '一键自动匹配',
+        calc_badge: '🧮 工程师 ROI 收益测算',
+        calc_title: 'AI 编程 Token 开销与省钱计算器',
+        calc_sub: '测算使用模块化 .mdc 规则相比单体 .cursorrules 能为团队每月减少多少冗余 Token 浪费与 API 账单开销。',
+        calc_copy_btn: '复制省钱报告',
+        calc_team: '团队工程师人数',
+        calc_prompts: '每人每日 AI 交互轮次',
+        calc_model: '主力大模型计费标准',
+        calc_card_savings: '每年直接省下资金',
+        calc_card_savings_sub: '消除单次全量注入产生的冗余账单',
+        calc_card_tokens: '每月杜绝无用 Token',
+        calc_card_tokens_sub: '通过 Glob 路径裁剪掉的无用上下文',
+        calc_card_ratio: '上下文体积精简率',
+        calc_card_ratio_sub: '~850 tokens 对比 ~4,200 tokens',
+        calc_card_hallucination: '模型幻觉风险降低',
+        calc_card_hallucination_sub: '彻底消除前后端/数据库交叉污染'
       }
     };
 
@@ -1910,6 +2128,7 @@ ${dbContent.trim()}`;
         }
       });
       simulateGlobMatching();
+      updateTokenCalculator();
     }
 
     function applyLanguage(lang, persist) {
@@ -1971,6 +2190,7 @@ ${dbContent.trim()}`;
       applyLanguage(getSharedLang(), false);
       applyUrlPresets();
       updateRules();
+      updateTokenCalculator();
       captureUtmParams();
       initMobileBanner();
     });
