@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The 10-Level AI Coding Maturity Ladder: From Chat Prompter to Multi-Agent Swarms</title>
+  <meta name="description" content="Where do you stand on the AI engineering curve? Discover the 10 stages of AI coding maturity—from web chat copy-pasting to modular .cursor/rules/*.mdc, TDD feedback loops, and autonomous multi-agent CI/CD. Includes interactive score assessment.">
+  <meta name="keywords" content="ai coding maturity ladder, cursor rules guide, cursor ai best practices, ai developer roadmap 2026, multi agent coding, prompt engineering for developers">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder.html">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Umami Analytics -->
+  <script defer src="https://umami-ruby-alpha-96.vercel.app/script.js" data-website-id="45cd49ed-6c55-4b37-bcbb-69959c065874"></script>
+
+  <!-- OpenGEO (GeoTrace) Attribution -->
+  <script defer data-domain="cursor.pacebowl.com" data-api="https://geo.pacebowl.com/api" src="https://geo.pacebowl.com/geo.js"></script>
+
+  <!-- Theme & Language Initialization: Anti-FOUC & Cross-Subdomain Sync -->
+  <script>
+    (function() {
+      function getSharedCookie(name) {
+        var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return m ? decodeURIComponent(m[1]) : null;
+      }
+      var theme = getSharedCookie('pacebowl-theme') || localStorage.getItem('pacebowl-theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      } else if (theme === 'dark' || (!theme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      }
+    })();
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder.html">
+  <meta property="og:title" content="The 10-Level AI Coding Maturity Ladder: From Chat Prompter to Multi-Agent Swarms">
+  <meta property="og:description" content="Discover the 10 stages of AI software engineering maturity with our interactive self-assessment and practical level-up roadmap.">
+  <meta property="og:image" content="https://cursor.pacebowl.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder.html">
+  <meta name="twitter:title" content="The 10-Level AI Coding Maturity Ladder: 2026 Developer Edition">
+  <meta name="twitter:description" content="Where do you stand? Assess your AI software engineering maturity across 10 progressive tiers.">
+  <meta name="twitter:image" content="https://cursor.pacebowl.com/og-image.png">
+
+  <!-- Structured Data: TechArticle, FAQPage & Breadcrumbs -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": "The 10-Level AI Coding Maturity Ladder: From Chat Prompter to Multi-Agent Swarms",
+        "description": "Comprehensive engineering roadmap categorizing AI pair programming and agentic workflows into 10 measurable tiers, with architectural best practices for Cursor, Windsurf, and Claude Code.",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Organization",
+          "name": "Cursor Rules Generator"
+        },
+        "datePublished": "2026-10-03",
+        "dateModified": "2026-10-03",
+        "publisher": {
+          "@type": "Organization",
+          "name": "PaceBowl AI Engineering Suite"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the biggest bottleneck between Level 3 and Level 4 in AI coding?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The primary bottleneck is context window pollution. Level 3 developers paste all instructions into a single monolithic .cursorrules file, which injects thousands of irrelevant tokens into every prompt. Level 4 developers implement path-scoped .cursor/rules/*.mdc files that only load rules relevant to the specific files being edited."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is Test-Driven Development (TDD) essential for high-level AI coding (Level 5)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "LLMs can produce confident hallucinations. By writing failing unit tests and strict type schemas (Zod, Pydantic, TypeScript) before asking the AI to code, the agent is constrained by verifiable assertions and can iterate autonomously in a terminal loop until all tests pass."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What defines Level 10 Sovereign Multi-Agent Engineering?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "At Level 10, software development is orchestrated by autonomous agent swarms running in isolated git worktrees. Product requirements written as Markdown tickets are planned, coded, reviewed, tested, and deployed to production with human engineers acting exclusively as directors and reviewers."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://cursor.pacebowl.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://cursor.pacebowl.com/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "AI Coding Maturity Ladder",
+            "item": "https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 500: '#6366f1', 600: '#4f46e5' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    html.dark ::-webkit-scrollbar-track { background: #0f172a; }
+    html.dark ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+    html.light ::-webkit-scrollbar-track { background: #f8fafc; }
+    html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-[#07090e] text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-200">
+
+  <!-- Header -->
+  <header class="border-b border-slate-200 dark:border-slate-800/80 bg-white/80 dark:bg-[#07090e]/80 backdrop-blur sticky top-0 z-40 transition-colors duration-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <a href="https://pacebowl.com" class="text-xs font-mono text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition flex items-center gap-1.5 py-1 px-2.5 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm" title="Back to PaceBowl Mothership">
+          <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+          <span>PaceBowl</span>
+        </a>
+        <span class="text-slate-400 dark:text-slate-600 font-mono">/</span>
+        <a href="/" class="font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition text-sm">
+          Cursor Rules <span class="text-indigo-600 dark:text-indigo-400 font-mono text-xs px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950/80 border border-indigo-200 dark:border-indigo-500/30">.mdc</span>
+        </a>
+        <span class="text-slate-400 dark:text-slate-600 font-mono">/</span>
+        <a href="/blog/" class="text-xs text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition" data-i18n="nav_blog">Blog</a>
+      </div>
+
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <!-- Language Switcher Button -->
+        <button id="lang-toggle-btn" onclick="toggleLanguage()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-xs text-slate-700 dark:text-slate-300 transition shadow-sm" title="Toggle English / 简体中文">
+          <svg class="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+          <span id="lang-label" class="font-semibold font-mono text-[11px]">中文</span>
+        </button>
+
+        <!-- Theme Switcher Button -->
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-slate-700 dark:text-slate-300 transition shadow-sm" title="Toggle Light / Dark mode">
+          <svg id="theme-sun-icon" class="w-4 h-4 hidden text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="theme-moon-icon" class="w-4 h-4 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+
+        <a href="/" class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-sm shadow-indigo-600/30 transition" data-i18n="nav_generator">
+          Rules Generator →
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Article Container -->
+  <main class="flex-1 max-w-4xl mx-auto px-4 sm:px-6 w-full py-10">
+
+    <!-- Breadcrumb -->
+    <nav class="flex text-xs text-slate-500 mb-6 font-mono" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-2">
+        <li><a href="/" class="hover:text-indigo-600 dark:hover:text-indigo-400">Home</a></li>
+        <li><span>/</span></li>
+        <li><a href="/blog/" class="hover:text-indigo-600 dark:hover:text-indigo-400">Blog</a></li>
+        <li><span>/</span></li>
+        <li class="text-slate-700 dark:text-slate-300 font-medium">AI Coding Maturity Ladder</li>
+      </ol>
+    </nav>
+
+    <!-- Header Block -->
+    <div class="mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-500/30 text-indigo-700 dark:text-indigo-300 text-xs mb-4 font-mono font-semibold">
+        <span data-i18n="badge_tier">ENGINEERING ROADMAP 2026</span>
+        <span>•</span>
+        <span data-i18n="badge_time">8 min read & self-assessment</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-4" data-i18n="article_h1">
+        The 10-Level AI Coding Maturity Ladder: From Chat Prompter to Multi-Agent Swarms
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="article_intro">
+        In 2026, saying "I use AI to code" means almost nothing. The efficiency gap between a developer copy-pasting code from ChatGPT and an engineer orchestrating path-scoped .mdc agents and automated test loops is wider than a 20x multiplier. Where do you stand?
+      </p>
+    </div>
+
+    <!-- Interactive Self-Assessment Widget -->
+    <div id="maturity-assessment-widget" class="mb-12 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-indigo-300 dark:border-indigo-500/40 shadow-xl transition-all duration-200">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b border-slate-200 dark:border-slate-800 gap-2">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-indigo-500 animate-pulse"></span>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white" data-i18n="widget_title">⚡ Interactive Assessment: What is Your AI Coding Level?</h3>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="widget_desc">Check all the habits and practices currently active in your day-to-day workflow.</p>
+        </div>
+        <div>
+          <button onclick="copyMaturityScore()" id="copy-score-btn" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/30 hover:bg-indigo-100 dark:hover:bg-indigo-900 transition flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            <span data-i18n="widget_btn_copy">Share My Score</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Checklist Items -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6" id="ladder-checkboxes-container">
+        <!-- Injected via script -->
+      </div>
+
+      <!-- Score Card Result -->
+      <div class="p-4 rounded-xl bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-sky-500/10 border border-indigo-300/40 dark:border-indigo-500/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <div class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold uppercase tracking-wider" data-i18n="score_lbl">Your Maturity Status:</div>
+          <div id="maturity-tier-name" class="text-lg font-bold text-slate-900 dark:text-white mt-0.5">Level 4: Modular Artisan (40 / 100)</div>
+          <div id="maturity-tier-advice" class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+            Great foundation. Next step: add strict TDD test assertions before letting Cursor Agent write code.
+          </div>
+        </div>
+        <div class="text-center sm:text-right shrink-0">
+          <div id="maturity-tier-score" class="text-3xl font-extrabold text-indigo-600 dark:text-indigo-400 font-mono">40<span class="text-sm font-normal text-slate-500">/100</span></div>
+          <div class="text-[10px] text-slate-400" data-i18n="score_sub">Engineering Velocity Index</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Body -->
+    <article class="prose dark:prose-invert max-w-none space-y-10 text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+
+      <!-- Level 1 & 2 -->
+      <section class="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-8">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono font-bold flex items-center justify-center text-sm">L1</span>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white m-0" data-i18n="l1_title">Level 1: The Raw Chat Copy-Paster</h2>
+        </div>
+        <p data-i18n="l1_desc">
+          Developers at Level 1 use ChatGPT or Claude strictly via a web browser tab. When encountering an issue, they copy their 100-line function, paste it into the chat window, type "Fix this bug", and copy the generated snippet back into VS Code.
+        </p>
+        <div class="p-3.5 rounded-xl bg-rose-50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-500/20 text-xs text-rose-800 dark:text-rose-300">
+          <strong>The Penalty:</strong> Zero architectural context. The AI cannot see your <code>tsconfig.json</code>, dependencies, or type declarations. Half the time is wasted resolving hallucinated package imports.
+        </div>
+      </section>
+
+      <!-- Level 2 -->
+      <section class="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-8">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono font-bold flex items-center justify-center text-sm">L2</span>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white m-0" data-i18n="l2_title">Level 2: The In-Editor Auto-Completer</h2>
+        </div>
+        <p data-i18n="l2_desc">
+          Level 2 engineers enable GitHub Copilot or Cursor Tab inline completions. They type comments like <code>// calculate total discount</code> and press Tab. While typing speed improves by 25%, the engineer still manually designs the files, organizes imports, and connects the architecture.
+        </p>
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          <em>Limitation:</em> Micro-level speedup only. Still lacks multi-file awareness and agentic execution.
+        </p>
+      </section>
+
+      <!-- Level 3 -->
+      <section class="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-8">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 font-mono font-bold flex items-center justify-center text-sm">L3</span>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white m-0" data-i18n="l3_title">Level 3: The Monolithic Context Dumper (.cursorrules Bloat)</h2>
+        </div>
+        <p data-i18n="l3_desc">
+          At Level 3, the developer discovers Cursor IDE and creates a root <code>.cursorrules</code> file. They copy 10,000 words from community repositories containing everything: Next.js rules, Python rules, Tailwind rules, and database guidelines all lumped into one text file.
+        </p>
+        <div class="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-500/20 text-xs text-amber-800 dark:text-amber-300">
+          <strong>The Context Trap:</strong> Every time you ask a question about a CSS margin, the LLM consumes 5,000 tokens of backend database rules. Attention is diluted, response latency doubles, and API costs skyrocket.
+        </div>
+      </section>
+
+      <!-- Level 4 -->
+      <section class="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-8">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 font-mono font-bold flex items-center justify-center text-sm">L4</span>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white m-0" data-i18n="l4_title">Level 4: The Path-Scoped Modular Architect (.mdc Mastery)</h2>
+        </div>
+        <p data-i18n="l4_desc">
+          The pivotal turning point. Level 4 engineers migrate to modern <code>.cursor/rules/*.mdc</code> architecture. Rules are split into isolated files with YAML frontmatter:
+        </p>
+        <pre class="bg-slate-900 text-slate-100 p-4 rounded-xl text-xs font-mono overflow-x-auto"><code>---
+description: Next.js 15 Server Components & Server Actions Guardrails
+globs: "app/**/*.{ts,tsx}"
+alwaysApply: false
+---</code></pre>
+        <p data-i18n="l4_gains">
+          <strong>The Gain:</strong> When editing <code>app/api/webhook/route.ts</code>, only backend routing rules are injected. Frontend CSS rules stay sleeping. Context tokens drop by 70%, and hallucinations disappear.
+        </p>
+        <div class="p-3 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-500/30 text-xs">
+          🛠️ <strong>Tooling:</strong> Use the free <a href="/" class="text-indigo-600 dark:text-indigo-400 font-bold hover:underline">Cursor Rules Generator (.mdc)</a> to generate modular rules with 1-click terminal install.
+        </div>
+      </section>
+
+      <!-- Level 5 -->
+      <section class="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-8">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 font-mono font-bold flex items-center justify-center text-sm">L5</span>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white m-0" data-i18n="l5_title">Level 5: The Test-Driven AI Pair (TDD Enforcer)</h2>
+        </div>
+        <p data-i18n="l5_desc">
+          Level 5 developers never ask the AI to "write a feature". Instead, they write strict TypeScript/Zod schemas and a failing unit test first:
+        </p>
+        <pre class="bg-slate-900 text-slate-100 p-4 rounded-xl text-xs font-mono overflow-x-auto"><code>// test/auth.test.ts
+test("validates enterprise SSO token with tenant isolation", async () => {
+  expect(await authenticateToken(mockInvalidTenantToken)).toThrow("TenantMismatchError");
+});</code></pre>
+        <p data-i18n="l5_sub">
+          They prompt Cursor Agent: <em>"Run <code>npm test auth.test.ts</code> and make this test pass without modifying the test file."</em> The agent is constrained by verifiable assertions.
+        </p>
+      </section>
+
+      <!-- Level 6 -->
+      <section class="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-8">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg bg-sky-100 dark:bg-sky-950/80 text-sky-700 dark:text-sky-300 font-mono font-bold flex items-center justify-center text-sm">L6</span>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white m-0" data-i18n="l6_title">Level 6: Multi-Modal & Visual Prompt Engineering</h2>
+        </div>
+        <p data-i18n="l6_desc">
+          Text is insufficient for UI development. Level 6 engineers feed Figma screenshots, Tailwind layout references, and generative visuals directly into multimodal models (Claude 3.7 Sonnet / GPT-4o).
+        </p>
+        <div class="p-3 rounded-lg bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-500/30 text-xs">
+          🎨 <strong>Ecosystem Synergy:</strong> Level 6 developers use <a href="https://comfy.pacebowl.com" class="text-sky-600 dark:text-sky-400 font-bold hover:underline">ComfyUI Prompt Studio</a> to calculate 1-Megapixel Empty Latent dimensions and craft asset generation workflows without local VRAM bottlenecks.
+        </div>
+      </section>
+
+      <!-- Level 7 -->
+      <section class="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-8">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 font-mono font-bold flex items-center justify-center text-sm">L7</span>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white m-0" data-i18n="l7_title">Level 7: The Automated Intelligence Tracker (Frontier Model Switching)</h2>
+        </div>
+        <p data-i18n="l7_desc">
+          Sticking to one model is obsolete. Level 7 engineers switch models dynamically: Claude 3.7 Sonnet for complex multi-file architectural refactoring, DeepSeek V3 for fast repetitive boilerplates, and o3-mini for intricate algorithmic proofs.
+        </p>
+        <div class="p-3 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-500/30 text-xs">
+          🔥 <strong>Radar Intel:</strong> Monitor daily model releases and benchmarks on <a href="https://hot.pacebowl.com" class="text-rose-600 dark:text-rose-400 font-bold hover:underline">PaceBowl AI Radar & Hotlist</a> to capitalize on frontier capabilities as soon as they drop.
+        </div>
+      </section>
+
+      <!-- Level 8 -->
+      <section class="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-8">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg bg-purple-100 dark:bg-purple-950/80 text-purple-700 dark:text-purple-300 font-mono font-bold flex items-center justify-center text-sm">L8</span>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white m-0" data-i18n="l8_title">Level 8: Terminal & Tool-Calling Autonomous Loops</h2>
+        </div>
+        <p data-i18n="l8_desc">
+          Level 8 engineers untie their hands. Using Cursor Agent Mode or Claude Code CLI, the agent runs shell commands, triggers headless browsers for end-to-end verification, inspects git diffs, and self-heals syntax errors without waiting for the human to copy terminal output.
+        </p>
+      </section>
+
+      <!-- Level 9 -->
+      <section class="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-8">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg bg-teal-100 dark:bg-teal-950/80 text-teal-700 dark:text-teal-300 font-mono font-bold flex items-center justify-center text-sm">L9</span>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white m-0" data-i18n="l9_title">Level 9: Generative Search Optimization & Attribution (GEO)</h2>
+        </div>
+        <p data-i18n="l9_desc">
+          Code that users never find has zero value. Level 9 engineers architect apps with semantic schema.org JSON-LD, FAQ modules, and AEO formats tailored for Perplexity, ChatGPT Search, and Claude citations.
+        </p>
+        <div class="p-3 rounded-lg bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-500/30 text-xs">
+          📊 <strong>Attribution:</strong> Track generative referrals and conversion lift using <a href="https://geo.pacebowl.com" class="text-teal-600 dark:text-teal-400 font-bold hover:underline">OpenGEO Attribution</a>.
+        </div>
+      </section>
+
+      <!-- Level 10 -->
+      <section class="space-y-4 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-600 text-white font-mono font-bold flex items-center justify-center text-sm shadow-md">L10</span>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white m-0" data-i18n="l10_title">Level 10: The Sovereign Multi-Agent CI/CD Swarm</h2>
+        </div>
+        <p data-i18n="l10_desc">
+          The holy grail of agentic engineering. A developer writes a 5-sentence product specification in a GitHub issue. An autonomous swarm of specialized agents (Architect, Frontend Coder, Database Admin, Security Auditor) work in parallel in isolated git worktrees, open pull requests, run integration tests, and deploy preview environments to Cloudflare Pages.
+        </p>
+        <p class="font-bold text-indigo-600 dark:text-indigo-400" data-i18n="l10_conclusion">
+          The human engineer's role has fundamentally evolved from a typist to an Executive Director of AI swarms.
+        </p>
+      </section>
+
+    </article>
+
+    <!-- Matrix Backlink Navigation -->
+    <div class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="matrix_title">Explore The PaceBowl Developer Matrix</h3>
+        <a href="https://pacebowl.com" class="text-xs text-indigo-600 dark:text-indigo-400 hover:underline">All Tools →</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <a href="/" class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-500 transition bg-white dark:bg-slate-900/60 flex items-center gap-2.5">
+          <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white font-bold flex items-center justify-center text-[10px]">CR</span>
+          <div>
+            <div class="font-bold text-slate-900 dark:text-white">Cursor Rules Studio</div>
+            <div class="text-[10px] text-slate-500">.cursor/rules/*.mdc Generator</div>
+          </div>
+        </a>
+        <a href="https://comfy.pacebowl.com" class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-sky-500 transition bg-white dark:bg-slate-900/60 flex items-center gap-2.5">
+          <span class="w-7 h-7 rounded-lg bg-sky-600 text-white font-bold flex items-center justify-center text-[10px]">CF</span>
+          <div>
+            <div class="font-bold text-slate-900 dark:text-white">ComfyUI Prompt Studio</div>
+            <div class="text-[10px] text-slate-500">Flux & Latent Speedup Calc</div>
+          </div>
+        </a>
+        <a href="https://hot.pacebowl.com" class="p-3 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-rose-500 transition bg-white dark:bg-slate-900/60 flex items-center gap-2.5">
+          <span class="w-7 h-7 rounded-lg bg-rose-600 text-white font-bold flex items-center justify-center text-[10px]">🔥</span>
+          <div>
+            <div class="font-bold text-slate-900 dark:text-white">AI Radar & Hotlist</div>
+            <div class="text-[10px] text-slate-500">24/7 Frontier Model Tracker</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#07090e] py-8 text-center text-xs text-slate-500 transition-colors duration-200">
+    <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <span>Cursor Rules Generator &copy; 2026. Part of <a href="https://pacebowl.com" class="text-indigo-600 dark:text-indigo-400 hover:underline">PaceBowl Ecosystem</a>.</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <a href="/" class="hover:text-slate-900 dark:hover:text-slate-200 transition">Generator</a>
+        <a href="/blog/" class="hover:text-slate-900 dark:hover:text-slate-200 transition">Blog</a>
+        <a href="https://github.com/fullofjoy/cursor-rules-generator" target="_blank" rel="noopener" class="hover:text-slate-900 dark:hover:text-slate-200 transition">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const CHECKLIST_DATA = [
+      { id: 'c1', level: 1, pts: 5, en: 'I frequently copy code from web ChatGPT/Claude into my editor', zh: '我经常在网页端 ChatGPT/Claude 与编辑器之间手动复制代码' },
+      { id: 'c2', level: 2, pts: 10, en: 'I rely heavily on inline Copilot/Cursor Tab auto-completions', zh: '我主要依赖编辑器内 Copilot / Cursor Tab 自动补全代码' },
+      { id: 'c3', level: 3, pts: 15, en: 'I have a single monolithic .cursorrules file in my project root', zh: '我有一个包含全项目各种规则的根目录单体 .cursorrules 文件' },
+      { id: 'c4', level: 4, pts: 20, en: 'I use modular .cursor/rules/*.mdc files scoped with glob patterns', zh: '我已全面采用基于 glob 路径隔离的模块化 .cursor/rules/*.mdc 规则' },
+      { id: 'c5', level: 5, pts: 10, en: 'I write failing tests (TDD) or Zod schemas before asking AI to code', zh: '在让 AI 编码前，我坚持先写红灯单元测试或严格的 Zod/TypeScript 类型' },
+      { id: 'c6', level: 6, pts: 10, en: 'I supply Figma screenshots & generative UI assets to multimodal models', zh: '我习惯向多模态模型投喂 Figma 截图与 ComfyUI 生成的高保真视觉资产' },
+      { id: 'c7', level: 7, pts: 10, en: 'I switch models daily (Claude 3.7 / DeepSeek V3 / o3-mini) by task', zh: '我紧跟前沿模型，根据任务复杂度在 Claude 3.7 / DeepSeek / o3 间动态切换' },
+      { id: 'c8', level: 8, pts: 10, en: 'I let AI agents execute terminal commands, test loops & linters', zh: '我让 AI Agent 直接运行终端命令、自动修复 linter 并闭环测试' },
+      { id: 'c9', level: 9, pts: 5, en: 'I architect code for Generative Search (GEO/AEO) & monitor referrals', zh: '我为生成式 AI 搜索引擎 (Perplexity/ChatGPT) 定制语义结构与归因埋点' },
+      { id: 'c10', level: 10, pts: 5, en: 'I orchestrate autonomous multi-agent swarms running across git worktrees', zh: '我已经在生产中部署跨 git worktree 独立运行的自主多 Agent 研发流水线' }
+    ];
+
+    const I18N = {
+      en: {
+        nav_blog: 'Blog',
+        nav_generator: 'Rules Generator →',
+        badge_tier: 'ENGINEERING ROADMAP 2026',
+        badge_time: '8 min read & self-assessment',
+        article_h1: 'The 10-Level AI Coding Maturity Ladder: From Chat Prompter to Multi-Agent Swarms',
+        article_intro: 'In 2026, saying "I use AI to code" means almost nothing. The efficiency gap between a developer copy-pasting code from ChatGPT and an engineer orchestrating path-scoped .mdc agents and automated test loops is wider than a 20x multiplier. Where do you stand?',
+        widget_title: '⚡ Interactive Assessment: What is Your AI Coding Level?',
+        widget_desc: 'Check all the habits and practices currently active in your day-to-day workflow.',
+        widget_btn_copy: 'Share My Score',
+        score_lbl: 'Your Maturity Status:',
+        score_sub: 'Engineering Velocity Index',
+        l1_title: 'Level 1: The Raw Chat Copy-Paster',
+        l1_desc: 'Developers at Level 1 use ChatGPT or Claude strictly via a web browser tab. When encountering an issue, they copy their 100-line function, paste it into the chat window, type "Fix this bug", and copy the generated snippet back into VS Code.',
+        l2_title: 'Level 2: The In-Editor Auto-Completer',
+        l2_desc: 'Level 2 engineers enable GitHub Copilot or Cursor Tab inline completions. They type comments like // calculate total discount and press Tab. While typing speed improves by 25%, the engineer still manually designs the files, organizes imports, and connects the architecture.',
+        l3_title: 'Level 3: The Monolithic Context Dumper (.cursorrules Bloat)',
+        l3_desc: 'At Level 3, the developer discovers Cursor IDE and creates a root .cursorrules file. They copy 10,000 words from community repositories containing everything: Next.js rules, Python rules, Tailwind rules, and database guidelines all lumped into one text file.',
+        l4_title: 'Level 4: The Path-Scoped Modular Architect (.mdc Mastery)',
+        l4_desc: 'The pivotal turning point. Level 4 engineers migrate to modern .cursor/rules/*.mdc architecture. Rules are split into isolated files with YAML frontmatter.',
+        l4_gains: 'The Gain: When editing app/api/webhook/route.ts, only backend routing rules are injected. Frontend CSS rules stay sleeping. Context tokens drop by 70%, and hallucinations disappear.',
+        l5_title: 'Level 5: The Test-Driven AI Pair (TDD Enforcer)',
+        l5_desc: 'Level 5 developers never ask the AI to "write a feature". Instead, they write strict TypeScript/Zod schemas and a failing unit test first.',
+        l5_sub: 'They prompt Cursor Agent: "Run npm test auth.test.ts and make this test pass without modifying the test file." The agent is constrained by verifiable assertions.',
+        l6_title: 'Level 6: Multi-Modal & Visual Prompt Engineering',
+        l6_desc: 'Text is insufficient for UI development. Level 6 engineers feed Figma screenshots, Tailwind layout references, and generative visuals directly into multimodal models (Claude 3.7 Sonnet / GPT-4o).',
+        l7_title: 'Level 7: The Automated Intelligence Tracker (Frontier Model Switching)',
+        l7_desc: 'Sticking to one model is obsolete. Level 7 engineers switch models dynamically: Claude 3.7 Sonnet for complex multi-file architectural refactoring, DeepSeek V3 for fast repetitive boilerplates, and o3-mini for intricate algorithmic proofs.',
+        l8_title: 'Level 8: Terminal & Tool-Calling Autonomous Loops',
+        l8_desc: 'Level 8 engineers untie their hands. Using Cursor Agent Mode or Claude Code CLI, the agent runs shell commands, triggers headless browsers for end-to-end verification, inspects git diffs, and self-heals syntax errors without waiting for the human to copy terminal output.',
+        l9_title: 'Level 9: Generative Search Optimization & Attribution (GEO)',
+        l9_desc: 'Code that users never find has zero value. Level 9 engineers architect apps with semantic schema.org JSON-LD, FAQ modules, and AEO formats tailored for Perplexity, ChatGPT Search, and Claude citations.',
+        l10_title: 'Level 10: The Sovereign Multi-Agent CI/CD Swarm',
+        l10_desc: 'The holy grail of agentic engineering. A developer writes a 5-sentence product specification in a GitHub issue. An autonomous swarm of specialized agents (Architect, Frontend Coder, Database Admin, Security Auditor) work in parallel in isolated git worktrees, open pull requests, run integration tests, and deploy preview environments to Cloudflare Pages.',
+        l10_conclusion: 'The human engineer\'s role has fundamentally evolved from a typist to an Executive Director of AI swarms.',
+        matrix_title: 'Explore The PaceBowl Developer Matrix'
+      },
+      zh: {
+        nav_blog: '博客',
+        nav_generator: '规则生成器 →',
+        badge_tier: '2026 研发进阶阶梯',
+        badge_time: '8 分钟深度阅读与水平自测',
+        article_h1: 'AI 编程成熟度 10 级阶梯：从网页复制侠到自主多 Agent 集群',
+        article_intro: '在 2026 年，一句“我平时也用 AI 写代码”几乎没有任何信息量。从在网页端手工复制代码的初学者，到通过 .cursor/rules/*.mdc 路径隔离与自动化测试闭环驱动 Agent 的全栈工程师，人效差距已超过 20 倍。你究竟处于哪一层？',
+        widget_title: '⚡ 互动测评：测算你的 AI 编程成熟度等级',
+        widget_desc: '勾选你在日常研发中已经实际落地的编码习惯与实践：',
+        widget_btn_copy: '复制测评成果',
+        score_lbl: '你的成熟度评级：',
+        score_sub: '人效与工程吞吐指数',
+        l1_title: '第 1 级：网页聊天复制侠 (The Raw Chat Copy-Paster)',
+        l1_desc: '处于第 1 级的开发者完全在浏览器 Tab 里使用 ChatGPT 或 Claude。遇到 Bug 时，把 100 行函数全选复制进聊天框，敲一句“帮我改下 Bug”，然后再人肉把生成的代码粘回 VS Code。',
+        l2_title: '第 2 级：编辑器内连点侠 (The In-Editor Auto-Completer)',
+        l2_desc: '第 2 级工程师开启了 Copilot 或 Cursor Tab 补全。写一行注释敲一下 Tab。尽管打字速度快了 25%，但文件组织、架构设计和模块调用依然全靠人工手工缝合。',
+        l3_title: '第 3 级：单体上下文堆砌者 (.cursorrules 巨石困局)',
+        l3_desc: '第 3 级开发者发现了 Cursor，并在项目根目录建立了 .cursorrules。他们从各大开源仓库把 Next.js、Python、Tailwind、Supabase 几万字规则一次性全倒进一个大文件。',
+        l4_title: '第 4 级：路径隔离模块化架构师 (.mdc 现代法则)',
+        l4_desc: '关键的分水岭！第 4 级工程师全面迁移至现代 .cursor/rules/*.mdc 架构。规则按目录细分，依托 YAML frontmatter 声明 glob 路径生效范围。',
+        l4_gains: '巨大收益：改写 app/api/ 时只调入后端路由规则；前端样式规则静默睡眠。Token 消耗锐减 70%，模型彻底告别记忆遗忘与幻觉。',
+        l5_title: '第 5 级：测试驱动型 AI 结对者 (TDD 严格闭环)',
+        l5_desc: '第 5 级开发者绝不直接让 AI “写一个功能”。他们坚持在编码前先写好严格的 TypeScript/Zod 类型定义和红灯单元测试。',
+        l5_sub: '直接给 Agent 下达指令：“运行 npm test，在不修改测试文件的前提下实现逻辑使所有测试通过。”用可验证的断言作为物理约束。',
+        l6_title: '第 6 级：多模态视觉提示词专家 (视觉与原型协同)',
+        l6_desc: '纯文本无法精准表达 UI。第 6 级工程师直接将 Figma 截图、Tailwind 现成布局与高保真资产喂给多模态大模型（Claude 3.7 Sonnet / GPT-4o）。',
+        l7_title: '第 7 级：前沿模型套利者 (动态模型分流调度)',
+        l7_desc: '死守单一模型已成过去式。第 7 级工程师精通分流：复杂跨文件重构用 Claude 3.7 Sonnet，海量样板代码用 DeepSeek V3，高难度算法推导用 o3-mini。',
+        l8_title: '第 8 级：全自主终端 Agent 驾驭者 (命令行闭环)',
+        l8_desc: '第 8 级工程师彻底解放双手。通过 Cursor Agent 或 Claude Code CLI，让 Agent 自主执行终端命令、拉起无头浏览器核验、查看 git diff 并自动修正类型错误。',
+        l9_title: '第 9 级：生成式搜索优化与商业归因者 (GEO 工程师)',
+        l9_desc: '无法被检索到的代码毫无商业价值。第 9 级工程师从第一天就为 Perplexity、ChatGPT Search 定制 JSON-LD 结构化数据与语义规范，并通过 OpenGEO 监控 AI 带来的流量。',
+        l10_title: '第 10 级：多 Agent 自主 CI/CD 集群统帅 (软件工业 4.0)',
+        l10_desc: '现代软件工程的最高殿堂。产品经理在 GitHub Issue 提交需求，架构 Agent、前端 Agent、数据库 Agent 在相互隔离的 git worktree 中并行编码，跑通端到端测试并自动提交可部署的 PR。',
+        l10_conclusion: '人类工程师的角色已经从打字员，彻底转变为指挥 AI 集群的执行导演。',
+        matrix_title: '探索 PaceBowl 开发者生产力工具矩阵'
+      }
+    };
+
+    // Shared State Protocol
+    function getSharedCookie(name) {
+      var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+      return m ? decodeURIComponent(m[1]) : null;
+    }
+
+    function setSharedState(key, val) {
+      try { localStorage.setItem(key, val); } catch(e) {}
+      try {
+        var hostname = window.location.hostname;
+        var domain = (hostname.endsWith('pacebowl.com') || hostname === 'pacebowl.com') ? '; domain=.pacebowl.com' : '';
+        document.cookie = key + '=' + encodeURIComponent(val) + domain + '; path=/; max-age=31536000; SameSite=Lax';
+      } catch(e) {}
+    }
+
+    function getSharedTheme() {
+      var t = getSharedCookie('pacebowl-theme') || localStorage.getItem('pacebowl-theme');
+      if (t === 'light' || t === 'dark') return t;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function getSharedLang() {
+      var l = getSharedCookie('pacebowl-lang') || localStorage.getItem('pacebowl-lang');
+      if (l === 'zh' || l === 'en') return l;
+      return (navigator.language && navigator.language.startsWith('zh')) ? 'zh' : 'en';
+    }
+
+    let currentLang = getSharedLang();
+
+    function updateThemeUI(isDark) {
+      const sun = document.getElementById('theme-sun-icon');
+      const moon = document.getElementById('theme-moon-icon');
+      if (!sun || !moon) return;
+      if (isDark) {
+        sun.classList.remove('hidden');
+        moon.classList.add('hidden');
+      } else {
+        sun.classList.add('hidden');
+        moon.classList.remove('hidden');
+      }
+    }
+
+    function applyTheme(isDark, persist) {
+      if (isDark) {
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+        if (persist) setSharedState('pacebowl-theme', 'dark');
+        updateThemeUI(true);
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        if (persist) setSharedState('pacebowl-theme', 'light');
+        updateThemeUI(false);
+      }
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      applyTheme(!isDark, true);
+    }
+
+    function renderCheckboxes() {
+      const container = document.getElementById('ladder-checkboxes-container');
+      if (!container) return;
+
+      container.innerHTML = CHECKLIST_DATA.map((item, index) => {
+        const text = currentLang === 'zh' ? item.zh : item.en;
+        const defaultChecked = index <= 3; // L1-L4 checked by default
+        return `
+          <label class="flex items-start gap-2.5 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-500/60 bg-slate-50 dark:bg-slate-950/60 transition cursor-pointer select-none">
+            <input type="checkbox" id="${item.id}" onchange="recalculateMaturity()" ${defaultChecked ? 'checked' : ''} class="mt-0.5 w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500 border-slate-300 dark:border-slate-700 accent-indigo-600">
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-1.5">
+                <span class="text-[10px] font-mono font-bold px-1.5 py-0.2 rounded bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300">L${item.level}</span>
+                <span class="text-xs font-semibold text-slate-800 dark:text-slate-200 leading-tight">${text}</span>
+              </div>
+            </div>
+          </label>
+        `;
+      }).join('');
+      recalculateMaturity();
+    }
+
+    function recalculateMaturity() {
+      let score = 0;
+      let maxLevel = 1;
+
+      CHECKLIST_DATA.forEach(item => {
+        const el = document.getElementById(item.id);
+        if (el && el.checked) {
+          score += item.pts;
+          if (item.level > maxLevel) maxLevel = item.level;
+        }
+      });
+
+      const scoreEl = document.getElementById('maturity-tier-score');
+      const nameEl = document.getElementById('maturity-tier-name');
+      const adviceEl = document.getElementById('maturity-tier-advice');
+
+      if (scoreEl) scoreEl.innerHTML = `${score}<span class="text-sm font-normal text-slate-500">/100</span>`;
+
+      let tierName = '';
+      let advice = '';
+
+      if (score <= 20) {
+        tierName = currentLang === 'zh' ? `第 ${maxLevel} 级：初窥门径 (萌新期)` : `Level ${maxLevel}: Chat Prompter (Novice)`;
+        advice = currentLang === 'zh' ? '建议安装 Cursor 或相关现代 IDE，戒掉网页端复制代码，拥抱编辑器内结对。' : 'Recommendation: Install Cursor or an in-editor AI agent to eliminate manual clipboard pasting.';
+      } else if (score <= 45) {
+        tierName = currentLang === 'zh' ? `第 ${maxLevel} 级：单体筑基 (进阶期)` : `Level ${maxLevel}: Monolithic Craftsman`;
+        advice = currentLang === 'zh' ? '不要再用单个巨大 .cursorrules！立即迁移至 .cursor/rules/*.mdc 模块化路径隔离。' : 'Action item: Ditch monolithic .cursorrules and migrate to path-scoped .cursor/rules/*.mdc architecture.';
+      } else if (score <= 75) {
+        tierName = currentLang === 'zh' ? `第 ${maxLevel} 级：模块化高工 (高阶期)` : `Level ${maxLevel}: Modular Senior Architect`;
+        advice = currentLang === 'zh' ? '架构已非常成熟。下一步是为 Agent 引入自动化终端命令闭环与测试断言 (TDD)。' : 'Your architecture is solid! Next step: empower your agent with terminal loops and strict TDD test assertions.';
+      } else {
+        tierName = currentLang === 'zh' ? `第 ${maxLevel} 级：多 Agent 集群统帅 (领军期)` : `Level ${maxLevel}: Autonomous Swarm Commander`;
+        advice = currentLang === 'zh' ? '恭喜！你已处于全球软件工程生产力的顶峰 1%，能够自主编排多 Agent CI/CD 集群。' : 'Congratulations! You are in the top 1% of software velocity, orchestrating sovereign multi-agent swarms.';
+      }
+
+      if (nameEl) nameEl.textContent = `${tierName} (${score} / 100)`;
+      if (adviceEl) adviceEl.textContent = advice;
+    }
+
+    function copyMaturityScore() {
+      const score = document.getElementById('maturity-tier-score')?.textContent || '50/100';
+      const name = document.getElementById('maturity-tier-name')?.textContent || 'Level 4: Modular Senior Architect';
+
+      const text = currentLang === 'zh'
+        ? `⚡ 我的 2026 AI 编程成熟度评测:\n• 当前评级: ${name}\n• 研发人效分: ${score}\n• 核心建议: 采用路径隔离 .cursor/rules/*.mdc 规则，拒绝 Token 膨胀\n测算你的 AI 编程段位: https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder.html`
+        : `⚡ My 2026 AI Coding Maturity Score:\n• Current Tier: ${name}\n• Engineering Velocity: ${score}\n• Blueprint: Scope rules with .cursor/rules/*.mdc to eliminate token bloat\nAssess your AI engineering maturity: https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder.html`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copy-score-btn');
+        if (btn) {
+          const orig = btn.innerHTML;
+          btn.innerHTML = `<span class="text-emerald-500 font-bold">✓ Copied!</span>`;
+          setTimeout(() => { btn.innerHTML = orig; }, 2000);
+        }
+      });
+    }
+
+    function updateLanguageUI() {
+      const label = document.getElementById('lang-label');
+      if (label) {
+        label.textContent = currentLang === 'zh' ? 'EN' : '中文';
+      }
+      document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (I18N[currentLang] && I18N[currentLang][key] !== undefined) {
+          el.innerHTML = I18N[currentLang][key];
+        }
+      });
+      renderCheckboxes();
+    }
+
+    function applyLanguage(lang, persist) {
+      currentLang = lang;
+      if (persist) setSharedState('pacebowl-lang', lang);
+      updateLanguageUI();
+    }
+
+    function toggleLanguage() {
+      const nextLang = currentLang === 'zh' ? 'en' : 'zh';
+      applyLanguage(nextLang, true);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const theme = getSharedTheme();
+      applyTheme(theme === 'dark', false);
+      applyLanguage(getSharedLang(), false);
+    });
+  </script>
+</body>
+</html>
