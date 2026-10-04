@@ -242,73 +242,80 @@
           <svg id="theme-moon-icon" class="w-4 h-4 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
         </button>
 
-        <!-- PaceBowl Suite Matrix Switcher -->
-        <div class="relative group">
-          <button class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/40 text-xs text-slate-700 dark:text-slate-300 transition shadow-sm">
+        <!-- PaceBowl Suite Matrix Switcher (Touch & Hover Friendly) -->
+        <div class="relative" id="suite-dropdown-container">
+          <button id="suite-dropdown-btn" onclick="toggleSuiteDropdown(event)" class="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/40 text-xs text-slate-700 dark:text-slate-300 transition shadow-sm active:scale-95">
             <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
             <span class="font-medium hidden sm:inline" data-i18n="suite_btn">PaceBowl Suite</span>
             <span class="font-medium sm:hidden">Suite</span>
-            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg id="suite-dropdown-arrow" class="w-3.5 h-3.5 text-slate-400 transition transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
-          <div class="hidden group-hover:block absolute right-0 mt-1 w-64 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl p-2 z-50">
+          <div id="suite-dropdown-menu" class="hidden absolute right-0 mt-1.5 w-64 max-w-[calc(100vw-1.5rem)] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl p-2 z-50">
             <div class="text-[10px] font-mono uppercase tracking-wider text-slate-500 px-2 py-1" data-i18n="suite_title">PaceBowl Ecosystem</div>
             <a href="https://pacebowl.com" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-200 transition">
-              <span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-sky-500 via-indigo-600 to-purple-600 flex items-center justify-center text-[10px] font-bold text-white shadow-sm">PB</span>
-              <div>
-                <div class="font-bold text-slate-900 dark:text-white" data-i18n="suite_hub">PaceBowl Mothership</div>
-                <div class="text-[10px] text-slate-500 dark:text-slate-400" data-i18n="suite_hub_sub">Central Hub & Runbooks</div>
+              <span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-sky-500 via-indigo-600 to-purple-600 flex items-center justify-center text-[10px] font-bold text-white shadow-sm flex-shrink-0">PB</span>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white truncate" data-i18n="suite_hub">PaceBowl Mothership</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_hub_sub">Central Hub & Runbooks</div>
               </div>
             </a>
             <div class="border-t border-slate-200 dark:border-slate-800/80 my-1"></div>
             <a href="https://hot.pacebowl.com" data-umami-event="suite-click-hot" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-200 transition">
-              <span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-rose-500 to-amber-500 flex items-center justify-center text-[10px] font-bold text-white shadow-sm">🔥</span>
-              <div>
-                <div class="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+              <span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-rose-500 to-amber-500 flex items-center justify-center text-[10px] font-bold text-white shadow-sm flex-shrink-0">🔥</span>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white flex items-center gap-1.5 truncate">
                   <span data-i18n="suite_hot">AI Radar & Hotlist</span>
-                  <span class="text-[9px] px-1 py-0.2 rounded bg-rose-500/20 text-rose-500 dark:text-rose-400 border border-rose-500/30">HOT</span>
+                  <span class="text-[9px] px-1 py-0.2 rounded bg-rose-500/20 text-rose-500 dark:text-rose-400 border border-rose-500/30 flex-shrink-0">HOT</span>
                 </div>
-                <div class="text-[10px] text-slate-500 dark:text-slate-400" data-i18n="suite_hot_sub">24h Automated Tech Intel & Digest</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_hot_sub">24h Automated Tech Intel & Digest</div>
               </div>
             </a>
             <a href="https://cursor.pacebowl.com" class="flex items-center gap-2.5 p-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-300 dark:border-indigo-500/40 text-xs text-indigo-800 dark:text-indigo-200 mt-1">
-              <span class="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center text-[10px] font-bold text-white">CR</span>
-              <div>
-                <div class="font-bold text-indigo-900 dark:text-white" data-i18n="suite_cursor">Cursor Rules Studio</div>
-                <div class="text-[10px] text-indigo-600 dark:text-indigo-300" data-i18n="suite_cursor_sub">Active • .mdc Generator</div>
+              <span class="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0">CR</span>
+              <div class="min-w-0">
+                <div class="font-bold text-indigo-900 dark:text-white truncate" data-i18n="suite_cursor">Cursor Rules Studio</div>
+                <div class="text-[10px] text-indigo-600 dark:text-indigo-300 truncate" data-i18n="suite_cursor_sub">Active • .mdc Generator</div>
               </div>
             </a>
             <a href="https://comfy.pacebowl.com" data-umami-event="suite-click-comfy" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-200 transition mt-1">
-              <span class="w-7 h-7 rounded-lg bg-sky-600 flex items-center justify-center text-[10px] font-bold text-white">CF</span>
-              <div>
-                <div class="font-bold text-slate-900 dark:text-white" data-i18n="suite_comfy">ComfyUI Prompt Studio</div>
-                <div class="text-[10px] text-slate-500 dark:text-slate-400" data-i18n="suite_comfy_sub">Flux.1 & 1MP Latent Calc</div>
+              <span class="w-7 h-7 rounded-lg bg-sky-600 flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0">CF</span>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white truncate" data-i18n="suite_comfy">ComfyUI Prompt Studio</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_comfy_sub">Flux.1 & 1MP Latent Calc</div>
               </div>
             </a>
             <a href="https://geo.pacebowl.com" data-umami-event="suite-click-geo" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-200 transition mt-1">
-              <span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-[10px] font-bold text-white">GEO</span>
-              <div>
-                <div class="font-bold text-slate-900 dark:text-white" data-i18n="suite_geo">OpenGEO Studio</div>
-                <div class="text-[10px] text-slate-500 dark:text-slate-400" data-i18n="suite_geo_sub">AI Search & Stripe Funnel</div>
+              <span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-[10px] font-bold text-white shadow-sm flex-shrink-0">GEO</span>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white truncate" data-i18n="suite_geo">OpenGEO Studio</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_geo_sub">AI Search & Stripe Funnel</div>
               </div>
             </a>
             <a href="https://deepseek.pacebowl.com" data-umami-event="suite-click-deepseek" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-200 transition mt-1">
-              <span class="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-[10px] font-bold text-white">DS</span>
-              <div>
-                <div class="font-bold text-slate-900 dark:text-white" data-i18n="suite_deepseek">DeepSeek Prompt Studio</div>
-                <div class="text-[10px] text-slate-500 dark:text-slate-400" data-i18n="suite_deepseek_sub">R1 Reasoning & XML Framework</div>
+              <span class="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0">DS</span>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white truncate" data-i18n="suite_deepseek">DeepSeek Prompt Studio</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_deepseek_sub">R1 Reasoning & XML Framework</div>
+              </div>
+            </a>
+            <a href="https://reddit.pacebowl.com" data-umami-event="suite-click-reddit" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-200 transition mt-1">
+              <span class="w-7 h-7 rounded-lg bg-orange-600 flex items-center justify-center text-[10px] font-bold text-white shadow-sm flex-shrink-0">RD</span>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white truncate" data-i18n="suite_reddit">Reddit Growth Studio</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_reddit_sub">15-Word One-Liners & AutoMod</div>
               </div>
             </a>
           </div>
         </div>
 
-                <a href="https://buymeacoffee.com/pacebowl" target="_blank" rel="noopener noreferrer" data-umami-event="click-sponsor-coffee" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/40 dark:hover:bg-amber-900/50 border border-amber-300/80 dark:border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-medium transition shadow-sm" title="Support the project">
+        <a href="https://buymeacoffee.com/pacebowl" target="_blank" rel="noopener noreferrer" data-umami-event="click-sponsor-coffee" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/40 dark:hover:bg-amber-900/50 border border-amber-300/80 dark:border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs font-medium transition shadow-sm flex-shrink-0" title="Support the project">
           <span>☕</span>
-          <span class="hidden sm:inline" data-i18n="nav_coffee">Sponsor</span>
+          <span data-i18n="nav_coffee">Sponsor</span>
         </a>
         <a href="#faq" class="text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition hidden md:inline" data-i18n="nav_faq">How it Works</a>
-        <a href="/rules/" data-umami-event="header-nav-rules" class="text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-500 font-medium transition hidden sm:inline" data-i18n="nav_rules">Rules Directory</a>
-        <a href="/blog/" data-umami-event="header-nav-blog" class="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 font-medium transition" data-i18n="nav_blog">Guides & Blog</a>
-        <button id="quick-zip-btn" data-umami-event="header-download-zip" onclick="downloadAllZip()" class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition shadow-sm shadow-indigo-600/30">
+        <a href="/rules/" data-umami-event="header-nav-rules" class="text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-500 font-medium transition hidden lg:inline" data-i18n="nav_rules">Rules Directory</a>
+        <a href="/blog/" data-umami-event="header-nav-blog" class="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 font-medium transition hidden sm:inline" data-i18n="nav_blog">Guides & Blog</a>
+        <button id="quick-zip-btn" data-umami-event="header-download-zip" onclick="downloadAllZip()" class="hidden sm:inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition shadow-sm shadow-indigo-600/30 flex-shrink-0">
           <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
           </svg>
@@ -2231,6 +2238,48 @@ ${dbContent.trim()}`;
         });
       } catch(e) {}
     }
+
+    // PaceBowl Suite Dropdown (Touch & Hover Friendly)
+    function toggleSuiteDropdown(e) {
+      if (e) e.stopPropagation();
+      const menu = document.getElementById('suite-dropdown-menu');
+      const arrow = document.getElementById('suite-dropdown-arrow');
+      if (!menu) return;
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        if (arrow) arrow.classList.add('rotate-180');
+      } else {
+        menu.classList.add('hidden');
+        if (arrow) arrow.classList.remove('rotate-180');
+      }
+    }
+
+    const suiteContainer = document.getElementById('suite-dropdown-container');
+    const suiteMenu = document.getElementById('suite-dropdown-menu');
+    const suiteArrow = document.getElementById('suite-dropdown-arrow');
+
+    if (suiteContainer && suiteMenu) {
+      suiteContainer.addEventListener('mouseenter', () => {
+        if (window.matchMedia('(hover: hover)').matches) {
+          suiteMenu.classList.remove('hidden');
+          if (suiteArrow) suiteArrow.classList.add('rotate-180');
+        }
+      });
+      suiteContainer.addEventListener('mouseleave', () => {
+        if (window.matchMedia('(hover: hover)').matches) {
+          suiteMenu.classList.add('hidden');
+          if (suiteArrow) suiteArrow.classList.remove('rotate-180');
+        }
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (suiteContainer && !suiteContainer.contains(e.target)) {
+        if (suiteMenu) suiteMenu.classList.add('hidden');
+        if (suiteArrow) suiteArrow.classList.remove('rotate-180');
+      }
+    });
 
     // Initialize on load
     window.addEventListener('DOMContentLoaded', () => {
