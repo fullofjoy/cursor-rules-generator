@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
@@ -7,7 +7,7 @@
   <meta name="description" content="Where do you stand on the AI engineering curve? Discover the 10 stages of AI coding maturity—from web chat copy-pasting to modular .cursor/rules/*.mdc, TDD feedback loops, and autonomous multi-agent CI/CD. Includes interactive score assessment.">
   <meta name="keywords" content="ai coding maturity ladder, cursor rules guide, cursor ai best practices, ai developer roadmap 2026, multi agent coding, prompt engineering for developers">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <link rel="canonical" href="https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder.html">
+  <link rel="canonical" href="https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder">
 
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -44,7 +44,7 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder.html">
+  <meta property="og:url" content="https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder">
   <meta property="og:title" content="The 10-Level AI Coding Maturity Ladder: From Chat Prompter to Multi-Agent Swarms">
   <meta property="og:description" content="Discover the 10 stages of AI software engineering maturity with our interactive self-assessment and practical level-up roadmap.">
   <meta property="og:image" content="https://cursor.pacebowl.com/og-image.png">
@@ -53,7 +53,7 @@
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder.html">
+  <meta name="twitter:url" content="https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder">
   <meta name="twitter:title" content="The 10-Level AI Coding Maturity Ladder: 2026 Developer Edition">
   <meta name="twitter:description" content="Where do you stand? Assess your AI software engineering maturity across 10 progressive tiers.">
   <meta name="twitter:image" content="https://cursor.pacebowl.com/og-image.png">
@@ -127,7 +127,7 @@
             "@type": "ListItem",
             "position": 3,
             "name": "AI Coding Maturity Ladder",
-            "item": "https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder.html"
+            "item": "https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder"
           }
         ]
       }
@@ -682,8 +682,8 @@ test("validates enterprise SSO token with tenant isolation", async () => {
       const name = document.getElementById('maturity-tier-name')?.textContent || 'Level 4: Modular Senior Architect';
 
       const text = currentLang === 'zh'
-        ? `⚡ 我的 2026 AI 编程成熟度评测:\n• 当前评级: ${name}\n• 研发人效分: ${score}\n• 核心建议: 采用路径隔离 .cursor/rules/*.mdc 规则，拒绝 Token 膨胀\n测算你的 AI 编程段位: https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder.html`
-        : `⚡ My 2026 AI Coding Maturity Score:\n• Current Tier: ${name}\n• Engineering Velocity: ${score}\n• Blueprint: Scope rules with .cursor/rules/*.mdc to eliminate token bloat\nAssess your AI engineering maturity: https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder.html`;
+        ? `⚡ 我的 2026 AI 编程成熟度评测:\n• 当前评级: ${name}\n• 研发人效分: ${score}\n• 核心建议: 采用路径隔离 .cursor/rules/*.mdc 规则，拒绝 Token 膨胀\n测算你的 AI 编程段位: https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder`
+        : `⚡ My 2026 AI Coding Maturity Score:\n• Current Tier: ${name}\n• Engineering Velocity: ${score}\n• Blueprint: Scope rules with .cursor/rules/*.mdc to eliminate token bloat\nAssess your AI engineering maturity: https://cursor.pacebowl.com/blog/ai-coding-maturity-ladder`;
 
       navigator.clipboard.writeText(text).then(() => {
         const btn = document.getElementById('copy-score-btn');
