@@ -2,10 +2,10 @@
   "status": "ok",
   "service": "PaceBowl Cursor Rules API",
   "description": "Production-tested modular .cursor/rules/*.mdc framework standards",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage": "https://cursor.pacebowl.com/",
   "mcp_spec": "https://cursor.pacebowl.com/api/mcp.json",
-  "total_rules": 8,
+  "total_rules": 14,
   "rules": [
     {
       "slug": "nextjs-15",
@@ -13,8 +13,8 @@
       "title": "Next.js 15 .cursorrules & .mdc Rules - App Router Best Practices",
       "description": "Production-tested .cursorrules and .cursor/rules/*.mdc configuration for Next.js 15. Enforce React Server Components (RSC), Zod-validated Server Actions, and prevent AI context pollution.",
       "globs": "app/**/*.{ts,tsx}, components/**/*.{ts,tsx}",
-      "url": "https://cursor.pacebowl.com/rules/nextjs-15.html",
-      "mdc_content": "---\ndescription: Next.js 15 App Router, Server Components, and Server Actions standards\nglobs: app/**/*.{ts,tsx}, components/**/*.{ts,tsx}\nalwaysApply: false\n---\n\n# Next.js 15 Production Standards\n\n## Architecture & Rendering\n- Treat all components as React Server Components (RSC) by default.\n- Never add `'use client'` at the page or layout level. Only attach `'use client'` at the lowest leaf nodes requiring interactivity (e.g. interactive buttons, forms with local state, event listeners).\n- Fetch data directly in React Server Components using async/await and native `fetch` with Next.js cache configurations (`next: { revalidate: 3600 }` or `{ cache: 'no-store' }`).\n\n## Server Actions & Data Mutation\n- Place data mutation actions in dedicated `actions/*.ts` files marked with `'use server'` at the top.\n- Every Server Action argument MUST be validated using a strict Zod schema before processing.\n- Never trust client-provided IDs or user roles without server-side session verification.\n- Return structured result objects: `{ success: boolean, data?: T, error?: string }`.\n\n## Performance & Assets\n- Always use `next/image` with explicit `width`, `height`, and accessible `alt` text.\n- Use `next/font/google` or `next/font/local` for zero-layout-shift font optimization.\n- Route handlers belong in `app/api/**/route.ts` and must return typed `NextResponse.json()`."
+      "url": "https://cursor.pacebowl.com/rules/nextjs-15",
+      "mdc_content": "---\ndescription: Next.js 15 App Router, Server Components, and Server Actions standards\nglobs: app/**/*.{ts,tsx}, components/**/*.{ts,tsx}\nalwaysApply: false\n---\n\n# Next.js 15 Production Standards\n\n## Architecture & Rendering\n- Treat all components as React Server Components (RSC) by default.\n- Never add 'use client' at the page or layout level. Only attach 'use client' at the lowest leaf nodes requiring interactivity.\n- Fetch data directly in React Server Components using async/await and native fetch with Next.js cache configurations (next: { revalidate: 3600 } or { cache: 'no-store' }).\n\n## Server Actions & Data Mutation\n- Place data mutation actions in dedicated actions/*.ts files marked with 'use server' at the top.\n- Every Server Action argument MUST be validated using a strict Zod schema before processing.\n- Never trust client-provided IDs or user roles without server-side session verification.\n- Return structured result objects: { success: boolean, data?: T, error?: string }.\n\n## Performance & Assets\n- Always use next/image with explicit width, height, and accessible alt text.\n- Use next/font/google or next/font/local for zero-layout-shift font optimization.\n- Route handlers belong in app/api/**/route.ts and must return typed NextResponse.json()."
     },
     {
       "slug": "python-fastapi",
@@ -22,8 +22,8 @@
       "title": "Python FastAPI .cursorrules & .mdc Rules - Pydantic v2 Best Practices",
       "description": "Production-grade .cursorrules and .cursor/rules/*.mdc configuration for FastAPI and Pydantic v2. Enforce dependency injection, async I/O discipline, and strict typing.",
       "globs": "**/*.py, api/**/*.py, routers/**/*.py",
-      "url": "https://cursor.pacebowl.com/rules/python-fastapi.html",
-      "mdc_content": "---\ndescription: Python FastAPI, Pydantic v2, and async service engineering standards\nglobs: **/*.py, api/**/*.py, routers/**/*.py\nalwaysApply: false\n---\n\n# FastAPI & Python Standards\n\n## Type Safety & Schema Validation\n- All request bodies, path parameters, and responses MUST be declared with Pydantic v2 `BaseModel`.\n- Always use Python 3.11+ type union syntax (`X | None` instead of `Optional[X]`).\n- Use Pydantic v2 syntax: `.model_dump()` instead of deprecated `.dict()`, and `@field_validator`.\n- Always declare explicit `response_model` on endpoints or use typed return annotations.\n\n## Routing & Dependency Injection\n- Organize routes using `APIRouter` with clear `tags` and `prefix` definitions.\n- Inject database sessions and current user auth contexts using `Depends()`.\n- Never use global database connections or unmanaged session singletons.\n\n## Async & Concurrency Discipline\n- Use `async def` for I/O-bound operations (database queries, external HTTP calls via `httpx`).\n- Use standard `def` for synchronous CPU-bound operations or libraries without async support (e.g. pandas, Pillow).\n- Always raise `HTTPException(status_code=..., detail=...)` with standard `status` constants."
+      "url": "https://cursor.pacebowl.com/rules/python-fastapi",
+      "mdc_content": "---\ndescription: Python FastAPI, Pydantic v2, and async service engineering standards\nglobs: **/*.py, api/**/*.py, routers/**/*.py\nalwaysApply: false\n---\n\n# FastAPI & Python Standards\n\n## Type Safety & Schema Validation\n- All request bodies, path parameters, and responses MUST be declared with Pydantic v2 BaseModel.\n- Always use Python 3.11+ type union syntax (X | None instead of Optional[X]).\n- Use Pydantic v2 syntax: .model_dump() instead of deprecated .dict(), and @field_validator.\n- Always declare explicit response_model on endpoints or use typed return annotations.\n\n## Routing & Dependency Injection\n- Organize routes using APIRouter with clear tags and prefix definitions.\n- Inject database sessions and current user auth contexts using Depends().\n- Never use global database connections or unmanaged session singletons.\n\n## Async & Concurrency Discipline\n- Use async def for I/O-bound operations (database queries, external HTTP calls via httpx).\n- Use standard def for synchronous CPU-bound operations or libraries without async support (e.g. pandas, Pillow).\n- Always raise HTTPException(status_code=..., detail=...) with standard status constants."
     },
     {
       "slug": "react-vite",
@@ -31,8 +31,8 @@
       "title": "React 19 & Vite .cursorrules & .mdc Rules - TypeScript Standards",
       "description": "Production-ready .cursorrules and .mdc rules for React 19 and Vite. Enforce clean custom hooks, prevent redundant useEffect cycles, and guarantee strict TypeScript safety.",
       "globs": "src/**/*.{ts,tsx}",
-      "url": "https://cursor.pacebowl.com/rules/react-vite.html",
-      "mdc_content": "---\ndescription: React 19 and Vite SPA development standards with strict TypeScript\nglobs: src/**/*.{ts,tsx}\nalwaysApply: false\n---\n\n# React 19 & Vite Standards\n\n## Component Architecture\n- Use functional components exclusively with TypeScript interfaces for props.\n- Keep components small and focused. Extract sub-components when JSX exceeds ~120 lines.\n- Do NOT use `React.FC`. Define props directly: `function Button({ label, onClick }: ButtonProps)`.\n\n## Hook Hygiene & State Management\n- Never use `useEffect` to synchronize or derive state that can be computed during render.\n- Keep `useState` local to the component that requires it; lift state only when shared by siblings.\n- Custom hooks must start with `use*`, reside in `src/hooks/`, and return typed arrays or objects."
+      "url": "https://cursor.pacebowl.com/rules/react-vite",
+      "mdc_content": "---\ndescription: React 19 and Vite SPA development standards with strict TypeScript\nglobs: src/**/*.{ts,tsx}\nalwaysApply: false\n---\n\n# React 19 & Vite Standards\n\n## Component Architecture\n- Use functional components exclusively with TypeScript interfaces for props.\n- Keep components small and focused. Extract sub-components when JSX exceeds ~120 lines.\n- Do NOT use React.FC. Define props directly: function Button({ label, onClick }: ButtonProps).\n\n## Hook Hygiene & State Management\n- Never use useEffect to synchronize or derive state that can be computed during render.\n- Keep useState local to the component that requires it; lift state only when shared by siblings.\n- Custom hooks must start with use*, reside in src/hooks/, and return typed arrays or objects."
     },
     {
       "slug": "vue3-nuxt",
@@ -40,8 +40,8 @@
       "title": "Vue 3 & Nuxt .cursorrules & .mdc Rules - Composition API & Pinia",
       "description": "Production .cursorrules and .cursor/rules/*.mdc configuration for Vue 3 and Nuxt. Enforce <script setup lang='ts'>, Pinia stores, and clean reactivity patterns.",
       "globs": "**/*.vue, stores/**/*.ts, composables/**/*.ts",
-      "url": "https://cursor.pacebowl.com/rules/vue3-nuxt.html",
-      "mdc_content": "---\ndescription: Vue 3 and Nuxt 3 Composition API standards with Pinia and TypeScript\nglobs: **/*.vue, stores/**/*.ts, composables/**/*.ts\nalwaysApply: false\n---\n\n# Vue 3 & Nuxt Standards\n\n## Single File Components\n- Always use `<script setup lang=\"ts\">`. The legacy Options API is forbidden.\n- Define props with `defineProps<{ ... }>()` and emits with `defineEmits<{ ... }>()`.\n- Use `computed()` for derived values; avoid deep watchers on reactive objects unless strictly necessary.\n\n## State & Store Management\n- Use Pinia for state management. Avoid mutating state directly outside of actions.\n- Place reusable logic in composables (`composables/use*.ts`) returning readonly refs where appropriate."
+      "url": "https://cursor.pacebowl.com/rules/vue3-nuxt",
+      "mdc_content": "---\ndescription: Vue 3 and Nuxt 3 Composition API standards with Pinia and TypeScript\nglobs: **/*.vue, stores/**/*.ts, composables/**/*.ts\nalwaysApply: false\n---\n\n# Vue 3 & Nuxt Standards\n\n## Single File Components\n- Always use <script setup lang=\"ts\">. The legacy Options API is forbidden.\n- Define props with defineProps<{ ... }>() and emits with defineEmits<{ ... }>().\n- Use computed() for derived values; avoid deep watchers on reactive objects unless strictly necessary.\n\n## State & Store Management\n- Use Pinia for state management. Avoid mutating state directly outside of actions.\n- Place reusable logic in composables (composables/use*.ts) returning readonly refs where appropriate."
     },
     {
       "slug": "supabase",
@@ -49,8 +49,8 @@
       "title": "Supabase & Postgres .cursorrules & .mdc Rules - Row Level Security (RLS)",
       "description": "Security-focused .cursorrules and .cursor/rules/*.mdc guidelines for Supabase. Mandate Row Level Security (RLS) policies, prevent key leaks, and enforce typed queries.",
       "globs": "supabase/**/*.{sql,ts}, lib/supabase/**/*.{ts,tsx}",
-      "url": "https://cursor.pacebowl.com/rules/supabase.html",
-      "mdc_content": "---\ndescription: Supabase database security, Row Level Security (RLS), and typed SDK standards\nglobs: supabase/**/*.{sql,ts}, lib/supabase/**/*.{ts,tsx}\nalwaysApply: false\n---\n\n# Supabase & Database Security Standards\n\n## Row Level Security (RLS) Discipline\n- Every new public schema table MUST explicitly enable RLS:\n  `ALTER TABLE table_name ENABLE ROW LEVEL SECURITY;`\n- Always define explicit policies for `SELECT`, `INSERT`, `UPDATE`, and `DELETE`.\n- Avoid `USING (true)` unless public read access is explicitly intentional.\n\n## SDK & Key Management\n- NEVER import or reference `SUPABASE_SERVICE_ROLE_KEY` inside client-side components.\n- Always use the typed Supabase client generated from `supabase gen types typescript`."
+      "url": "https://cursor.pacebowl.com/rules/supabase",
+      "mdc_content": "---\ndescription: Supabase database security, Row Level Security (RLS), and typed SDK standards\nglobs: supabase/**/*.{sql,ts}, lib/supabase/**/*.{ts,tsx}\nalwaysApply: false\n---\n\n# Supabase & Database Security Standards\n\n## Row Level Security (RLS) Discipline\n- Every new public schema table MUST explicitly enable RLS:\n  ALTER TABLE table_name ENABLE ROW LEVEL SECURITY;\n- Always define explicit policies for SELECT, INSERT, UPDATE, and DELETE.\n- Avoid USING (true) unless public read access is explicitly intentional.\n\n## SDK & Key Management\n- NEVER import or reference SUPABASE_SERVICE_ROLE_KEY inside client-side components.\n- Always use the typed Supabase client generated from supabase gen types typescript."
     },
     {
       "slug": "tailwind-css",
@@ -58,8 +58,8 @@
       "title": "Tailwind CSS v4 .cursorrules & .mdc Rules - Utility-First Standards",
       "description": "High-velocity .cursorrules and .cursor/rules/*.mdc configuration for Tailwind CSS v4. Enforce cn() utility merging, mobile-first responsiveness, and prevent arbitrary class sprawl.",
       "globs": "**/*.{tsx,jsx,vue,svelte,html,css}",
-      "url": "https://cursor.pacebowl.com/rules/tailwind-css.html",
-      "mdc_content": "---\ndescription: Tailwind CSS v4 utility styling, cn() merging, and responsive design standards\nglobs: **/*.{tsx,jsx,vue,svelte,html,css}\nalwaysApply: false\n---\n\n# Tailwind CSS v4 Standards\n\n## Utility-First Discipline\n- Use atomic utility classes directly. Do not create separate CSS files with `@apply` unless writing base typography.\n- Always use the `cn()` helper (`clsx` + `tailwind-merge`) when conditionally merging classes.\n- Follow mobile-first order: base classes first, then `sm:`, `md:`, `lg:`, `xl:`.\n\n## Theming & Dark Mode\n- Use semantic color classes (`bg-background`, `text-foreground`, `border-border`) so dark mode works out of the box.\n- Avoid arbitrary hardcoded pixel values (e.g. `w-[347px]`). Use standard Tailwind spacing scale (`w-80`, `w-96`)."
+      "url": "https://cursor.pacebowl.com/rules/tailwind-css",
+      "mdc_content": "---\ndescription: Tailwind CSS v4 utility styling, cn() merging, and responsive design standards\nglobs: **/*.{tsx,jsx,vue,svelte,html,css}\nalwaysApply: false\n---\n\n# Tailwind CSS v4 Standards\n\n## Utility-First Discipline\n- Use atomic utility classes directly. Do not create separate CSS files with @apply unless writing base typography.\n- Always use the cn() helper (clsx + tailwind-merge) when conditionally merging classes.\n- Follow mobile-first order: base classes first, then sm:, md:, lg:, xl:.\n\n## Theming & Dark Mode\n- Use semantic color classes (bg-background, text-foreground, border-border) so dark mode works out of the box.\n- Avoid arbitrary hardcoded pixel values (e.g. w-[347px]). Use standard Tailwind spacing scale (w-80, w-96)."
     },
     {
       "slug": "golang",
@@ -67,8 +67,8 @@
       "title": "Golang .cursorrules & .mdc Rules - Idiomatic Go Microservice Standards",
       "description": "Production-tested .cursorrules and .cursor/rules/*.mdc configuration for Golang. Enforce idiomatic error handling, context propagation, and zero-allocation struct discipline.",
       "globs": "**/*.go",
-      "url": "https://cursor.pacebowl.com/rules/golang.html",
-      "mdc_content": "---\ndescription: Idiomatic Golang standards, error wrapping, and context propagation\nglobs: **/*.go\nalwaysApply: false\n---\n\n# Golang Engineering Standards\n\n## Error Handling & Reliability\n- Handle errors immediately where they occur: `if err != nil { return fmt.Errorf(\"action failed: %w\", err) }`.\n- Never ignore errors with `_`. Always handle or explicitly log with justification.\n- Wrap errors using `%w` to preserve the causal error chain.\n\n## Concurrency & Context\n- Pass `ctx context.Context` as the very first parameter to any function doing I/O.\n- Always release resources using `defer resp.Body.Close()` or `defer rows.Close()` immediately after checking for errors.\n- Never start unmanaged goroutines without `sync.WaitGroup` or cancellation signals."
+      "url": "https://cursor.pacebowl.com/rules/golang",
+      "mdc_content": "---\ndescription: Idiomatic Golang standards, error wrapping, and context propagation\nglobs: **/*.go\nalwaysApply: false\n---\n\n# Golang Engineering Standards\n\n## Error Handling & Reliability\n- Handle errors immediately where they occur: if err != nil { return fmt.Errorf(\"action failed: %w\", err) }.\n- Never ignore errors with _. Always handle or explicitly log with justification.\n- Wrap errors using %w to preserve the causal error chain.\n\n## Concurrency & Context\n- Pass ctx context.Context as the very first parameter to any function doing I/O.\n- Always release resources using defer resp.Body.Close() or defer rows.Close() immediately after checking for errors.\n- Never start unmanaged goroutines without sync.WaitGroup or cancellation signals."
     },
     {
       "slug": "cloudflare-workers",
@@ -76,8 +76,62 @@
       "title": "Cloudflare Workers .cursorrules & .mdc Rules - Edge Serverless Standards",
       "description": "High-performance .cursorrules and .cursor/rules/*.mdc configuration for Cloudflare Workers and Hono. Optimize edge startup times, D1 database queries, and KV caching.",
       "globs": "worker/**/*.{ts,js}, src/**/*.{ts,js}",
-      "url": "https://cursor.pacebowl.com/rules/cloudflare-workers.html",
-      "mdc_content": "---\ndescription: Cloudflare Workers, Hono, D1, and Edge runtime engineering standards\nglobs: worker/**/*.{ts,js}, src/**/*.{ts,js}\nalwaysApply: false\n---\n\n# Cloudflare Workers & Hono Standards\n\n## Edge Runtime Constraints\n- Never rely on persistent in-memory global state between requests.\n- Use `c.env.DB` (D1) or `c.env.KV` for persistent storage and session management.\n- Keep dependencies minimal to ensure sub-10ms worker cold startup times.\n\n## Hono Framework Discipline\n- Type your Hono instance with the environment bindings: `const app = new Hono<{ Bindings: Env }>()`.\n- Always return typed JSON using `c.json({ ... }, 200)` and handle errors with `app.onError()`.\n- Ensure all asynchronous background tasks use `ctx.waitUntil(...)` so execution completes reliably."
+      "url": "https://cursor.pacebowl.com/rules/cloudflare-workers",
+      "mdc_content": "---\ndescription: Cloudflare Workers, Hono, D1, and Edge runtime engineering standards\nglobs: worker/**/*.{ts,js}, src/**/*.{ts,js}\nalwaysApply: false\n---\n\n# Cloudflare Workers & Hono Standards\n\n## Edge Runtime Constraints\n- Never rely on persistent in-memory global state between requests.\n- Use c.env.DB (D1) or c.env.KV for persistent storage and session management.\n- Keep dependencies minimal to ensure sub-10ms worker cold startup times.\n\n## Hono Framework Discipline\n- Type your Hono instance with the environment bindings: const app = new Hono<{ Bindings: Env }>().\n- Always return typed JSON using c.json({ ... }, 200) and handle errors with app.onError().\n- Ensure all asynchronous background tasks use ctx.waitUntil(...) so execution completes reliably."
+    },
+    {
+      "slug": "flutter-dart",
+      "name": "Flutter & Dart",
+      "title": "Flutter & Dart .cursorrules & .mdc Rules - Clean Architecture & Riverpod",
+      "description": "Production-tested .cursorrules and .cursor/rules/*.mdc configuration for Flutter and Dart 3. Enforce clean architecture, Riverpod/Bloc state management, const widget optimization, and null safety.",
+      "globs": "lib/**/*.dart, test/**/*.dart",
+      "url": "https://cursor.pacebowl.com/rules/flutter-dart",
+      "mdc_content": "---\ndescription: Flutter 3 and Dart 3 production architecture, Riverpod state, and widget optimization\nglobs: lib/**/*.dart, test/**/*.dart\nalwaysApply: false\n---\n\n# Flutter & Dart Engineering Standards\n\n## Widget Tree & Performance Discipline\n- Prefer dedicated StatelessWidget or HookWidget classes over inline helper methods that return Widget.\n- Add `const` constructors to all static widgets to eliminate unnecessary element rebuilds.\n- Never perform heavy data manipulation or network I/O directly inside the build() method.\n- Always dispose AnimationControllers, TextEditingControllers, and StreamSubscriptions in dispose().\n\n## State Management (Riverpod / Bloc)\n- Keep UI completely decoupled from business logic using Riverpod (NotifierProvider) or Bloc.\n- State models MUST be immutable using Freezed or Equatable with copyWith() patterns.\n- Never call setState() in deeply nested widget trees; consume granular providers with ConsumerWidget.\n\n## Dart Sound Null Safety & Async\n- Sound null safety is strictly enforced. Never use force-unwrap (!) unless preceded by a hard null assertion.\n- Handle asynchronous errors with typed Result/Either monads or structured try-catch with specific exceptions."
+    },
+    {
+      "slug": "rust-axum",
+      "name": "Rust & Axum",
+      "title": "Rust & Axum .cursorrules & .mdc Rules - Async Tokio & SQLx Best Practices",
+      "description": "High-performance .cursorrules and .cursor/rules/*.mdc configuration for Rust, Axum, and Tokio. Enforce idiomatic error handling with thiserror/anyhow, zero-copy deserialization, and strict async discipline.",
+      "globs": "src/**/*.rs, tests/**/*.rs",
+      "url": "https://cursor.pacebowl.com/rules/rust-axum",
+      "mdc_content": "---\ndescription: Rust 2024 edition, Axum web framework, Tokio async, and SQLx standards\nglobs: src/**/*.rs, tests/**/*.rs\nalwaysApply: false\n---\n\n# Rust & Axum Engineering Standards\n\n## Error Handling & Robustness\n- Never call .unwrap() or .expect() in production request handlers or library code.\n- Define a unified application error enum using `thiserror` and implement Axum's `IntoResponse`.\n- Use `anyhow` solely for application entry points (main.rs) or tests.\n- Always map database and third-party errors into structured domain error variants.\n\n## Async & Concurrency Discipline (Tokio)\n- Never execute blocking CPU-heavy operations or synchronous file/network I/O on async worker threads.\n- Offload blocking work to `tokio::task::spawn_blocking`.\n- Keep mutex lock guards tightly scoped; never hold a std::sync::MutexGuard across an .await point.\n\n## Axum Routing & State\n- Group related endpoints into modular routers merged into the main application Router.\n- Pass shared application state via `axum::extract::State(state)` with an Arc-wrapped struct.\n- Validate request payloads with typed extractors (`Json<T>`, `Query<T>`, `Path<T>`)."
+    },
+    {
+      "slug": "react-native-expo",
+      "name": "React Native / Expo",
+      "title": "React Native & Expo .cursorrules & .mdc Rules - Expo Router SDK 52 Standards",
+      "description": "Production-ready .cursorrules and .cursor/rules/*.mdc configuration for React Native and Expo Router SDK 52. Enforce typed routing, NativeWind styling, performance list optimization, and smooth 60fps UI.",
+      "globs": "app/**/*.{tsx,ts}, components/**/*.{tsx,ts}",
+      "url": "https://cursor.pacebowl.com/rules/react-native-expo",
+      "mdc_content": "---\ndescription: React Native and Expo Router SDK 52 mobile application standards\nglobs: app/**/*.{tsx,ts}, components/**/*.{tsx,ts}\nalwaysApply: false\n---\n\n# React Native & Expo Standards\n\n## Expo Router & File Navigation\n- Follow file-based routing in the app/ directory strictly. Use _layout.tsx for Stack and Tabs navigation.\n- Use typed navigation via `useRouter()` and `router.push({ pathname, params })`.\n- Always configure screen options in _layout.tsx rather than imperatively inside individual screen components.\n\n## Performance & 60fps Rendering\n- Use `@shopify/flash-list` instead of legacy FlatList for rendering feeds with more than 20 items.\n- Memoize list renderItem functions with useCallback and wrap items in React.memo with strict comparison.\n- Ensure all images use `expo-image` with cachePolicy=\"memory-disk\" for instant image loads.\n\n## Safe Areas & Cross-Platform Styling\n- Always wrap screen views in `SafeAreaView` from `react-native-safe-area-context`.\n- When using NativeWind / Tailwind CSS, ensure class strings are mobile-optimized without desktop media queries.\n- Support both iOS and Android keyboard dismiss behaviors with `KeyboardAvoidingView` behavior=\"padding\"."
+    },
+    {
+      "slug": "django-python",
+      "name": "Django / DRF",
+      "title": "Django & DRF .cursorrules & .mdc Rules - Python Web Standards & Celery",
+      "description": "Enterprise-grade .cursorrules and .cursor/rules/*.mdc configuration for Django 5 and Django REST Framework (DRF). Prevent N+1 queries with select_related/prefetch_related, enforce typed serializers, and clean service layers.",
+      "globs": "**/*.py, apps/**/*.py",
+      "url": "https://cursor.pacebowl.com/rules/django-python",
+      "mdc_content": "---\ndescription: Django 5 and Django REST Framework (DRF) backend engineering standards\nglobs: **/*.py, apps/**/*.py\nalwaysApply: false\n---\n\n# Django & DRF Engineering Standards\n\n## Query Optimization & N+1 Prevention\n- Never loop over foreign-key relations without `select_related()` (for ForeignKey/OneToOne) or `prefetch_related()` (for ManyToMany).\n- Use `.only()` or `.values_list()` when fetching lightweight subsets of columns.\n- Use `bulk_create()` and `bulk_update()` for batch database operations; never save instances in a loop.\n\n## Architecture & Service Layer\n- Keep views thin: views and ViewSets should only parse requests, invoke service functions, and return responses.\n- Place core business logic in dedicated `services/*.py` modules rather than fat models or serializers.\n- Use ModelSerializer for CRUD validation; explicitly define `fields = [...] ` and never use `fields = '__all__'`.\n\n## Asynchronous & Background Tasks\n- Long-running operations (emails, webhooks, heavy reports) MUST be dispatched to Celery tasks with `task.delay()`."
+    },
+    {
+      "slug": "laravel-php",
+      "name": "Laravel 11",
+      "title": "Laravel 11 .cursorrules & .mdc Rules - Modern PHP 8.3 & Eloquent Standards",
+      "description": "Modern .cursorrules and .cursor/rules/*.mdc configuration for Laravel 11 and PHP 8.3. Enforce Form Request validation, API Resources, strict Eloquent query optimization, and Pest testing.",
+      "globs": "app/**/*.php, routes/**/*.php, database/**/*.php",
+      "url": "https://cursor.pacebowl.com/rules/laravel-php",
+      "mdc_content": "---\ndescription: Laravel 11 and modern PHP 8.3 backend engineering standards\nglobs: app/**/*.php, routes/**/*.php, database/**/*.php\nalwaysApply: false\n---\n\n# Laravel 11 & PHP 8.3 Standards\n\n## Controller & Request Validation\n- Never validate requests directly inside controllers with $request->validate().\n- Always extract validation into dedicated Form Request classes: `php artisan make:request`.\n- Format API outputs using JsonResource / ResourceCollection classes; never return raw Eloquent models directly.\n\n## Eloquent Discipline & Performance\n- Prevent lazy loading in local development: call `Model::preventLazyLoading()` in AppServiceProvider.\n- Always eager load relations with `with([...])` to prevent N+1 query loops.\n- Use typed properties and PHP 8.3 constructor property promotion across all classes.\n\n## Testing & Quality\n- Write tests using Pest PHP for all feature endpoints.\n- Group complex business mutations into single-purpose Action classes (`app/Actions`)."
+    },
+    {
+      "slug": "shadcn-ui",
+      "name": "shadcn/ui & Radix",
+      "title": "shadcn/ui & Radix .cursorrules & .mdc Rules - Accessible Component Standards",
+      "description": "Production .cursorrules and .cursor/rules/*.mdc configuration for shadcn/ui and Radix UI. Enforce WCAG 2.1 AA accessibility, polymorphic 'asChild' composition, cn() class merging, and headless component purity.",
+      "globs": "components/ui/**/*.{tsx,jsx}, components/**/*.{tsx,jsx}",
+      "url": "https://cursor.pacebowl.com/rules/shadcn-ui",
+      "mdc_content": "---\ndescription: shadcn/ui, Radix UI primitives, and accessible component engineering standards\nglobs: components/ui/**/*.{tsx,jsx}, components/**/*.{tsx,jsx}\nalwaysApply: false\n---\n\n# shadcn/ui & Radix UI Standards\n\n## Component Composition & asChild Pattern\n- When wrapping shadcn/ui components (e.g. Button, DialogTrigger) around custom links or buttons, ALWAYS use `asChild` to avoid nested interactive button-in-a-tag HTML errors.\n- Never modify files inside `components/ui/` directly unless creating a project-wide variant. Build feature wrappers in `components/`.\n\n## Accessibility (a11y) & ARIA Compliance\n- Every interactive element MUST have visible focus rings: `focus-visible:ring-2 focus-visible:ring-offset-2`.\n- All icons used as buttons MUST include an accessible `aria-label` or `<span class=\"sr-only\">Label</span>`.\n- Dialogs, Sheets, and Drawers MUST contain a `<DialogTitle>` or `<VisuallyHidden><DialogTitle>` to satisfy screen readers.\n\n## Styling & Token Consistency\n- Always combine conditional classes using the `cn()` utility (clsx + tailwind-merge).\n- Rely on semantic HSL CSS variable tokens: `bg-background`, `text-muted-foreground`, `border-input`."
     }
   ]
 }

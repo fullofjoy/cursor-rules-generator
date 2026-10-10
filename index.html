@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
@@ -261,49 +261,79 @@
             <span class="font-medium sm:hidden">Suite</span>
             <svg id="suite-dropdown-arrow" class="w-3.5 h-3.5 text-slate-400 transition transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
-          <div id="suite-dropdown-menu" class="hidden absolute right-0 mt-1.5 w-64 max-w-[calc(100vw-1.5rem)] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl p-2 z-50">
+          <div id="suite-dropdown-menu" class="hidden absolute right-0 mt-1.5 w-64 max-w-[calc(100vw-1.5rem)] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl p-2 z-50 text-xs">
             <div class="text-[10px] font-mono uppercase tracking-wider text-slate-500 px-2 py-1" data-i18n="suite_title">PaceBowl Ecosystem</div>
+            {/* 1. Mothership */}
             <a href="https://pacebowl.com" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-200 transition">
               <span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-sky-500 via-indigo-600 to-purple-600 flex items-center justify-center text-[10px] font-bold text-white shadow-sm flex-shrink-0">PB</span>
               <div class="min-w-0">
                 <div class="font-bold text-slate-900 dark:text-white truncate" data-i18n="suite_hub">PaceBowl Mothership</div>
-                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_hub_sub">Central Hub & Runbooks</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_hub_sub">母舰主站 • 知识库与全矩阵导航</div>
               </div>
             </a>
             <div class="border-t border-slate-200 dark:border-slate-800/80 my-1"></div>
+            {/* 2. Cursor (Active) */}
             <a href="https://cursor.pacebowl.com" class="flex items-center gap-2.5 p-2 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-300 dark:border-indigo-500/40 text-xs text-indigo-800 dark:text-indigo-200 mt-1">
               <span class="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0">CR</span>
               <div class="min-w-0">
                 <div class="font-bold text-indigo-900 dark:text-white truncate" data-i18n="suite_cursor">Cursor Rules Studio</div>
-                <div class="text-[10px] text-indigo-600 dark:text-indigo-300 truncate" data-i18n="suite_cursor_sub">Active • .mdc Generator</div>
+                <div class="text-[10px] text-indigo-600 dark:text-indigo-300 truncate" data-i18n="suite_cursor_sub">当前站点 • .cursorrules / .mdc</div>
               </div>
             </a>
-            <a href="https://comfy.pacebowl.com" data-umami-event="suite-click-comfy" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-200 transition mt-1">
-              <span class="w-7 h-7 rounded-lg bg-sky-600 flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0">CF</span>
-              <div class="min-w-0">
-                <div class="font-bold text-slate-900 dark:text-white truncate" data-i18n="suite_comfy">ComfyUI Prompt Studio</div>
-                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_comfy_sub">Flux.1 & 1MP Latent Calc</div>
-              </div>
-            </a>
+            {/* 3. OpenGEO */}
             <a href="https://geo.pacebowl.com" data-umami-event="suite-click-geo" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-200 transition mt-1">
               <span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-[10px] font-bold text-white shadow-sm flex-shrink-0">GEO</span>
               <div class="min-w-0">
                 <div class="font-bold text-slate-900 dark:text-white truncate" data-i18n="suite_geo">OpenGEO Studio</div>
-                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_geo_sub">AI Search & Stripe Funnel</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_geo_sub">归因看板 • AI 搜索转化与获客漏斗</div>
               </div>
             </a>
+            {/* 4. Claude */}
+            <a href="https://claude.pacebowl.com" data-umami-event="suite-click-claude" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-200 transition mt-1">
+              <span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center text-[10px] font-bold text-white shadow-sm flex-shrink-0">CL</span>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white truncate" data-i18n="suite_claude">Claude & Agent Cost</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_claude_sub">成本精算 • Haiku 5.5 vs Opus & 任务账单</div>
+              </div>
+            </a>
+            {/* 5. MoE */}
+            <a href="https://moe.pacebowl.com" data-umami-event="suite-click-moe" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-200 transition mt-1">
+              <span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-[10px] font-bold text-white shadow-sm flex-shrink-0">MoE</span>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white truncate" data-i18n="suite_moe">MoE VRAM Estimator</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_moe_sub">显存精算 • 激活参数/KV Cache/硬件拓扑</div>
+              </div>
+            </a>
+            {/* 6. ComfyUI */}
+            <a href="https://comfy.pacebowl.com" data-umami-event="suite-click-comfy" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-200 transition mt-1">
+              <span class="w-7 h-7 rounded-lg bg-sky-600 flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0">CF</span>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white truncate" data-i18n="suite_comfy">ComfyUI Prompt Studio</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_comfy_sub">绘图工坊 • Flux.1/SDXL 与潜空间算力</div>
+              </div>
+            </a>
+            {/* 7. DeepSeek */}
             <a href="https://deepseek.pacebowl.com" data-umami-event="suite-click-deepseek" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-200 transition mt-1">
               <span class="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0">DS</span>
               <div class="min-w-0">
                 <div class="font-bold text-slate-900 dark:text-white truncate" data-i18n="suite_deepseek">DeepSeek Prompt Studio</div>
-                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_deepseek_sub">R1 Reasoning & XML Framework</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_deepseek_sub">推理工坊 • 277+ 专家库与 R1 CoT 框架</div>
               </div>
             </a>
+            {/* 8. Reddit */}
             <a href="https://reddit.pacebowl.com" data-umami-event="suite-click-reddit" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-200 transition mt-1">
               <span class="w-7 h-7 rounded-lg bg-orange-600 flex items-center justify-center text-[10px] font-bold text-white shadow-sm flex-shrink-0">RD</span>
               <div class="min-w-0">
                 <div class="font-bold text-slate-900 dark:text-white truncate" data-i18n="suite_reddit">Reddit Growth Studio</div>
-                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_reddit_sub">15-Word One-Liners & AutoMod</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_reddit_sub">出海截流 • 15 词神评与 AutoMod 防吞雷达</div>
+              </div>
+            </a>
+            {/* 9. Sora */}
+            <a href="https://sora.pacebowl.com" data-umami-event="suite-click-sora" class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 text-xs text-slate-700 dark:text-slate-200 transition mt-1">
+              <span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-[10px] font-bold text-white shadow-sm flex-shrink-0">SR</span>
+              <div class="min-w-0">
+                <div class="font-bold text-slate-900 dark:text-white truncate" data-i18n="suite_sora">Sora Video Studio</div>
+                <div class="text-[10px] text-slate-500 dark:text-slate-400 truncate" data-i18n="suite_sora_sub">运镜工坊 • 电影级机位与光影提示词</div>
               </div>
             </a>
           </div>
@@ -378,11 +408,23 @@
       <a href="/rules/golang" class="px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition shadow-xs flex items-center gap-1.5">
         <span>🔷 Golang</span>
       </a>
+      <a href="/rules/rust-axum" class="px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition shadow-xs flex items-center gap-1.5">
+        <span>🦀 Rust Axum</span>
+      </a>
+      <a href="/rules/flutter-dart" class="px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition shadow-xs flex items-center gap-1.5">
+        <span>💙 Flutter</span>
+      </a>
+      <a href="/rules/react-native-expo" class="px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition shadow-xs flex items-center gap-1.5">
+        <span>📱 Expo</span>
+      </a>
+      <a href="/rules/shadcn-ui" class="px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition shadow-xs flex items-center gap-1.5">
+        <span>🧱 shadcn/ui</span>
+      </a>
       <a href="/rules/cloudflare-workers" class="px-2.5 py-1 rounded-lg text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition shadow-xs flex items-center gap-1.5">
         <span>☁️ Workers</span>
       </a>
       <a href="/rules/" class="px-2.5 py-1 rounded-lg text-xs bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">
-        All Rules →
+        All 14 Rules →
       </a>
     </div>
   </section>
@@ -1886,6 +1928,14 @@ ${dbContent.trim()}`;
         suite_geo_sub: 'AI Search & Stripe Funnel',
         suite_deepseek: 'DeepSeek Prompt Studio',
         suite_deepseek_sub: 'R1 Reasoning & XML Framework',
+        suite_reddit: 'Reddit Growth Studio',
+        suite_reddit_sub: '15-Word One-Liners & AutoMod',
+        suite_sora: 'Sora Video Studio',
+        suite_sora_sub: 'Motion & Optics',
+        suite_claude: 'Claude Cost Calculator',
+        suite_claude_sub: 'Haiku 5.5 vs Opus & Agent Job',
+        suite_moe: 'MoE VRAM Estimator',
+        suite_moe_sub: 'Active Params & KV Cache',
         nav_faq: 'How it Works',
         nav_blog: 'Guides & Blog',
         hero_badge1: '✨ Official Multi-file Architecture',
@@ -2034,6 +2084,14 @@ ${dbContent.trim()}`;
         suite_geo_sub: 'AI 搜索推荐与 Stripe 转化',
         suite_deepseek: 'DeepSeek 深度提示词工坊',
         suite_deepseek_sub: 'R1 推理思维链 & XML 系统指令',
+        suite_reddit: 'Reddit 增长工坊',
+        suite_reddit_sub: '15 字一句话触达 & 规则雷达',
+        suite_sora: 'Sora 视频工坊',
+        suite_sora_sub: '运镜控制与影视级光学',
+        suite_claude: 'Claude 账单计算器',
+        suite_claude_sub: 'Haiku 5.5 vs Opus & 任务重试',
+        suite_moe: 'MoE 显存测算器',
+        suite_moe_sub: '激活参数与 KV Cache',
         nav_faq: '工作原理',
         nav_blog: '实战手册与博客',
         hero_badge1: '✨ 官方推荐多文件规范架构',
@@ -2320,9 +2378,12 @@ ${dbContent.trim()}`;
       } catch(e) {}
     }
 
-    // PaceBowl Suite Dropdown (Touch & Hover Friendly)
+    // PaceBowl Suite Dropdown (Click to toggle, outside click to close)
     function toggleSuiteDropdown(e) {
-      if (e) e.stopPropagation();
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
       const menu = document.getElementById('suite-dropdown-menu');
       const arrow = document.getElementById('suite-dropdown-arrow');
       if (!menu) return;
@@ -2340,25 +2401,12 @@ ${dbContent.trim()}`;
     const suiteMenu = document.getElementById('suite-dropdown-menu');
     const suiteArrow = document.getElementById('suite-dropdown-arrow');
 
-    if (suiteContainer && suiteMenu) {
-      suiteContainer.addEventListener('mouseenter', () => {
-        if (window.matchMedia('(hover: hover)').matches) {
-          suiteMenu.classList.remove('hidden');
-          if (suiteArrow) suiteArrow.classList.add('rotate-180');
-        }
-      });
-      suiteContainer.addEventListener('mouseleave', () => {
-        if (window.matchMedia('(hover: hover)').matches) {
+    document.addEventListener('click', (e) => {
+      if (suiteContainer && !suiteContainer.contains(e.target)) {
+        if (suiteMenu && !suiteMenu.classList.contains('hidden')) {
           suiteMenu.classList.add('hidden');
           if (suiteArrow) suiteArrow.classList.remove('rotate-180');
         }
-      });
-    }
-
-    document.addEventListener('click', (e) => {
-      if (suiteContainer && !suiteContainer.contains(e.target)) {
-        if (suiteMenu) suiteMenu.classList.add('hidden');
-        if (suiteArrow) suiteArrow.classList.remove('rotate-180');
       }
     });
 

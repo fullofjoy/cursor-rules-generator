@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
@@ -138,8 +138,9 @@
       </a>
 
       <div class="flex items-center space-x-3 text-xs">
+        <a href="/rules/" class="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition">Directory</a>
         <a href="/blog/" class="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition hidden sm:inline">Guides & Blog</a>
-        <a href="/?frontend=react19&backend=nodejs&tailwind=true&zod=true" class="px-3.5 py-1.5 rounded-lg font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition flex items-center gap-1.5 shadow-sm">
+        <a href="/" class="px-3.5 py-1.5 rounded-lg font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition flex items-center gap-1.5 shadow-sm">
           <span>⚡</span>
           <span>Customize Stack</span>
         </a>
@@ -151,7 +152,7 @@
   <nav class="max-w-5xl mx-auto px-4 sm:px-6 pt-6 w-full text-xs text-slate-500 dark:text-slate-400 flex items-center space-x-2">
     <a href="/" class="hover:text-indigo-500">Home</a>
     <span>/</span>
-    <span class="text-slate-400 dark:text-slate-500">Rules</span>
+    <a href="/rules/" class="hover:text-indigo-500">Rules</a>
     <span>/</span>
     <span class="text-slate-900 dark:text-slate-200 font-medium">React 19 / Vite</span>
   </nav>
@@ -192,7 +193,7 @@
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
             <span>Download</span>
           </button>
-          <a href="/?frontend=react19&backend=nodejs&tailwind=true&zod=true" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition flex items-center gap-1.5 shadow-sm">
+          <a href="/" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition flex items-center gap-1.5 shadow-sm">
             <span>⚡ Open in Generator</span>
           </a>
         </div>
@@ -211,16 +212,16 @@ alwaysApply: false
 ## Component Architecture
 - Use functional components exclusively with TypeScript interfaces for props.
 - Keep components small and focused. Extract sub-components when JSX exceeds ~120 lines.
-- Do NOT use `React.FC`. Define props directly: `function Button({ label, onClick }: ButtonProps)`.
+- Do NOT use React.FC. Define props directly: function Button({ label, onClick }: ButtonProps).
 
 ## Hook Hygiene & State Management
-- Never use `useEffect` to synchronize or derive state that can be computed during render.
-- Keep `useState` local to the component that requires it; lift state only when shared by siblings.
-- Custom hooks must start with `use*`, reside in `src/hooks/`, and return typed arrays or objects.</code></pre>
+- Never use useEffect to synchronize or derive state that can be computed during render.
+- Keep useState local to the component that requires it; lift state only when shared by siblings.
+- Custom hooks must start with use*, reside in src/hooks/, and return typed arrays or objects.</code></pre>
       </div>
     </div>
 
-    <!-- Community Backlink & Citation Bar (Builds Natural Referring Domains) -->
+    <!-- Community Backlink & Citation Bar -->
     <div class="p-4 rounded-xl bg-slate-100/90 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs mb-10 shadow-xs">
       <div class="flex items-center gap-2 flex-wrap">
         <span class="text-base">⭐</span>
@@ -231,7 +232,7 @@ alwaysApply: false
         <a href="https://github.com/fullofjoy/cursor-rules-generator" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 hover:border-indigo-400 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 transition font-medium flex items-center gap-1.5 shadow-2xs">
           <span>Star on GitHub</span>
         </a>
-        <a href="https://twitter.com/intent/tweet?text=Production%20.cursorrules%20and%20.mdc%20configuration%20for%20React 19 / Vite:%20https://cursor.pacebowl.com/rules/react-vite" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 hover:border-sky-400 border border-sky-200 dark:border-sky-800 text-sky-600 dark:text-sky-300 transition font-medium shadow-2xs">
+        <a href="https://twitter.com/intent/tweet?text=Production%20.cursorrules%20and%20.mdc%20configuration%20for%20React%2019%20%2F%20Vite:%20https://cursor.pacebowl.com/rules/react-vite" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/60 hover:border-sky-400 border border-sky-200 dark:border-sky-800 text-sky-600 dark:text-sky-300 transition font-medium shadow-2xs">
           Share on X
         </a>
       </div>
@@ -244,7 +245,6 @@ alwaysApply: false
           <span>Frequently Asked Questions & Implementation Notes</span>
         </h2>
         <div class="space-y-3">
-          
         <div class="border border-slate-200 dark:border-slate-800/80 rounded-xl p-5 bg-white dark:bg-slate-900/40">
           <h3 class="text-sm font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
@@ -268,7 +268,6 @@ alwaysApply: false
           Explore Other Frameworks
         </h2>
         <div class="grid grid-cols-1 gap-2">
-          
         <a href="/rules/nextjs-15" class="p-3 rounded-lg border text-xs transition flex items-center justify-between border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 hover:text-white">
           <span>Next.js 15</span>
           <span class="text-[10px] font-mono text-slate-500">.mdc</span>
@@ -301,6 +300,30 @@ alwaysApply: false
           <span>Cloudflare Workers</span>
           <span class="text-[10px] font-mono text-slate-500">.mdc</span>
         </a>
+        <a href="/rules/flutter-dart" class="p-3 rounded-lg border text-xs transition flex items-center justify-between border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 hover:text-white">
+          <span>Flutter & Dart</span>
+          <span class="text-[10px] font-mono text-slate-500">.mdc</span>
+        </a>
+        <a href="/rules/rust-axum" class="p-3 rounded-lg border text-xs transition flex items-center justify-between border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 hover:text-white">
+          <span>Rust & Axum</span>
+          <span class="text-[10px] font-mono text-slate-500">.mdc</span>
+        </a>
+        <a href="/rules/react-native-expo" class="p-3 rounded-lg border text-xs transition flex items-center justify-between border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 hover:text-white">
+          <span>React Native / Expo</span>
+          <span class="text-[10px] font-mono text-slate-500">.mdc</span>
+        </a>
+        <a href="/rules/django-python" class="p-3 rounded-lg border text-xs transition flex items-center justify-between border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 hover:text-white">
+          <span>Django / DRF</span>
+          <span class="text-[10px] font-mono text-slate-500">.mdc</span>
+        </a>
+        <a href="/rules/laravel-php" class="p-3 rounded-lg border text-xs transition flex items-center justify-between border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 hover:text-white">
+          <span>Laravel 11</span>
+          <span class="text-[10px] font-mono text-slate-500">.mdc</span>
+        </a>
+        <a href="/rules/shadcn-ui" class="p-3 rounded-lg border text-xs transition flex items-center justify-between border-slate-800 bg-slate-900/60 hover:border-slate-700 text-slate-300 hover:text-white">
+          <span>shadcn/ui & Radix</span>
+          <span class="text-[10px] font-mono text-slate-500">.mdc</span>
+        </a>
         </div>
       </div>
     </div>
@@ -315,6 +338,13 @@ alwaysApply: false
       <a href="https://pacebowl.com" class="text-xs text-indigo-500 hover:underline">Mothership Hub →</a>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="https://deepseek.pacebowl.com" class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-blue-500/60 transition group flex flex-col justify-between">
+        <div class="flex items-center gap-2.5 mb-1.5">
+          <div class="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-[10px]">DS</div>
+          <span class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-blue-400 transition">DeepSeek Studio</span>
+        </div>
+        <p class="text-[11px] text-slate-500 dark:text-slate-400">277+ AI Expert Prompts & R1 CoT.</p>
+      </a>
       <a href="https://comfy.pacebowl.com" class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:border-sky-500/60 transition group flex flex-col justify-between">
         <div class="flex items-center gap-2.5 mb-1.5">
           <div class="w-7 h-7 rounded-lg bg-sky-600 flex items-center justify-center text-white font-bold text-[10px]">CF</div>
@@ -340,7 +370,7 @@ alwaysApply: false
         <span>•</span>
         <a href="https://pacebowl.com" class="hover:text-indigo-500">Pacebowl.com</a>
         <span>•</span>
-        <a href="https://comfy.pacebowl.com" class="hover:text-indigo-500">ComfyUI Studio</a>
+        <a href="https://deepseek.pacebowl.com" class="hover:text-indigo-500">DeepSeek Studio</a>
         <span>•</span>
         <a href="https://geo.pacebowl.com" class="hover:text-indigo-500">OpenGEO</a>
       </div>
@@ -362,12 +392,12 @@ alwaysApply: false
 ## Component Architecture
 - Use functional components exclusively with TypeScript interfaces for props.
 - Keep components small and focused. Extract sub-components when JSX exceeds ~120 lines.
-- Do NOT use \`React.FC\`. Define props directly: \`function Button({ label, onClick }: ButtonProps)\`.
+- Do NOT use React.FC. Define props directly: function Button({ label, onClick }: ButtonProps).
 
 ## Hook Hygiene & State Management
-- Never use \`useEffect\` to synchronize or derive state that can be computed during render.
-- Keep \`useState\` local to the component that requires it; lift state only when shared by siblings.
-- Custom hooks must start with \`use*\`, reside in \`src/hooks/\`, and return typed arrays or objects.`;
+- Never use useEffect to synchronize or derive state that can be computed during render.
+- Keep useState local to the component that requires it; lift state only when shared by siblings.
+- Custom hooks must start with use*, reside in src/hooks/, and return typed arrays or objects.`;
 
     function copyMdc() {
       navigator.clipboard.writeText(mdcText).then(() => {
