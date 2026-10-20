@@ -1,5 +1,7 @@
 # Canonical clean URL redirects for Programmatic SEO pages
 /rules/*.html /rules/:splat 301
+/launches /launches.html 200
+/featured /launches.html 200
 
 # PaceBowl Cursor Rules Studio Gateways
 /go/elevenlabs https://try.elevenlabs.io/3wvzgabjr4od 302
