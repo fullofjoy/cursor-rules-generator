@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "name": "cursor_rules_generator_agent_skills",
+  "description": "Agent-discoverable skills for generating, validating, and bundling modular .cursor/rules/*.mdc, Claude Code, and Windsurf rules.",
+  "homepage": "https://cursor.pacebowl.com",
+  "skills": [
+    {
+      "name": "generate_cursor_rules_mdc",
+      "description": "Generates production-grade .cursor/rules/*.mdc files with YAML frontmatter (description, globs, alwaysApply) for any tech stack preset.",
+      "url": "https://cursor.pacebowl.com",
+      "category": "developer_tools",
+      "input_schema": {
+        "framework": "string (nextjs-15, react-19, python-fastapi, golang, supabase, tailwind-css)",
+        "path_globs": "string (e.g. app/**/*.tsx, src/api/**/*.py)",
+        "anti_hallucination": "boolean (default: true)"
+      },
+      "output": "Valid .mdc markdown string with YAML frontmatter",
+      "turnaround_time": "0ms (client-side execution)",
+      "pricing": "100% Free ($0, open source, no login required)"
+    },
+    {
+      "name": "bundle_rules_zip",
+      "description": "Bundles selected technology and pattern rules into an unzippable .cursor/rules/ archive for instant repository bootstrapping.",
+      "url": "https://cursor.pacebowl.com",
+      "category": "developer_tools",
+      "input_schema": {
+        "rule_ids": "array of strings",
+        "target_format": "string (.mdc, claude_code, windsurf, legacy_cursorrules)"
+      },
+      "output": "ZIP binary blob containing path-scoped configuration files",
+      "turnaround_time": "<50ms client-side JSZip",
+      "pricing": "100% Free ($0, open source, no login required)"
+    },
+    {
+      "name": "validate_cursor_globs",
+      "description": "Simulates Cursor AI file matching against project directory structures to calculate context token reduction percentage.",
+      "url": "https://cursor.pacebowl.com",
+      "category": "developer_tools",
+      "input_schema": {
+        "globs": "string",
+        "file_paths": "array of strings"
+      },
+      "output": "Matched files list and estimated token savings percentage (~75%)",
+      "turnaround_time": "0ms (client-side execution)",
+      "pricing": "100% Free ($0, open source, no login required)"
+    }
+  ]
+}

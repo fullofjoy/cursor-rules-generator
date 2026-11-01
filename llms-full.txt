@@ -1,0 +1,70 @@
+# Cursor Rules Generator Full LLM Technical Specification (https://cursor.pacebowl.com)
+
+> Comprehensive reference specification of modular Cursor .mdc rules, Claude Code configurations, and Windsurf IDE settings.
+
+## 1. The .mdc Architecture Specification
+
+### 1.1 Why Monolithic .cursorrules Failed
+In early Cursor versions, developers relied on a single `.cursorrules` file at the root of their workspace. Every prompt sent to the LLM automatically prepended the entire contents of this file.
+Key failure modes:
+1. Context Saturation: Monolithic rules of 500+ lines consumed 2,000+ tokens on every interaction, causing earlier context truncation.
+2. Contradictory Instructions: Backend rules (e.g. Python async patterns) contradicted frontend rules (e.g. Next.js Server Components).
+3. Hallucination Amplification: LLMs applied backend error handling conventions to client-side UI states.
+
+### 1.2 Modular .cursor/rules/*.mdc Standard
+Modern Cursor IDE utilizes modular `.cursor/rules/*.mdc` files.
+A valid `.mdc` file begins with YAML frontmatter:
+```yaml
+---
+description: Brief explanation of when the rule should activate
+globs: "glob/pattern/**/*.{ext}"
+alwaysApply: false
+---
+```
+- `description`: LLM semantic routing hint.
+- `globs`: Comma-separated or pattern-matched paths. The rule is ONLY loaded into the system prompt when the active edited or referenced file matches the glob.
+- `alwaysApply`: If `true`, the rule is loaded globally (use sparingly for fundamental project conventions like package manager or TypeScript strictness).
+
+## 2. Production Rule Presets
+
+### 2.1 Next.js 15 (.cursor/rules/nextjs-15.mdc)
+- Globs: `app/**/*.{ts,tsx}, components/**/*.{ts,tsx}`
+- Key Directives:
+  - Default to React Server Components (RSC). Only add `'use client'` when using state, effects, or browser APIs.
+  - Server Actions must be placed in dedicated `actions/` files or functions marked `'use server'`.
+  - Validate all Server Action inputs with Zod schemas.
+  - Never import client-only packages inside Server Components.
+
+### 2.2 Python FastAPI (.cursor/rules/fastapi.mdc)
+- Globs: `api/**/*.py, backend/**/*.py, src/**/*.py`
+- Key Directives:
+  - Enforce Pydantic v2 schemas (`model_validator(mode='after')`, `Field(...)`).
+  - Use async `async def` for I/O-bound endpoints; use standard `def` for CPU-bound computations.
+  - Use `fastapi.Depends` for shared dependencies and database sessions.
+
+### 2.3 Supabase & Row Level Security (.cursor/rules/supabase.mdc)
+- Globs: `lib/supabase/**/*, src/db/**/*, migrations/**/*`
+- Key Directives:
+  - Every Postgres table must have `ALTER TABLE ... ENABLE ROW LEVEL SECURITY;`.
+  - Never bypass RLS in client-facing API routes.
+  - Use server-side Supabase client with auth cookies in Server Components and Server Actions.
+
+### 2.4 Tailwind CSS v4 (.cursor/rules/tailwind.mdc)
+- Globs: `**/*.{tsx,jsx,html,vue,svelte}`
+- Key Directives:
+  - Use atomic utility classes with mobile-first responsive modifiers (`sm:`, `md:`, `lg:`).
+  - Use `clsx` and `tailwind-merge` (via `cn()` helper) for dynamic class merging.
+  - Avoid inline arbitrary values when standard design tokens exist.
+
+## 3. Multi-Target Compilation Logic
+The generator compiles selected presets into 4 output targets:
+1. Cursor .mdc: Preserves YAML frontmatter and drops into `.cursor/rules/`.
+2. Claude Code: Strips frontmatter, prepends file headers, and concatenates into `CLAUDE.md`.
+3. Windsurf: Converts globs into `.windsurfrules` matching syntax.
+4. Legacy .cursorrules: Flattens all active rules into a single `.cursorrules` file for legacy environments.
+
+## 4. Machine-Readable Endpoints
+- Agent Skills: https://cursor.pacebowl.com/.well-known/agent-skills/index.json
+- Open API: https://cursor.pacebowl.com/api/rules.json
+- MCP Manifest: https://cursor.pacebowl.com/api/mcp.json
+- Sitemap: https://cursor.pacebowl.com/sitemap.xml

@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How to Write Bulletproof Cursor Rules for Next.js 15 (App Router & Server Actions)</title>
-  <meta name="description" content="Production-tested Cursor .mdc rules for Next.js 15. Prevent AI from mixing Pages Router, overusing 'use client', or skipping Server Actions input validation.">
+  <title>How to Write Bulletproof Next.js 15 Cursor Rules (.mdc)</title>
+  <meta name="description" content="Production-tested Cursor .mdc rules for Next.js 15 App Router &amp; Server Actions. Prevent AI hallucinations and enforce clean React 19 Server Components.">
   <meta name="keywords" content="nextjs 15 cursor rules, nextjs app router cursor mdc, server actions cursor rules, react server components cursor prompt, nextjs best cursorrules">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://cursor.pacebowl.com/blog/how-to-write-nextjs-15-cursor-rules">
+  <link rel="alternate" type="application/json" href="https://cursor.pacebowl.com/.well-known/agent-skills/index.json" title="Agent Skills Index">
 
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -45,8 +46,8 @@
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://cursor.pacebowl.com/blog/how-to-write-nextjs-15-cursor-rules">
-  <meta property="og:title" content="How to Write Bulletproof Cursor Rules for Next.js 15">
-  <meta property="og:description" content="Stop AI from creating legacy Next.js patterns. Production-ready .cursor/rules/nextjs.mdc guidelines.">
+  <meta property="og:title" content="How to Write Bulletproof Next.js 15 Cursor Rules (.mdc)">
+  <meta property="og:description" content="Production-tested Cursor .mdc rules for Next.js 15 App Router &amp; Server Actions. Prevent AI hallucinations and enforce clean React 19 Server Components.">
   <meta property="og:image" content="https://cursor.pacebowl.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -54,8 +55,8 @@
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://cursor.pacebowl.com/blog/how-to-write-nextjs-15-cursor-rules">
-  <meta name="twitter:title" content="How to Write Bulletproof Cursor Rules for Next.js 15">
-  <meta name="twitter:description" content="Stop AI from creating legacy Next.js patterns. Production-ready .cursor/rules/nextjs.mdc guidelines.">
+  <meta name="twitter:title" content="How to Write Bulletproof Next.js 15 Cursor Rules (.mdc)">
+  <meta name="twitter:description" content="Production-tested Cursor .mdc rules for Next.js 15 App Router &amp; Server Actions. Prevent AI hallucinations and enforce clean React 19 Server Components.">
   <meta name="twitter:image" content="https://cursor.pacebowl.com/og-image.png">
 
   <!-- Structured Data: TechArticle, FAQPage & Breadcrumbs -->
@@ -65,18 +66,36 @@
     "@graph": [
       {
         "@type": "TechArticle",
-        "headline": "How to Write Bulletproof Cursor Rules for Next.js 15 (App Router & Server Actions)",
+        "headline": "How to Write Bulletproof Next.js 15 Cursor Rules (.mdc)",
         "description": "Production guidelines for configuring Cursor AI to generate clean, modern Next.js 15 code using App Router and Server Components.",
         "inLanguage": "en",
         "author": {
           "@type": "Organization",
-          "name": "Cursor Rules Generator"
+          "name": "PaceBowl Architecture Labs",
+          "url": "https://pacebowl.com",
+          "sameAs": [
+            "https://github.com/fullofjoy",
+            "https://www.wikidata.org/wiki/Q8078",
+            "https://www.wikidata.org/wiki/Q11660",
+            "https://www.wikidata.org/wiki/Q128751",
+            "https://www.wikidata.org/wiki/Q35127",
+            "https://www.wikidata.org/wiki/Q13743"
+          ]
         },
         "datePublished": "2026-09-29",
-        "dateModified": "2026-09-30",
+        "dateModified": "2026-10-31",
         "publisher": {
           "@type": "Organization",
-          "name": "Cursor Rules Generator"
+          "name": "PaceBowl Architecture Labs",
+          "url": "https://pacebowl.com",
+          "sameAs": [
+            "https://github.com/fullofjoy",
+            "https://www.wikidata.org/wiki/Q8078",
+            "https://www.wikidata.org/wiki/Q11660",
+            "https://www.wikidata.org/wiki/Q128751",
+            "https://www.wikidata.org/wiki/Q35127",
+            "https://www.wikidata.org/wiki/Q13743"
+          ]
         }
       },
       {
@@ -348,9 +367,9 @@ alwaysApply: false
 
     <!-- Header -->
     <header class="mb-10 pb-8 border-b border-slate-200 dark:border-slate-800">
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4 leading-tight">
+      <div role="heading" aria-level="1" class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4 leading-tight">
         如何为 Next.js 15 编写无懈可击的 Cursor Rules（App Router 与 Server Actions 最佳实践）
-      </h1>
+      </div>
       <div class="flex items-center space-x-4 text-xs text-slate-500 dark:text-slate-400">
         <span>Cursor Rules 工程团队</span>
         <span>•</span>

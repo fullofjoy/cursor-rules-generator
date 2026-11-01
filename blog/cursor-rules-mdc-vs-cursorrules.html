@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cursor Rules (.mdc) vs .cursorrules: The Complete 2026 Migration Guide</title>
-  <meta name="description" content="Learn why Cursor deprecated legacy .cursorrules files and transitioned to modular .cursor/rules/*.mdc. Complete guide with YAML frontmatter specs, glob matching, and migration steps.">
+  <title>Cursor Rules (.mdc) vs .cursorrules: 2026 Migration Guide</title>
+  <meta name="description" content="Learn why Cursor deprecated legacy .cursorrules for modular .cursor/rules/*.mdc. Complete guide with YAML frontmatter, glob matching, and migration steps.">
   <meta name="keywords" content="cursor rules mdc vs cursorrules, cursor rules migration, cursor ide mdc format, how to use cursor rules, cursor prompt tokens">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://cursor.pacebowl.com/blog/cursor-rules-mdc-vs-cursorrules">
+  <link rel="alternate" type="application/json" href="https://cursor.pacebowl.com/.well-known/agent-skills/index.json" title="Agent Skills Index">
 
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -45,8 +46,8 @@
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://cursor.pacebowl.com/blog/cursor-rules-mdc-vs-cursorrules">
-  <meta property="og:title" content="Cursor Rules (.mdc) vs .cursorrules: The Complete 2026 Migration Guide">
-  <meta property="og:description" content="Why monolithic .cursorrules files are obsolete and how to migrate to modular, path-scoped .cursor/rules/*.mdc.">
+  <meta property="og:title" content="Cursor Rules (.mdc) vs .cursorrules: 2026 Migration Guide">
+  <meta property="og:description" content="Learn why Cursor deprecated legacy .cursorrules for modular .cursor/rules/*.mdc. Complete guide with YAML frontmatter, glob matching, and migration steps.">
   <meta property="og:image" content="https://cursor.pacebowl.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -54,8 +55,8 @@
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://cursor.pacebowl.com/blog/cursor-rules-mdc-vs-cursorrules">
-  <meta name="twitter:title" content="Cursor Rules (.mdc) vs .cursorrules: The Complete 2026 Migration Guide">
-  <meta name="twitter:description" content="Why monolithic .cursorrules files are obsolete and how to migrate to modular, path-scoped .cursor/rules/*.mdc.">
+  <meta name="twitter:title" content="Cursor Rules (.mdc) vs .cursorrules: 2026 Migration Guide">
+  <meta name="twitter:description" content="Learn why Cursor deprecated legacy .cursorrules for modular .cursor/rules/*.mdc. Complete guide with YAML frontmatter, glob matching, and migration steps.">
   <meta name="twitter:image" content="https://cursor.pacebowl.com/og-image.png">
 
   <!-- Structured Data: TechArticle, FAQPage & Breadcrumbs -->
@@ -65,18 +66,36 @@
     "@graph": [
       {
         "@type": "TechArticle",
-        "headline": "Cursor Rules (.mdc) vs .cursorrules: The Complete 2026 Migration Guide",
+        "headline": "Cursor Rules (.mdc) vs .cursorrules: 2026 Migration Guide",
         "description": "Comprehensive architectural guide comparing legacy .cursorrules with modern scoped .cursor/rules/*.mdc files in Cursor IDE.",
         "inLanguage": "en",
         "author": {
           "@type": "Organization",
-          "name": "Cursor Rules Generator"
+          "name": "PaceBowl Architecture Labs",
+          "url": "https://pacebowl.com",
+          "sameAs": [
+            "https://github.com/fullofjoy",
+            "https://www.wikidata.org/wiki/Q8078",
+            "https://www.wikidata.org/wiki/Q11660",
+            "https://www.wikidata.org/wiki/Q128751",
+            "https://www.wikidata.org/wiki/Q35127",
+            "https://www.wikidata.org/wiki/Q13743"
+          ]
         },
         "datePublished": "2026-09-29",
-        "dateModified": "2026-09-30",
+        "dateModified": "2026-10-31",
         "publisher": {
           "@type": "Organization",
-          "name": "Cursor Rules Generator"
+          "name": "PaceBowl Architecture Labs",
+          "url": "https://pacebowl.com",
+          "sameAs": [
+            "https://github.com/fullofjoy",
+            "https://www.wikidata.org/wiki/Q8078",
+            "https://www.wikidata.org/wiki/Q11660",
+            "https://www.wikidata.org/wiki/Q128751",
+            "https://www.wikidata.org/wiki/Q35127",
+            "https://www.wikidata.org/wiki/Q13743"
+          ]
         }
       },
       {
@@ -369,9 +388,9 @@ EOF</code></pre>
 
     <!-- Title & Meta -->
     <header class="mb-10 pb-8 border-b border-slate-200 dark:border-slate-800">
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4 leading-tight">
+      <div role="heading" aria-level="1" class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4 leading-tight">
         Cursor Rules (.mdc) 对比 .cursorrules：2026 完整迁移实战指南
-      </h1>
+      </div>
       <div class="flex items-center space-x-4 text-xs text-slate-500 dark:text-slate-400">
         <span>作者：Cursor Rules 架构工程团队</span>
         <span>•</span>
